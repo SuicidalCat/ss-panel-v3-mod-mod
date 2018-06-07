@@ -4,16 +4,13 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<meta name="theme-color" content="#ff9800">
+	<meta name="theme-color" content="#81F7F3">
 	<title>{$config["appName"]}</title>
-
-
 	<!-- css -->
-	<link href="https://cdn.jsdelivr.net/gh/sspuic/p@0x03/public/theme/material/css/base.min.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/gh/sspuic/p@0x03/public/theme/material/css/project.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.2/public/theme/material/css/base.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.2/public/theme/material/css/project.min.css" rel="stylesheet">
 	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
 	<link href="https://fonts.loli.net/css?family=Material+Icons">
-
  <style>
     body {
         background: #eee;
@@ -279,7 +276,7 @@
 		}
 
 		.page-orange .ui-content-header {
-			background-image: url(https://cdn.jsdelivr.net/gh/sspuic/p@0x01/public/theme/material/css/images/bg/amber.jpg);
+			background-image: url(https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.2/public/theme/material/css/images/bg/amber.jpg);
 		}
 
 		.content-heading {
@@ -311,11 +308,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li>
-							<a class="padding-right-lg waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>用户中心</a>
-						</li>
-
-						<li>
-							<a class="padding-right-cd waves-attach" href="/user/logout"><span class="icon icon-lg margin-right">exit_to_app</span>登出</a>
+							<a class="padding-right-cd waves-attach" href="/user/logout"><span class="icon icon-lg margin-right">exit_to_app</span>退出登錄</a>
 						</li>
 					</ul>
 				{else}
@@ -330,7 +323,6 @@
 						</li>
 					</ul>
 				{/if}
-
 			</div>
 		</ul>
 	</header>
@@ -347,21 +339,16 @@
 									<i class="icon icon-lg">account_balance_wallet</i>&nbsp;用户中心
 								</a>
 							</li>
-
-
 							<li>
 								<a href="/user/profile">
 									<i class="icon icon-lg">account_box</i>&nbsp;账户信息
 								</a>
 							</li>
-
 							<li>
 								<a href="/user/edit">
 									<i class="icon icon-lg">sync_problem</i>&nbsp;资料编辑
 								</a>
 							</li>
-
-
                           <li>
 								<a href="/user/ticket">
 									<i class="icon icon-lg">question_answer</i>&nbsp;工单系统
@@ -372,14 +359,7 @@
 									<i class="icon icon-lg">loyalty</i>&nbsp;邀请链接
 								</a>
 							</li>
-
-
-
-
-
 						</ul>
-
-
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">使用</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_use">
 							<li>
@@ -387,19 +367,16 @@
 									<i class="icon icon-lg">airplanemode_active</i>&nbsp;节点列表
 								</a>
 							</li>
-
 							<li>
 								<a href="/user/relay">
 									<i class="icon icon-lg">compare_arrows</i>&nbsp;中转规则
 								</a>
 							</li>
-
 							<li>
 								<a href="/user/trafficlog">
 									<i class="icon icon-lg">hourglass_empty</i>&nbsp;流量记录
 								</a>
 							</li>
-
 							<li>
 								<a href="/user/lookingglass">
 									<i class="icon icon-lg">visibility</i>&nbsp;延迟检测
@@ -409,13 +386,11 @@
 								</a>
 							</li>
 						</ul>
-
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_detect">
 							<li><a href="/user/detect"><i class="icon icon-lg">account_balance</i>&nbsp;审计规则</a></li>
 							<li><a href="/user/detect/log"><i class="icon icon-lg">assignment_late</i>&nbsp;审计记录</a></li>
 						</ul>
-
 						{if $config['enable_wecenter']=='true'}
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_trade">帮助</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_trade">
@@ -426,37 +401,20 @@
 							</li>
 						</ul>
 						{/if}
-
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">商店</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_help">
                           	<li>
 								<a href="/user/code">
-									<i class="icon icon-lg">code</i>&nbsp;充值
+									<i class="icon icon-lg">code</i>&nbsp;賬戶充值
 								</a>
 							</li>
-
 							<li>
 								<a href="/user/shop">
-									<i class="icon icon-lg">shop</i>&nbsp;套餐购买
+									<i class="icon icon-lg">shop</i>&nbsp;資源包購買
 								</a>
 							</li>
-
-							<li><a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a></li>
-
-
-
-
-                          {if $config['enable_donate']=='true'}
-							<li>
-								<a href="/user/donate">
-									<i class="icon icon-lg">attach_money</i>&nbsp;捐赠公示
-								</a>
-							</li>
-							{/if}
-
+							<li><a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;訂購記錄</a></li>
 						</ul>
-
-
 						{if $user->isAdmin()}
 							<li>
 								<a href="/admin">
@@ -464,9 +422,6 @@
 								</a>
 							</li>
 						{/if}
-
-
-
 					</li>
 				</ul>
 			</div>
