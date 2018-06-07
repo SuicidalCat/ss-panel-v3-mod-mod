@@ -276,7 +276,7 @@
 		}
 
 		.page-orange .ui-content-header {
-			background-image: url(https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.2/public/theme/material/css/images/bg/amber.jpg);
+			background-image: url(https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.2/public/images/bg-user-top.svg);
 		}
 
 		.content-heading {
