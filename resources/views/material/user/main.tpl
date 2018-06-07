@@ -111,9 +111,6 @@
         position: fixed;
     }
     </style>
-
-
-
 	<!-- favicon -->
 	<!-- ... -->
 	<style>
@@ -220,10 +217,6 @@
 			background-color:#fff
 		}
 
-
-
-
-
 		.pagination>li>a,
 		.pagination>li>span {
 		  border: 1px solid white;
@@ -238,7 +231,6 @@
 		  color: #000;
 		}
 
-
 		.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
 			color: #fff;
 			background-color: #000;
@@ -251,12 +243,9 @@
 		  border-color: #fff;
 		}
 
-
-
 		.pagination > .disabled > span {
 		  border-color: #fff;
 		}
-
 
 		pre {
 			white-space: pre-wrap;
@@ -284,10 +273,6 @@
 			color: #fff;
 		}
 	</style>
-
-
-
-
 </head>
 <body class="page-orange">
 	<header class="header header-orange header-transparent header-waterfall ui-header">
@@ -298,7 +283,6 @@
 				</a>
 			</div>
 		</ul>
-
 		<ul class="nav nav-list pull-right">
 			<div class="dropdown margin-right">
 				<a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
@@ -312,16 +296,6 @@
 						</li>
 					</ul>
 				{else}
-					<span class="access-hide">未登录</span>
-             		 <span class="icon icon-lg margin-right">account_circle</span>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li>
-							<a class="padding-right-lg waves-attach" href="/auth/login"><span class="icon icon-lg margin-right">account_box</span>登录</a>
-						</li>
-						<li>
-							<a class="padding-right-lg waves-attach" href="/auth/register"><span class="icon icon-lg margin-right">pregnant_woman</span>注册</a>
-						</li>
-					</ul>
 				{/if}
 			</div>
 		</ul>

@@ -14,7 +14,6 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.2/public/assets/css/main.css"/>
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.1/public/assets/css/noscript.css" /></noscript>   
   </head>
-  
        <body>
 			<div id="wrapper">
               <!--首页开始-->
@@ -43,8 +42,8 @@
                       </div>	
 					  	<nav>
 							<ul>
-                                <li><a href="#1">简介</a></li>
-					            <li><a href="/user">用户中心</a></li>
+								<li><a href="#1">简介</a></li>
+								<li><a href="/user">用户中心</a></li>
 								<li><a href="#5">下载</a></li>
                         </ul>
 						</nav>
