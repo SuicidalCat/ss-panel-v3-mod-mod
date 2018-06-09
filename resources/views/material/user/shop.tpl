@@ -20,7 +20,7 @@
 						{$shops->render()}
 						<table class="table ">
                             <tr>
-                                <th>-</th>
+                                <th></th>
 								<th>价格</th>
 								<th>内容</th>
                               <th></th>                

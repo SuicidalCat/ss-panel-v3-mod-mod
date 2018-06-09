@@ -351,14 +351,14 @@
 									<i class="icon icon-lg">hourglass_empty</i>&nbsp;流量记录
 								</a>
 							</li>
-							<li>
+							<!--li>
 								<a href="/user/lookingglass">
 									<i class="icon icon-lg">visibility</i>&nbsp;延迟检测
 								</a>
 								<a href="/user/announcement">
 									<i class="icon icon-lg">start</i>&nbsp;使用教程
 								</a>
-							</li>
+							</li-->
 						</ul>
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_detect">
