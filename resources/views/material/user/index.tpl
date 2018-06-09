@@ -1,9 +1,6 @@
 
-
-
 {include file='user/main.tpl'}
 {$ssr_prefer = URL::SSRCanConnect($user, 0)}
-
 
 	<main class="content">
 
@@ -15,21 +12,17 @@
 		<div class="container">
 			<section class="content-inner margin-top-no">
 				<div class="ui-card-wrap">
-
 						<div class="col-lg-6 col-md-6">
-
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
-                                     <p class="card-heading"> <i class="icon icon-md">notifications_active</i>公告栏</p>
+										<p class="card-heading"> <i class="icon icon-md">notifications_active</i>站點公告</p>
 										{if $ann != null}
 										<p>{$ann->content}</p>
 										{/if}
 									</div>
-
 								</div>
 							</div>
-
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
@@ -85,7 +78,6 @@
 														<p><span class="icon icon-lg text-white">looks_one</span><a href="/ssr-download/ssr-win.7z"> 点击我下载</a></p>
                                                           <p><span class="icon icon-lg text-white">looks_two</span> 解压至任意磁盘</p>
                                                           <p><span class="icon icon-lg text-white">looks_3</span> 运行程序</p>
-
 															<p> <span class="icon icon-lg text-white">looks_4</span> 任务栏右下角右键纸飞机图标--服务器订阅--SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新 SSR 服务器订阅。</p>
 															<p> <span class="icon icon-lg text-white">looks_5</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网。</p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$baseUrl}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$baseUrl}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
@@ -299,7 +291,6 @@
 
                                               {/if}
                                           </p>
-
 											<p><dt>等级过期时间</dt>
                                               {if $user->class_expire!="1989-06-04 00:05:00"}
 											<dd><i class="icon icon-md">event</i>&nbsp;{$user->class_expire}</dd>
