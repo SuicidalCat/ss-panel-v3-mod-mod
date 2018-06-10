@@ -263,18 +263,18 @@
 										<p class="card-heading"><i class="icon icon-md">account_circle</i>賬戶詳情</p>
 										<dl class="dl-horizontal">
 											<p><dt>接入權限等級</dt>
-                                            {if $user->class!=0}
-												<dd><i class="icon icon-md t4-text">stars</i>&nbsp;<code>等級{$user->class}</code></dd>
-                                            {else}
-												<dd><i class="icon icon-md t4-text">stars</i>&nbsp;無等級</dd>
-                                            {/if}
-                                          </p>
-                                          {if $user->class!=0}
-                                          	 <p><dt>Telegram頻道</dt>
-											<dd><i class="icon icon-md t4-text">telegram</i>&nbsp;<a href="https://t.me/wallink" target="view_window">點擊進入</a></dd>
-                                          {else}
-                                          {/if}
-                                          </p>
+												{if $user->class!=0}
+													<dd><i class="icon icon-md t4-text">stars</i>&nbsp;<code>等級{$user->class}</code></dd>
+												{else}
+													<dd><i class="icon icon-md t4-text">stars</i>&nbsp;無等級</dd>
+												{/if}
+											</p>
+											{if $user->class!=0}
+												<p><dt>Telegram頻道</dt>
+													<dd><i class="icon mdi-icons t4-text">telegram</i>&nbsp;<a href="https://t.me/wallink" target="view_window">點擊進入</a></dd>
+												</p>
+											{else}
+											{/if}											
 											<p><dt>接入權限過期時間</dt>
                                               {if $user->class_expire!="1989-06-04 00:05:00"}
 											<dd><i class="icon icon-md">event</i>&nbsp;{$user->class_expire}</dd>
