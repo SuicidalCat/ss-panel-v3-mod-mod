@@ -263,14 +263,10 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
-
 						</div>
-
 						<div class="col-lg-6 col-md-6">
-
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
@@ -296,69 +292,66 @@
                                               <dd><i class="icon icon-md">event</i>&nbsp;不过期</dd>
                                               {/if}
 											</p>
-                                          	<p><dt>剩餘接入權限時長</dt>
-                                              <i class="icon icon-md">event</i>
-                                              <span class="label-level-expire">剩余</span>
-											  <code><span id="days-level-expire"></span></code>
-                                              <span class="label-level-expire">天</span>
-                                            </p>
-
-											<p><dt>帐号过期时间</dt>
+											<p><dt>剩餘接入權限有效期</dt>
+												<i class="icon icon-md">event</i>
+												<span class="label-level-expire">剩余</span>
+												<code><span id="days-level-expire"></span></code>
+												<span class="label-level-expire">天</span>
+											</p>
+											<p><dt>賬戶過期時間</dt>
 											  <dd><i class="icon icon-md">event</i>&nbsp;{$user->expire_in}</dd>
-                                            </p>
-                                            <p><dt>账号有效期</dt>
-                                              <i class="icon icon-md">event</i>
-                                              <span class="label-account-expire">剩余</span>
-											  <code><span id="days-account-expire"></span></code>
-											  <span class="label-account-expire">天</span>
-                                           </p>
-
-											<p><dt>速度限制</dt>
+											</p>
+											<p><dt>賬戶有效期</dt>
+												<i class="icon icon-md">event</i>
+												<span class="label-account-expire">剩余</span>
+												<code><span id="days-account-expire"></span></code>
+												<span class="label-account-expire">天</span>
+											</p>
+											<p><dt>鏈接速度限制</dt>
 											{if $user->node_speedlimit!=0}
-											<dd><i class="icon icon-md">swap_vert</i>&nbsp;<code>{$user->node_speedlimit}</code>Mbps</dd>
+												<dd><i class="icon icon-md">swap_vert</i>&nbsp;<code>{$user->node_speedlimit}</code>Mbps</dd>
 											{else}
-											<dd><i class="icon icon-md">settings_input_component</i>&nbsp;不限速</dd>
-											{/if}</p>
-                                           <p><dt>在线设备数</dt>
-										    {if $user->node_connector!=0}
-											<dd><i class="icon icon-md">phonelink</i>&nbsp;{$user->online_ip_count()} / {$user->node_connector}</dd>
-											{else}
-                                            <dd><i class="icon icon-md">phonelink</i>&nbsp;{$user->online_ip_count()} / 不限制 </dd>
+												<dd><i class="icon icon-md">settings_input_component</i>&nbsp;不限速</dd>
 											{/if}
 											</p>
-											<p><dt>余额</dt>
-											<dd><i class="icon icon-md">monetization_on</i>&nbsp;<code>{$user->money}</code> CNY</dd></p>
-											<p><dt>上次使用</dt>
-                                              {if $user->lastSsTime()!="从未使用喵"}
-											<dd><i class="icon icon-md">event</i>&nbsp;{$user->lastSsTime()}</dd>
+											<p><dt>在綫設備數量</dt>
+										    {if $user->node_connector!=0}
+												<dd><i class="icon icon-md">phonelink</i>&nbsp;{$user->online_ip_count()} / {$user->node_connector}</dd>
+											{else}
+												<dd><i class="icon icon-md">phonelink</i>&nbsp;{$user->online_ip_count()} / 無限制 </dd>
+											{/if}
+											</p>
+											<p><dt>賬戶餘額</dt>
+												<dd><i class="icon icon-md">monetization_on</i>&nbsp;<code>{$user->money}</code> CNY</dd>
+											</p>
+											<p><dt>最後使用時間</dt>
+												{if $user->lastSsTime()!="从未使用喵"}
+														<dd><i class="icon icon-md">event</i>&nbsp;{$user->lastSsTime()}</dd>
                                           {else}
-                                          <dd><i class="icon icon-md">event</i>&nbsp;从未使用</dd>
-                                          {/if}</p>
-                                          <p><dt>上次签到时间：</dt>
-                                            <dd><i class="icon icon-md">event</i>&nbsp;{$user->lastCheckInTime()}</dd></p>
-
-
+														<dd><i class="icon icon-md">event</i>&nbsp;尚未使用</dd>
+                                          {/if}
+											</p>
+											<p><dt>最後簽到時間：</dt>
+												<dd><i class="icon icon-md">event</i>&nbsp;{$user->lastCheckInTime()}</dd>
+											</p>
 											<p id="checkin-msg"></p>
-
 											{if $geetest_html != null}
 												<div id="popup-captcha"></div>
 											{/if}
-
-
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											{if $user->isAbleToCheckin() }
-												<p id="checkin-btn">
-													<button id="checkin" class="btn btn-brand btn-flat waves-attach"><span class="icon">check</span>&nbsp;点我签到&nbsp;<span class="icon">screen_rotation</span>&nbsp;或者摇动手机签到</button>
-												</p>
-											{else}
-												<p><a class="btn btn-brand disabled btn-flat waves-attach" href="#"><span class="icon">check</span>&nbsp;今日已签到</a></p>
-											{/if}
-										</div>
-									</div>
+											<div class="card-action">
+												<div class="card-action-btn pull-left">
+													{if $user->isAbleToCheckin() }
+														<p id="checkin-btn">
+															<button id="checkin" class="btn btn-brand btn-flat waves-attach"><span class="icon">check</span>&nbsp;簽到&nbsp;
+															</button>
+														</p>
+													{else}
+														<p><a class="btn btn-brand disabled btn-flat waves-attach" href="#"><span class="icon">check</span>&nbsp;已簽到</a></p>
+													{/if}
+												</div>
+											</div>
 										</dl>
 									</div>
-
 								</div>
 							</div>
 
