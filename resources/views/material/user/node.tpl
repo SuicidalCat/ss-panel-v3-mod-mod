@@ -33,7 +33,7 @@
 															</div>
 															<div class="tile-inner">
 																<div class="text-overflow">
-																	<img src="/images/prefix/{$node->status}.png" height="20"> {$prefix} | {if $user->class!=0}<font color="#668099"><i class="mdi mdi-account-multiple"></i></font><strong><b><font color="#474747"> {$node_alive[$prefix]}</font></b></strong>{else}{/if} | <font color="#668099"><i class="icon icon-lg">import_export</i></font><font color="#828282">{$ss_node->method[$prefix]}</font> | <font color="#668099"><i class="mdi mdi-signal-cellular-3"></i></font> {if isset($node_bandwidth[$prefix])==true}<font color="#aaaaaa">{$node_bandwidth[$prefix]}</font>{else}N/A{/if} | <font color="#668099"><i class="icon icon-lg">shuffle</i></font><font color="#a5a5a5">{$node->traffic_rate} 流量倍率</font>
+																	<img src="/images/prefix/{$node->status}.png" height="20"> {$prefix} | {if $user->class!=0}<font color="#668099"><i class="mdi mdi-account-multiple"></i></font><strong><b><font color="#474747"> {$node_alive[$prefix]}</font></b></strong>{else}{/if} | <font color="#668099"><i class="icon icon-lg">import_export</i></font><font color="#828282">{$node->method}</font> | <font color="#668099"><i class="mdi mdi-signal-cellular-3"></i></font> {if isset($node_bandwidth[$prefix])==true}<font color="#aaaaaa">{$node_bandwidth[$prefix]}</font>{else}N/A{/if} | <font color="#668099"><i class="icon icon-lg">shuffle</i></font><font color="#a5a5a5">{$node->traffic_rate} 流量倍率</font>
 																</div>
 															</div>
 														</div>

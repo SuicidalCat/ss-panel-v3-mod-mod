@@ -269,11 +269,11 @@
 											{else}
 											{/if}											
 											<p><dt>接入權限過期時間</dt>
-                                              {if $user->class_expire!="1989-06-04 00:05:00"}
-											<dd><i class="icon icon-md">event</i>&nbsp;{$user->class_expire}</dd>
-                                          {else}
-                                              <dd><i class="icon icon-md">event</i>&nbsp;不过期</dd>
-                                              {/if}
+											{if $user->class_expire!="1989-06-04 00:05:00"}
+												<dd><i class="icon icon-md">event</i>&nbsp;{$user->class_expire}</dd>
+											{else}
+												<dd><i class="icon icon-md">event</i>&nbsp;不过期</dd>
+											{/if}
 											</p>
 											<p><dt>剩餘接入權限有效期</dt>
 												<i class="icon icon-md">event</i>
