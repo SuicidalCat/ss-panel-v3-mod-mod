@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+resources/views/material/404.tpl merge=ours
+resources/views/material/405.tpl merge=ours
+resources/views/material/tos.tpl merge=ours
+resources/views/material/index.tpl merge=ours
