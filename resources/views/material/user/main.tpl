@@ -339,7 +339,7 @@
 						<ul class="menu-collapse collapse in" id="ui_menu_use">
 							<li>
 								<a href="/user/node">
-									<i class="icon icon-lg">key</i>&nbsp;节点列表
+									<i class="mdi mdi-key"></i>&nbsp;节点列表
 								</a>
 							</li>
 							<li>
