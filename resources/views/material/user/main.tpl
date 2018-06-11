@@ -304,7 +304,7 @@
 	<nav aria-hidden="true" class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu" tabindex="-1">
 		<div class="menu-scroll">
 			<div class="menu-content">
-				<a class="menu-logo" href="/user"><img src="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.9/public/images/walllink_logo_black_small.png" height="60"></img>&nbsp;{$config["appName"]}</a>
+				<a class="menu-logo" href="/user"><img src="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.9/public/images/walllink_logo_black_small.png" height="45"></img>&nbsp;{$config["appName"]}</a>
 				<ul class="nav">
 					<li>
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
