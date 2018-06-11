@@ -266,7 +266,7 @@
 		}
 
 		.page-orange .ui-content-header {
-			background-image: url(https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.3/public/images/bg-user-top.svg);
+			background-image: url(https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.9/public/images/bg-user-top.svg);
 		}
 
 		.content-heading {
@@ -304,7 +304,7 @@
 	<nav aria-hidden="true" class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu" tabindex="-1">
 		<div class="menu-scroll">
 			<div class="menu-content">
-				<a class="menu-logo" href="/"><i class="icon icon-lg" >language</i>&nbsp;{$config["appName"]}</a>
+				<a class="menu-logo" href="/user"><img src="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.9/public/images/walllink_logo_black_small.png"></img>&nbsp;{$config["appName"]}</a>
 				<ul class="nav">
 					<li>
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
@@ -339,7 +339,7 @@
 						<ul class="menu-collapse collapse in" id="ui_menu_use">
 							<li>
 								<a href="/user/node">
-									<i class="icon icon-lg">airplanemode_active</i>&nbsp;节点列表
+									<i class="icon icon-lg">key</i>&nbsp;节点列表
 								</a>
 							</li>
 							<li>
@@ -391,11 +391,11 @@
 							<li><a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;訂購記錄</a></li>
 						</ul>
 						{if $user->isAdmin()}
-							<li>
-								<a href="/admin">
-									<i class="icon icon-lg">person_pin</i>&nbsp;管理面板
-								</a>
-							</li>
+						<li>
+							<a href="/admin">
+								<i class="icon icon-lg">person_pin</i>&nbsp;管理面板
+							</a>
+						</li>
 						{/if}
 					</li>
 				</ul>
