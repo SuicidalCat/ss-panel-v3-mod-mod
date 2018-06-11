@@ -104,8 +104,7 @@
 														</code>密码<code>
 														{if $user->class>0}															xxxxxx
 															{else}															VIP用户可见
-															{/if}
-														</code>注意特殊符号与大小写,如果显示需要解锁账号，请提交工单或邮件。（千万不要试图登陆iCloud，会導致您的隱私資料外泄以及機器被鎖定）</p-->
+															{/if}														</code>注意特殊符号与大小写,如果显示需要解锁账号，请提交工单或邮件。（千万不要试图登陆iCloud，会導致您的隱私資料外泄以及機器被鎖定）</p-->
                                              <p><span class="icon icon-lg text-white">looks_two</span> 商店搜索<code>Shadowrocket</code>下载安装</p>
                                              <p><span class="icon icon-lg text-white">looks_3</span> 安装完成后切换回您自己的账号。（请务必切换回您自己的账户）</p>
 														<p><span class="icon icon-lg text-white">looks_3</span> 打开Shadowrocket软件后，点击右上角<span class="icon icon-lg text-white">add</span>，添加类型为<code>Subscribe</code>，URL填写以下地址即可自动更新节点</p>
@@ -199,21 +198,15 @@
 														{$ss_url_all = URL::getAllUrl($pre_user, 0, 1)}
 														{$ss_url_all_mu = URL::getAllUrl($pre_user, 1, 1)}
 														{$ss_url_all_win = URL::getAllUrl($pre_user, 0, 2)}
-
 														{if URL::SSCanConnect($user)}
 														<dl class="dl-horizontal">
 															<p>各个节点的地址请到节点列表查看！</p>
-
-
 															<p><dt>端口</dt>
 															<dd>{$user->port}</dd></p>
-
 															<p><dt>密码</dt>
 															<dd>{$user->passwd}</dd></p>
-
 															<p><dt>自定义加密</dt>
 															<dd>{$user->method}</dd></p>
-
 															<p><dt>自定义混淆</dt>
 															<dd>{$user->obfs}</dd></p>
 														</dl>
@@ -312,7 +305,7 @@
 											{/if}
 											</p>
 											<p><dt>賬戶餘額</dt>
-												<dd><i class="icon icon-md">monetization_on</i>&nbsp;<code>{$user->money}</code> CNY</dd>
+												<dd><i class="mdi mdi-currency-cny"></i>&nbsp;<code>{$user->money}</code> CNY</dd>
 											</p>
 											<p><dt>最後使用時間</dt>
 												{if $user->lastSsTime()!="从未使用喵"}
@@ -344,7 +337,6 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
@@ -355,7 +347,7 @@
 											{
                                          theme: "light1",
 												title:{
-													text: "流量使用情况",
+													text: "傳輸量使用情況",
 													fontFamily: "Impact",
 													fontWeight: "normal"
 													},
@@ -377,13 +369,13 @@
 													dataPoints: [
 														{if $user->transfer_enable != 0}
 														{
-															y: {$user->last_day_t/$user->transfer_enable*100},label: "总已用", legendText:"总已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}", indexLabel: "总已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}"
+															y: {$user->last_day_t/$user->transfer_enable*100},label: "總計已用", legendText:"總計已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}", indexLabel: "總計已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}"
 														},
 														{
-															y: {($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100},label: "今日", legendText:"今日 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}", indexLabel: "今日 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}"
+															y: {($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100},label: "本日使用", legendText:"本日使用 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}", indexLabel: "本日使用 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}"
 														},
 														{
-															y: {($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100},label: "剩余可用", legendText:"剩余可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}", indexLabel: "剩余可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}"
+															y: {($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100},label: "剩餘可用", legendText:"剩餘可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}", indexLabel: "剩餘可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}"
 														}
 														{/if}
 													]
@@ -450,7 +442,6 @@ function CountDown() {
 $(function(){
 	new Clipboard('.copy-text');
 });
-
 $(".copy-text").click(function () {
 	$("#result").modal();
 	$("#msg").html("已拷贝订阅链接，请您继续接下来的操作。");
@@ -458,13 +449,11 @@ $(".copy-text").click(function () {
 $(function(){
 	new Clipboard('.reset-link');
 });
-
 $(".reset-link").click(function () {
 	$("#result").modal();
 	$("#msg").html("已重置您的订阅链接，请变更或添加您的订阅链接！");
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
 });
-
  {if $user->transfer_enable-($user->u+$user->d) == 0}
 window.onload = function() {
     $("#result").modal();
@@ -474,22 +463,17 @@ window.onload = function() {
 
 {if $geetest_html == null}
 
-
 window.onload = function() {
     var myShakeEvent = new Shake({
         threshold: 15
     });
-
     myShakeEvent.start();
   	CountDown()
-
     window.addEventListener('shake', shakeEventDidOccur, false);
-
     function shakeEventDidOccur () {
 		if("vibrate" in navigator){
 			navigator.vibrate(500);
 		}
-
         $.ajax({
                 type: "POST",
                 url: "/user/checkin",
@@ -507,7 +491,6 @@ window.onload = function() {
             });
     }
 };
-
 
 $(document).ready(function () {
 	$("#checkin").click(function () {
@@ -529,19 +512,14 @@ $(document).ready(function () {
 	})
 })
 
-
 {else}
-
 
 window.onload = function() {
     var myShakeEvent = new Shake({
         threshold: 15
     });
-
     myShakeEvent.start();
-
     window.addEventListener('shake', shakeEventDidOccur, false);
-
     function shakeEventDidOccur () {
 		if("vibrate" in navigator){
 			navigator.vibrate(500);
@@ -550,8 +528,6 @@ window.onload = function() {
         c.show();
     }
 };
-
-
 
 var handlerPopup = function (captchaObj) {
 	c = captchaObj;
@@ -593,9 +569,6 @@ initGeetest({
 	offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
 }, handlerPopup);
 
-
-
 {/if}
-
 
 </script>

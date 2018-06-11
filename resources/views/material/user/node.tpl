@@ -1,8 +1,5 @@
 ﻿
-
-
 {include file='user/main.tpl'}
-
 
 <script src="//cdn.staticfile.org/canvasjs/1.7.0/canvasjs.js"></script>
 <script src="//cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
@@ -10,26 +7,23 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">节点列表</h1>
+				<h1 class="content-heading">接入點列表</h1>
 			</div>
 		</div>
-
 		<div class="container">
 			<section class="content-inner margin-top-no">
 				<div class="ui-card-wrap">
 					<div class="row">
 						<div class="col-lg-12 col-sm-12">
 							<div class="card">
-
 								<div class="card-main">
-
 									<div class="card-inner margin-bottom-no">
 										<div class="tile-wrap">
 										{$id=1000}
 										{foreach $node_prefix as $prefix => $nodes}
 										{if $node_isv6[$prefix] == 0 && $node_class[$prefix]!=0}
 												{$id=$id+1}
-                                  {foreach $nodes as $node}
+												{foreach $nodes as $node}
 													<div class="tile tile-collapse">
 														<div data-toggle="tile" data-target="#heading{$node_order->$prefix}">
 															<div class="tile-side pull-left" data-ignore="tile">
@@ -39,21 +33,22 @@
 															</div>
 															<div class="tile-inner">
 																<div class="text-overflow">
-                                                                  <font color="#383838"><img src="/images/prefix/{$node->status}.png" height="22" width="40"> {$prefix}</font> | {if $user->class!=0}<font color="#ff9000"><i class="icon icon-lg">flight_takeoff</i></font> <strong>{else}{/if}<b><font color="#474747">{$node_alive[$prefix]}</font></b></strong> | <font color="#ff9000"><i class="icon icon-lg">import_export</i></font>  <font color="#828282">{$node_method[$prefix]}</font> | <font color="#ff9000"><i class="icon icon-lg">equalizer</i></font> {if isset($node_bandwidth[$prefix])==true}<font color="#aaaaaa">{$node_bandwidth[$prefix]}</font>{else}N/A{/if} | <font color="#ff9000"><i class="icon icon-lg">network_check</i></font> <font color="#a5a5a5">{$node->traffic_rate} 流量係數</font>
-                                                                 </div>
+																	<img src="/images/prefix/{$node->status}.png" height="22"> {$prefix} | {if $user->class!=0}<font color="#669999"><i class="icon icon-lg">account_multiple</i></font><strong>{else}{/if}<b><font color="#474747">{$node_alive[$prefix]}</font></b></strong> | <font color="#ff9000"><i class="icon icon-lg">import_export</i></font><font color="#828282">{$node_method[$prefix]}</font> | <font color="#ff9000"><i class="icon icon-lg">equalizer</i></font> {if isset($node_bandwidth[$prefix])==true}<font color="#aaaaaa">{$node_bandwidth[$prefix]}</font>{else}N/A{/if} | <font color="#ff9000"><i class="icon icon-lg">shuffle</i></font><font color="#a5a5a5">{$node->traffic_rate} 流量倍率</font>
+																</div>
 															</div>
 														</div>
 														<div class="collapsible-region collapse" id="heading{$node_order->$prefix}">
 															<div class="tile-sub">
 															<br>
- 																{if $node->node_class > $user->class}
-
-																		<div class="card">
+																	{if $node->node_class > $user->class}
+																	<div class="card">
 																		<div class="card-main">
 																			<div class="card-inner">
-																			<p class="card-heading" align="center"><b> <i class="icon icon-lg">visibility_off</i> {$user->user_name}，您的接入權限不足，如需使用更高級別接入點請<a href="/user/shop">點擊購買</a>。</b></p>
-</div></div></div>
-																			{else}
+																				<p class="card-heading" align="center"><b> <i class="icon icon-lg">visibility_off</i>{$user->user_name}，您的接入權限不足，如需使用更高級別接入點請<a href="/user/shop">點擊購買</a>。</b></p>
+																			</div>
+																		</div>
+																	</div>
+																	{else}
 																	{$relay_rule = null}
 																	{if $node->sort == 10 && $node->sort != 11}
 																		{$relay_rule = $tools->pick_out_relay_rule($node->id, $user->port, $relay_rules)}
@@ -64,7 +59,7 @@
 																			<div class="card-inner">
 																			<p class="card-heading" >
 																				<a href="javascript:void(0);" onClick="urlChange('{$node->id}',0,{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$node->name}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}</a>
-																				<span class="label label-brand-accent">←点击节点查看配置信息</span>
+																				<span class="label label-brand-accent">←點擊查看節點配置信息</span>
 																			</p>
 																			<p>备注：{$node->info}</p>
 																			 </div>
@@ -81,51 +76,39 @@
 																				<div class="card-inner">
 																					<p class="card-heading" >
 																						<a href="javascript:void(0);" >{$node->name}</a>
-																					</p>
-																				
+																					</p>																				
 																				<p>地址：<span class="label label-brand-accent">
-                                                                                    {$server_explode[0]}
+																					{$server_explode[0]}
 																				</span></p>
-
 																				<p>端口：<span class="label label-brand-red">
 																					{$server_explode[1]}
 																				</span></p>
-
 																				<p>协议：<span class="label label-brand-accent">
 																					{$server_explode[2]}
 																				</span></p>
-
 																				<p>协议参数：<span class="label label-green">
 																					{$server_explode[0]}
 																				</span></p>
-
 																				<p>用户 UUID：<span class="label label-brand">
 																					{$user->getUuid()}
 																				</span></p>
-
 																				<p>流量比例：<span class="label label-red">
 																					{$node->traffic_rate}
 																				</span></p>
-
 																				<p>AlterId：<span class="label label-green">
 																					{$server_explode[3]}
 																				</span></p>
-
 																				<p>Level：<span class="label label-brand">
 																					{$server_explode[4]}
 																				</span></p>
-
 																				<p>VMess链接：
-																					<a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">点击复制</a>
+																					<a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">點擊拷貝</a>
 																				</p>
-
 																				<p>{$node->info}</p>
 																				</div>
 																			</div>
 																		</div>
 																	{/if}
-
-
 																	{if ($node->sort == 0 || $node->sort == 10) && $node->custom_rss == 1 && $node->mu_only != -1}
 																		{foreach $node_muport as $single_muport}
 
@@ -159,15 +142,12 @@
 																{/foreach}
 																	{if isset($point_node)}
 																	{if $point_node!=null}
-
 																		<div class="card">
 																			<div class="card-main">
 																				<div class="card-inner" id="info{$id}">
-
 																				</div>
 																			</div>
 																		</div>
-
 																		<script>
 																		$().ready(function(){
 																			$('#heading{$node_order->$prefix}').on("shown.bs.tile", function() {
@@ -200,19 +180,12 @@
 									<iframe class="iframe-seamless" title="Modal with iFrame" id="infoifram"></iframe>
 								</div>
 							</div>
-                          </div>
+						</div>
 			</section>
 		</div>
 	</main>
 
-
-
-
-
-
-
 {include file='user/footer.tpl'}
-
 
 <script>
 function urlChange(id,is_mu,rule_id) {
@@ -236,6 +209,6 @@ $(function(){
 });
 $(".copy-text").click(function () {
 	$("#result").modal();
-	$("#msg").html("已复制，请进入软件添加。");
+	$("#msg").html("已拷貝，請前往客戶端添加。");
 });
 </script>
