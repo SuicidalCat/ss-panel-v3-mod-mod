@@ -150,7 +150,7 @@
                               </div>
                      <!-- 版权底部 -->
                       <footer id="footer">
-                   <p class="copyright">&copy;2015-{date("Y")} {$config["appName"]}</p>
+                   <p class="copyright">&copy;2018 {$config["appName"]}</p>
                       </footer>
               <!-- 版权结束 -->
 			 </div>
