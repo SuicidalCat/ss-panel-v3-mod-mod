@@ -271,7 +271,7 @@
 											</p>
 											{if $user->class!=0}
 												<p><dt>Telegram頻道</dt>
-													<dd><i class="icon mdi-icons t4-text">telegram</i>&nbsp;<a href="https://t.me/wallink" target="view_window">點擊進入</a></dd>
+													<dd><i class="mdi mdi-telegram"></i>&nbsp;<a href="https://t.me/wallink" target="view_window">點擊進入</a></dd>
 												</p>
 											{else}
 											{/if}											
