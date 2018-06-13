@@ -2899,7 +2899,7 @@ color: #fff
 }
 
 .card-orange .card-side {
-background-color: #f57c00;
+background-color: #668099;
 color: rgba(0,0,0,.87)
 }
 
@@ -5141,7 +5141,7 @@ input[type=checkbox]:checked+.switch-toggle-red:active:after,input[type=radio]:c
 }
 /*按钮下面颜色*/
 .tab-nav .nav>li>.a:after,.tab-nav .nav>li>a:after {
-	border-bottom: 2px solid #f57c00;
+	border-bottom: 2px solid #668099;
 	content: "";
 	display: block;
 	opacity: 0;
@@ -5171,7 +5171,7 @@ input[type=checkbox]:checked+.switch-toggle-red:active:after,input[type=radio]:c
 }
 
 .tab-nav-indicator.animate {
-	background-color: #f57c00;
+	background-color: #668099;
 	-webkit-transition: left 225ms cubic-bezier(.4,0,.2,1) 225ms,right .45s cubic-bezier(.4,0,.2,1);
 	transition: left 225ms cubic-bezier(.4,0,.2,1) 225ms,right .45s cubic-bezier(.4,0,.2,1);
 	will-change: left,right
@@ -5481,7 +5481,7 @@ html.no-touchevents .tile-action-show,html.no-touchevents .tile:hover .tile-acti
 }
 
 .tile-orange .tile-footer {
-	background-color: #f57c00;
+	background-color: #668099;
 	color: rgba(0,0,0,.87)
 }
 
@@ -5548,7 +5548,7 @@ html.no-touchevents .tile-action-show,html.no-touchevents .tile:hover .tile-acti
 }
 
 .tile-orange .tile-sub {
-	border-top-color: #f57c00
+	border-top-color: #668099
 }
 
 .tile-red .tile-sub {
@@ -5692,7 +5692,7 @@ html.no-touchevents .tile-action-show,html.no-touchevents .tile:hover .tile-acti
 }
 /*icon颜色*/
 .page-brand .header-transparent,.page-brand-accent .header-transparent {
-	color: #f57c00
+	color: #668099
 }
 
 .header-red {
