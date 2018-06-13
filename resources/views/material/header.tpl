@@ -9,6 +9,7 @@
 	<!-- css -->
 	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.10/public/theme/material/css/base.min.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.10/public/theme/material/css/project.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.8/public/theme/material/css/materialdesignicons.min.css" rel="stylesheet">
 	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
 	<link href="https://fonts.loli.net/css?family=Material+Icons">
 	<!-- favicon -->
@@ -79,7 +80,7 @@
 						<a  href="/auth/register"><i class="icon icon-lg">person_add</i>&nbsp;注冊賬戶</a>
 					</li>
                   	<li>
-				     <a  href="/password/reset"><i class="icon icon-lg">security</i>&nbsp;重置賬戶密碼</a>
+				     <a  href="/password/reset"><i class="mdi mdi-lock-question"></i>&nbsp;重置賬戶密碼</a>
 					</li>
 					{/if}
 				</ul>
