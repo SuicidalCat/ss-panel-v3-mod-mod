@@ -111,20 +111,16 @@
 																	{/if}
 																	{if ($node->sort == 0 || $node->sort == 10) && $node->custom_rss == 1 && $node->mu_only != -1}
 																		{foreach $node_muport as $single_muport}
-
 																			{if !($single_muport['server']->node_class <= $user->class && ($single_muport['server']->node_group == 0 || $single_muport['server']->node_group == $user->node_group))}
 																				{continue}
 																			{/if}
-
 																			{if !($single_muport['user']->class >= $node->node_class && ($node->node_group == 0 || $single_muport['user']->node_group == $node->node_group))}
 																				{continue}
 																			{/if}
-
 																			{$relay_rule = null}
 																			{if $node->sort == 10 && $single_muport['user']['is_multi_user'] != 2}
 																				{$relay_rule = $tools->pick_out_relay_rule($node->id, $single_muport['server']->server, $relay_rules)}
 																			{/if}
-
 																			<div class="card">
 																				<div class="card-main">
 																					<div class="card-inner">
@@ -157,22 +153,17 @@
 																		</script>
 																	{/if}
 																{/if}
-
 																{$point_node=null}
 															</div>
 														</div>
 												</div>
 												{/if}
-
 											{/foreach}
-
 										</div>
 									</div>
-
 								</div>
 							</div>
 							</div>
-
 								{include file='dialog.tpl'}
 						<div aria-hidden="true" class="modal modal-va-middle fade" id="nodeinfo" role="dialog" tabindex="-1">
 							<div class="modal-dialog modal-full">
