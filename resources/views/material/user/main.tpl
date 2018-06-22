@@ -324,12 +324,14 @@
 									<i class="icon icon-lg">sync_problem</i>&nbsp;资料编辑
 								</a>
 							</li>
-                          <li>
+							{if $config['enable_ticket']=='true'}
+                       <li>
 								<a href="/user/ticket">
 									<i class="icon icon-lg">question_answer</i>&nbsp;工单系统
 								</a>
 							</li>
-                               <li>
+							{/if}
+							<li>
 								<a href="/user/invite">
 									<i class="icon icon-lg">loyalty</i>&nbsp;邀请链接
 								</a>
