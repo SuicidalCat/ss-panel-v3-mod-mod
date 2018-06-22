@@ -118,10 +118,20 @@ $System_Config['telegram_qrcode']='zxing_local';      //二维码解码方式，
 $System_Config['telegram_request_token']='';      //Telegram 机器人请求Key，随意设置，由大小写英文和数字组成
                                                   //复杂一些，用于校验请求，更新这个参数之后请 php xcat setTelegram
 
-//客服系统设置--------------------------------------------------------------------
-//注册地址 https://crisp.chat/
+//沟通设置--------------------------------------------------------------------
+//客服系统设置，注册地址 https://crisp.chat/
 $System_Config['enable_crisp']='false';      //是否开启客服系统
-$System_Config['crisp_id']='null';      //客服系统ID ID查看路径：crisp.chat-->设置-->设置网站-->显示整合性-->html
+$System_Config['crisp_id']='null';      //客服系统ID ID查看路径：crisp.chat-->设置-->网站设置-->显示整合-->html
+
+//工单系统设置
+$System_Config['enable_ticket']='true';    //是否开启工单系统
+
+//站长联系方式设置
+$System_Config['enable_admin_contact']='false';    //是否开启站长联系方式
+$System_Config['admin_contact1'] = 'QQ：1233456';			//QQ、邮箱、微信仅用于举例
+$System_Config['admin_contact2'] = '邮箱123456@qq.com';			//也可以写电话、tg等其他联系方式
+$System_Config['admin_contact3'] = '微信～123456';			//没有格式要求，想怎么写就怎么写，可留空
+
 
 
 //验证码设置---------------------------------------------------------------------
@@ -193,6 +203,13 @@ $System_Config['yft_accesskey']='';
 $System_Config['zfbjk_pid']='';
 $System_Config['zfbjk_key']='';
 $System_Config['zfbjk_qrcodeurl']='';
+
+//财务报告设置
+$System_Config['finance_public']='false';    //财务报告是否向Telegram群公开
+
+//国旗图标显示
+$System_Config['enable_prefix']='false';    //启用该项之前务必先仔细阅读教程
+$System_Config['prefix_regex']='/[\x{4e00}-\x{9fa5}]+/u';    //从站点全名中匹配国家/地区的正则表达式(php版)
 
 //杂项（一般不需要更改-------------------------------------------------------------
 $System_Config['authDriver'] = 'cookie';   //不能更改此项
