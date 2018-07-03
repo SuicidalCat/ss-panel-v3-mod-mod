@@ -2,7 +2,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">商品列表</h1>
+				<h1 class="content-heading">資源包購買</h1>
 			</div>
 		</div>
 		<div class="container">
@@ -11,7 +11,7 @@
 					<div class="card">
 						<div class="card-main">
 							<div class="card-inner">
-								<p>請先選購資源包后再購買升級包，否則將無法使用節點服務</p>
+								<p>請先選購資源包后再購買增量包，否則將無法使用節點服務</p>
 								<p>當前賬戶餘額：{$user->money} 元</p>
 							</div>
 						</div>
@@ -20,7 +20,7 @@
 						{$shops->render()}
 						<table class="table ">
                             <tr>
-                                <th></th>
+                                <th>名稱</th>
 								<th>价格</th>
 								<th>内容</th>
                               <th></th>                
