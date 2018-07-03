@@ -22,6 +22,7 @@ class Config
             "appName" => self::get("appName"),
             "version" => VERSION,
             "baseUrl" => self::get("baseUrl"),
+			"subUrl" => self::get("subUrl"),
             "checkinMin" => self::get("checkinMin"),
             "code_payback" => self::get("code_payback"),
             "checkinMax" => self::get("checkinMax"),
