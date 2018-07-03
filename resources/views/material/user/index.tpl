@@ -125,7 +125,7 @@
 														<p><span class="icon icon-lg text-white">filter_8</span> 路由选择：略过区域网路以及中国大陆</p>
 														<p><span class="icon icon-lg text-white">filter_9</span> 点击右上角的纸飞机图标即可连接</p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$$config["subUrl"]}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
 														<!--p><a href="/user/announcement">点击这里查看Android傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_router">
