@@ -25,7 +25,7 @@
 									<th>内容</th>
 									<th></th>                
                             </tr>
-                            {foreach $shop as $shop}
+                            {foreach $shops as $shop}
                             <tr>
 										<td>{$shop->name}</td>
 										<td>{$shop->price} 元</td>
