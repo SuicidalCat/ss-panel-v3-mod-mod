@@ -19,23 +19,23 @@
 					<div class="table-responsive">
 						{$shops->render()}
 						<table class="table ">
-                            <tr>
-                                <th>名稱</th>
-								<th>价格</th>
-								<th>内容</th>
-                              <th></th>                
+								<tr>
+									<th>名稱</th>
+									<th>价格</th>
+									<th>内容</th>
+									<th></th>                
                             </tr>
-                            {foreach $shops as $shop}
+                            {foreach $shop->name as $shop => $shop}
                             <tr>
-                                <td>{$shop->name}</td>
-									 <td>{$shop->price} 元</td>
-                                <td>{$shop->content()}</td>
-                                <td>
-                                    <a class="btn btn-brand-accent" href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})">购买</a>
-                                </td>
-                            </tr>
-                            {/foreach}
-                        </table>
+										<td>{$shop->name}</td>
+										<td>{$shop->price} 元</td>
+										<td>{$shop->content()}</td>
+										<td>
+											<a class="btn btn-brand-accent" href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})">购买</a>
+										</td>
+									</tr>
+									{/foreach}
+								</table>
 						{$shops->render()}
 					</div>
 					<div aria-hidden="true" class="modal modal-va-middle fade" id="coupon_modal" role="dialog" tabindex="-1">
