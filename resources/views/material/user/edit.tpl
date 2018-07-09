@@ -292,7 +292,7 @@
 
 
 
-						<div class="card margin-bottom-no">
+						<!--div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
@@ -335,7 +335,7 @@
 									</div>
 								</div>
 							</div>
-						</div>    
+						</div -->    
 
 						{if $config['port_price']>=0 || $config['port_price_specify']>=0}
 						<div class="card margin-bottom-no">
