@@ -1,6 +1,4 @@
 
-
-
 {include file='user/main.tpl'}
 
 <style>.kaobei {
@@ -20,10 +18,7 @@
 			</div>
 		</div>
 		<div class="container">
-			<section class="content-inner margin-top-no">
-             
-
-
+			<section class="content-inner margin-top-no">            
 					<div class="col-lg-6 col-md-6">
 						<div class="card margin-bottom-no">
 							<div class="card-main">
@@ -34,12 +29,10 @@
 											<label class="floating-label" for="oldpwd">当前密码</label>
 											<input class="form-control" id="oldpwd" type="password">
 										</div>
-
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="pwd">新密码</label>
 											<input class="form-control" id="pwd" type="password">
 										</div>
-
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="repwd">确认新密码</label>
 											<input class="form-control" id="repwd" type="password">
@@ -73,12 +66,8 @@
 									</div>
 								</div>
 							</div>
-						</div>
-                      
-                    
-                      
-
-
+						</div>                                          
+                 
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -141,12 +130,10 @@
 												<option value="4">Telegram</option>
 											</select>
 										</div>
-
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="wechat">在这输入联络方式账号</label>
 											<input class="form-control" id="wechat" type="text">
 										</div>
-
 									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
@@ -156,8 +143,6 @@
 								</div>
 							</div>
 						</div>
-
-
 
 						<div class="card margin-bottom-no">
 							<div class="card-main">
@@ -178,7 +163,6 @@
 										</div>
 
 									</div>
-
 									<div class="card-inner">
 										<p>当前混淆方式：{$user->obfs}</p>
 										<p>注意1：如果需要兼容原版SS请选择带_compatible的兼容选项！</p>
@@ -202,7 +186,6 @@
 											<input class="form-control" id="obfs-param" type="text">
 										</div>
 									</div>
-
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-flat waves-attach" id="ssr-update" ><span class="icon">check</span>&nbsp;提交</button>
@@ -211,13 +194,7 @@
 								</div>
 							</div>
 						</div>  
-
-
-
-
-
-
-
+						
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -231,9 +208,7 @@
 													<option value="{$theme}">{$theme}</option>
 												{/foreach}
 											</select>
-										</div>
-
-									
+										</div>									
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-flat waves-attach" id="theme-update" ><span class="icon">check</span>&nbsp;提交</button>
@@ -242,12 +217,9 @@
 								</div>
 							</div>
 						</div> 
-</div>
+				</div>
 					</div>  
-
-
 					<div class="col-lg-6 col-md-6">
-
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -264,8 +236,6 @@
 								</div>
 							</div>
 						</div> 
-
-	
 
 						<div class="card margin-bottom-no">
 							<div class="card-main">
@@ -290,8 +260,6 @@
 							</div>
 						</div>
 
-
-
 						<!--div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -310,21 +278,16 @@
 												<option value="1">要求验证</option>
 											</select>
 										</div>
-
-
 										<div class="form-group form-group-label">
 											<div class="text-center">
 												<div id="ga-qr"></div>
 												密钥：{$user->ga_token}
 											</div>
 										</div>
-
-
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="code">测试一下</label>
 											<input type="text" id="code" placeholder="输入验证器生成的数字来测试" class="form-control">
 										</div>
-
 									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
@@ -427,20 +390,11 @@
 						{/if}
 					</div>
 
-
-
-
 					{include file='dialog.tpl'}
 
 			</section>
 		</div>
 	</main>
-
-
-
-
-
-
 
 {include file='user/footer.tpl'}
 
@@ -585,7 +539,6 @@ $(".copy-text").click(function () {
 	{/if}
 </script>
 
-
 <script>
     $(document).ready(function () {
         $("#wechat-update").click(function () {
@@ -647,7 +600,6 @@ $(".copy-text").click(function () {
     })
 </script>
 
-
 <script>
     $(document).ready(function () {
         $("#relay-update").click(function () {
@@ -705,7 +657,6 @@ $(".copy-text").click(function () {
     })
 </script>
 
-
 <script>
     $(document).ready(function () {
         $("#ga-test").click(function () {
@@ -733,7 +684,6 @@ $(".copy-text").click(function () {
         })
     })
 </script>
-
 
 <script>
     $(document).ready(function () {
@@ -763,7 +713,6 @@ $(".copy-text").click(function () {
     })
 </script>
 
-
 <script>
     $(document).ready(function () {
         $("#ss-pwd-update").click(function () {
@@ -792,7 +741,6 @@ $(".copy-text").click(function () {
         })
     })
 </script>
-
 
 <script>
     $(document).ready(function () {
@@ -850,8 +798,6 @@ $(".copy-text").click(function () {
     })
 </script>
 
-
-
 <script>
     $(document).ready(function () {
         $("#method-update").click(function () {
@@ -879,4 +825,3 @@ $(".copy-text").click(function () {
         })
     })
 </script>
-
