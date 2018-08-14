@@ -12,7 +12,7 @@
 						<div class="card-main">
 							<div class="card-inner">
 								<p>請先選購資源包后再購買增量包，否則將無法使用節點服務</p>
-								<p>當前賬戶餘額：{$user->money} 元</p>
+								<p>當前賬戶餘額：<code>{$user->money}</code> 元</p>
 							</div>
 						</div>
 					</div>                                    					

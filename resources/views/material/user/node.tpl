@@ -61,7 +61,7 @@
 																				<a href="javascript:void(0);" onClick="urlChange('{$node->id}',0,{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$node->name}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}</a>
 																				<span class="label label-brand-accent">←點擊查看節點配置信息</span>
 																			</p>
-																			<p>备注：{$node->info}</p>
+																			<p>{$node->info}</p>
 																			 </div>
 																		</div>
 																	</div>

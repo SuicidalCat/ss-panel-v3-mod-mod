@@ -39,15 +39,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group form-group-label">
-                                                    <div class="row">
-                                                        <div class="col-md-10 col-md-push-1">
-                                                            <label class="floating-label" for="passwd">密碼</label>
-                                                            <input class="form-control" id="passwd" type="password"
-                                                                   name="Password">
-                                                        </div>
-                                                    </div>
-                                                </div>
+													<div class="form-group form-group-label">
+														<div class="row">
+															<div class="col-md-10 col-md-push-1">
+																<label class="floating-label" for="passwd">密碼</label>
+																<input class="form-control" id="passwd" type="password" name="Password">
+																<a href="/password/reset">忘記賬戶密碼？</a>
+															</div>
+														</div>
+													</div>
                                                 {if $geetest_html != null}
                                                     <div class="form-group form-group-label">
                                                         <div class="row">
@@ -111,40 +111,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="number_login">
-                                    <div class="card">
-                                        <div class="card-main">
+								<div class="tab-pane fade" id="number_login">
+									<div class="card">
+										<div class="card-main">
                                             <div class="card-header">
                                                 <div class="card-inner">
                                                     <h1 class="card-heading"
                                                         style=" text-align:center;font-weight:bold;">Telegram 驗證碼登錄</h1>
                                                 </div>
                                             </div>
-                                            <div class="card-inner">
+											<div class="card-inner">
 												<div class="text-center">
-                                                <p>一鍵登錄</p>
+													<p>一鍵登錄</p>
 												</div>
 												<p id="telegram-alert">正在載入Telegram登錄插件，如果長時間為顯示請刷新頁面或檢查代理狀態</p>
 												<div class="text-center" id="telegram-login-box"></div>
-                                                <p>或者添加Telegram bot賬戶 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送如下數字。
-                                                </p>		
+													<p>或者添加Telegram bot賬戶 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送如下數字。
+													</p>		
 												<div class="text-center">
-                                                        <h2><code id="code_number">{$login_number}</code></h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/if}
+													<h2><code id="code_number">{$login_number}</code></h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								{/if}
                         </div>
-                    </div>
-                    <div class="clearfix">
-                        <p class="margin-no-top pull-left"><a class="btn btn-flat btn-brand waves-attach"
-                                                              href="/password/reset">忘記賬戶密碼</a>
-							</p>
-                        <p class="margin-no-top pull-right"><a class="btn btn-flat btn-brand waves-attach"
-                                                               href="/auth/register">注冊新賬戶</a>
-							</p>
                     </div>
                     {include file='dialog.tpl'}
                 </section>
