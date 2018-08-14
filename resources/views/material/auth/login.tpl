@@ -5,15 +5,14 @@
         <div class="row">
             <div class="col-lg-4 col-lg-push-4 col-sm-6 col-sm-push-3">
                 <section class="content-inner">
-
                     <nav class="tab-nav margin-top-no">
                         <ul class="nav nav-justified">
                             <li class="active">
-                                <a class="waves-attach" data-toggle="tab" href="#passwd_login">密码登录</a>
+                                <a class="waves-attach" data-toggle="tab" href="#passwd_login">WallLink賬戶登錄</a>
                             </li>
                             {if $config['enable_telegram'] == 'true'}
                                 <li>
-                                    <a class="waves-attach" data-toggle="tab" href="#number_login"> Telegram登录</a>
+                                    <a class="waves-attach" data-toggle="tab" href="#number_login">Telegram賬戶登錄</a>
                                 </li>
                             {/if}
                         </ul>
@@ -26,33 +25,29 @@
                                         <div class="card-header">
                                             <div class="card-inner">
                                                 <h1 class="card-heading" style=" text-align:center;font-weight:bold;">
-                                                    登录到用户中心</h1>
+                                                    登錄至用戶中心</h1>
                                             </div>
                                         </div>
                                         <div class="card-inner">
                                             <form action="javascript:void(0);" method="POST">
-
-
                                                 <div class="form-group form-group-label">
                                                     <div class="row">
                                                         <div class="col-md-10 col-md-push-1">
-                                                            <label class="floating-label" for="email">邮箱</label>
+                                                            <label class="floating-label" for="email">電子郵箱</label>
                                                             <input class="form-control" id="email" type="text"
                                                                    name="Email">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group form-group-label">
-                                                    <div class="row">
-                                                        <div class="col-md-10 col-md-push-1">
-                                                            <label class="floating-label" for="passwd">密码</label>
-                                                            <input class="form-control" id="passwd" type="password" name="Password">
-															<a href="/password/reset" >忘记密码？点击这里</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
+													<div class="form-group form-group-label">
+														<div class="row">
+															<div class="col-md-10 col-md-push-1">
+																<label class="floating-label" for="passwd">密碼</label>
+																<input class="form-control" id="passwd" type="password" name="Password">
+																<a href="/password/reset">忘記賬戶密碼？</a>
+															</div>
+														</div>
+													</div>
                                                 {if $geetest_html != null}
                                                     <div class="form-group form-group-label">
                                                         <div class="row">
@@ -62,18 +57,16 @@
                                                         </div>
                                                     </div>
                                                 {/if}
-
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-10 col-md-push-1">
                                                             <button id="login" type="submit"
                                                                     class="btn btn-block btn-brand waves-attach waves-light">
-                                                                登录
+                                                                登錄
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-10 col-md-push-1">
@@ -81,7 +74,7 @@
                                                                 <label for="remember_me">
                                                                     <input class="access-hide" value="week"
                                                                            id="remember_me" name="remember_me"
-                                                                           type="checkbox">记住我
+                                                                           type="checkbox">記住賬戶（不建議在公共計算機上啓用）
                                                                     <span class="checkbox-circle"></span><span
                                                                             class="checkbox-circle-check"></span><span
                                                                             class="checkbox-circle-icon icon">done</span>
@@ -103,11 +96,11 @@
                                             <div class="card-header">
                                                 <div class="card-inner">
                                                     <h1 class="card-heading"
-                                                        style=" text-align:center;font-weight:bold;">Telegram扫码登录</h1>
+                                                        style=" text-align:center;font-weight:bold;">Telegram QR碼登錄</h1>
                                                 </div>
                                             </div>
                                             <div class="card-inner">
-                                                <p>添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它。
+                                                <p>添加Telegram bot賬戶 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，發送如下二維碼。
                                                 </p>
                                                 <div class="form-group form-group-label">
                                                     <div class="text-center">
@@ -118,37 +111,34 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="number_login">
-                                    <div class="card">
-                                        <div class="card-main">
+								<div class="tab-pane fade" id="number_login">
+									<div class="card">
+										<div class="card-main">
                                             <div class="card-header">
                                                 <div class="card-inner">
                                                     <h1 class="card-heading"
-                                                        style=" text-align:center;font-weight:bold;">Telegram登录</h1>
+                                                        style=" text-align:center;font-weight:bold;">Telegram 驗證碼登錄</h1>
                                                 </div>
                                             </div>
-                                            <div class="card-inner">
+											<div class="card-inner">
 												<div class="text-center">
-                                                <p>一键登陆</p>
+													<p>一鍵登錄</p>
 												</div>
-												<p id="telegram-alert">正在载入 Telegram，如果长时间未显示请刷新页面或检查代理</p>
+												<p id="telegram-alert">正在載入Telegram登錄插件，如果長時間為顯示請刷新頁面或檢查代理狀態</p>
 												<div class="text-center" id="telegram-login-box"></div>
-                                                <p>或者添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送下面的数字给它。
-                                                </p>		
+													<p>或者添加Telegram bot賬戶 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送如下數字。
+													</p>		
 												<div class="text-center">
-                                                        <h2><code id="code_number">{$login_number}</code></h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/if}
+													<h2><code id="code_number">{$login_number}</code></h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								{/if}
                         </div>
                     </div>
-
                     {include file='dialog.tpl'}
-
-
                 </section>
             </div>
         </div>
@@ -163,13 +153,13 @@
             {if $geetest_html != null}
             if (typeof validate == 'undefined') {
                 $("#result").modal();
-                $("#msg").html("请滑动验证码来完成验证。");
+                $("#msg").html("請滑動完成驗證。");
                 return;
             }
 
             if (!validate) {
                 $("#result").modal();
-                $("#msg").html("请滑动验证码来完成验证。");
+                $("#msg").html("請滑動完成驗證。。");
                 return;
             }
 
@@ -281,8 +271,8 @@
 
                         } else {
                             if (data.ret == -1) {
-                                jQuery('#telegram-qr').replaceWith('此二维码已经过期，请刷新页面后重试。');
-                                jQuery('#code_number').replaceWith('<code id="code_number">此数字已经过期，请刷新页面后重试。</code>');
+                                jQuery('#telegram-qr').replaceWith('二維碼已經過期，請刷新頁面重新獲取后再做嘗試。');
+                                jQuery('#code_number').replaceWith('<code id="code_number">號碼已經過期，請刷新頁面后再做嘗試。</code>');
                             }
                         }
                     },
