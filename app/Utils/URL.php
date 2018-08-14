@@ -63,6 +63,7 @@ class URL
             return 3;
         }
     }
+
     public static function SSCanConnect($user, $mu_port = 0) {
         if($mu_port != 0) {
             $mu_user = User::where('port', '=', $mu_port)->where("is_multi_user", "<>", 0)->first();
@@ -77,6 +78,7 @@ class URL
             return false;
         }
     }
+
     public static function SSRCanConnect($user, $mu_port = 0) {
         if($mu_port != 0) {
             $mu_user = User::where('port', '=', $mu_port)->where("is_multi_user", "<>", 0)->first();
@@ -91,6 +93,7 @@ class URL
             return false;
         }
     }
+
     public static function getSSConnectInfo($user) {
         $new_user = clone $user;
         if(URL::CanObfsConnect($new_user->obfs) == 5) {
@@ -251,21 +254,44 @@ class URL
         }
     }
     public static function getV2Url($user, $node){
-        $v2url = "";
-
         $node_explode = explode(';', $node->server);
+        $item = [
+            'v'=>'2', 
+            'type'=>'none', 
+            'host'=>'', 
+            'path'=>'', 
+            'tls'=>''
+        ];
         $item['ps'] = $node->name;
         $item['add'] = $node_explode[0];
         $item['port'] = $node_explode[1];
         $item['id'] = $user->getUuid();
         $item['aid'] = $node_explode[3];
-        $item['net'] = "tcp";
-        $item['type'] = "none";
-        $arr = array('v'=>'2', 'ps'=>$item['ps'], 'add'=>$item['add'], 'port'=>$item['port'], 'id'=>$item['id'], 'aid'=>$item['aid'], 'net'=>'tcp', 'type'=>'none', 'host'=>'', 'path'=>'', 'tls'=>'');
-        $v2url = "vmess://".base64_encode((json_encode($arr, JSON_UNESCAPED_UNICODE)));
-        //$v2url = "{"."\n  \"v\": \"2\",\n  \"ps\": \"".$item['ps']."\",\n  \"add\":  \"".$item['add']."\",\n  \"port\":  \"".$item['port']."\",\n  \"id\":  \"".$item['id']."\",\n  \"aid\":  \"".$item['aid']."\",\n  \"net\":  \"".$item['net']."\",\n  \"type\":  \"".$item['type']."\",\n  \"host\": \"\",\n  \"path\": \"\",\n  \"tls\": \"\"";
-        return $v2url;
+        if (count($node_explode) == 6) {
+            $item['net'] = $node_explode[5];
+        } else {
+            $item['net'] = "tcp";
+        } 
+        return "vmess://".base64_encode((json_encode($item, JSON_UNESCAPED_UNICODE)));
     }
+
+    public static function getAllVMessUrl($user) {
+        $nodes = Node::where('sort', 11)->where(
+            function ($query) use ($user){
+                $query->where("node_group", "=", $user->node_group)
+                    ->orWhere("node_group", "=", 0);
+            }
+        )->where("type", "1")->where("node_class", "<=", $user->class)->orderBy("name")->get();
+
+        $result = "";
+
+        foreach ($nodes as $node) {
+            $result .= (URL::getV2Url($user, $node) . "\n");
+        }
+
+        return $result;
+    }
+
     public static function getJsonObfs($item) {
         $ss_obfs_list = Config::getSupportParam('ss_obfs');
         $plugin = "";

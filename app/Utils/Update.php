@@ -32,8 +32,8 @@ class Update
 
 		//执行版本升级
 		$version_old=0;
-		if(isset(Config::get('version')){
-			$version_old=Config::get('version');
+		if(isset($System_Config['version'])){
+			$version_old=$System_Config['version'];
 		}		
 		Update::old_to_new($version_old);
 
@@ -64,21 +64,23 @@ class Update
 		$regex_new='/System_Config\[\'.*?\'\]/s';
 		$matches_new_all=array();
 		preg_match_all($regex_new,$config_new,$matches_new_all);
-		$differences=array_diff($new_all,$migrated);
+		$differences=array_diff($matches_new_all,$migrated);
 		foreach($differences as $difference){
 			//匹配注释
-			$regex_comment='/'.$difference.'.*/';
-			$regex_comment=str_replace('[','\[',$regex_new);
-			$regex_comment=str_replace(']','\]',$regex_new);
+			$regex_comment='/'.$difference.'.*;.*\/\//s';
+			$regex_comment=str_replace('[','\[',$regex_comment);
+			$regex_comment=str_replace(']','\]',$regex_comment);
 			$matches_comment=array();
 			preg_match($regex_comment,$config_new,$matches_comment);
-			$comment=$matches_comment[0];
-			$comment=substr(
-				$comment,strpos(
-					$comment,'//',strpos($comment,';') //查找';'之后的第一个'//'，然后substr其后面的comment
-				)+2
-			);
-
+			$comment="";
+			if(isset($matches_comment[0])){
+				$comment=$matches_comment[0];
+				$comment=substr(
+					$comment,strpos(
+						$comment,'//',strpos($comment,';') //查找';'之后的第一个'//'，然后substr其后面的comment
+					)+2
+				);
+			}
 			//裁去首尾
 			$difference=substr($difference,15);
 			$difference=substr($difference, 0, -2);
@@ -98,7 +100,7 @@ class Update
 			)+1
 		);
 		echo('以下是迁移附注：');
-		if(isset($System_Config['config_migrate_notice'])==true){
+		if(isset($System_Config['config_migrate_notice'])){
 		    if($System_Config['config_migrate_notice']!=$notice_new){
 			    echo($notice_new);
 			}
