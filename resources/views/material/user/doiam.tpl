@@ -1,6 +1,5 @@
 <div class="card-inner">
 	<p class="card-heading">充值</p>
-	您的余额:{$user->money}
 	<h5>支付方式:</h5>
 	<nav class="tab-nav margin-top-no">
 		<ul class="nav nav-list">
