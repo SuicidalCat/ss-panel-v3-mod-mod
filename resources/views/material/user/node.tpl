@@ -59,7 +59,7 @@
 																			<div class="card-inner">
 																			<p class="card-heading" >
 																				<a href="javascript:void(0);" onClick="urlChange('{$node->id}',0,{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$node->name}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}</a>
-																				<span class="label label-brand-accent">←點擊查看節點配置信息</span>
+																				<span class="label label-brand-accent">←點擊查看普通端口配置信息</span>
 																			</p>
 																			<p>{$node->info}</p>
 																			 </div>
@@ -126,7 +126,7 @@
 																					<div class="card-inner">
 																					<p class="card-heading" >
 																						<a href="javascript:void(0);" onClick="urlChange('{$node->id}',{$single_muport['server']->server},{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">{$prefix} {if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if} - 单端口 Shadowsocks - {$single_muport['server']->server} 端口</a>
-																						<span class="label label-brand-accent">{$node->status}</span>
+																						<span class="label label-brand-accent">←點擊查看單端口多用戶配置信息</span>
 																					</p>
 																					<p>{$node->info}</p>
 																					 </div>
