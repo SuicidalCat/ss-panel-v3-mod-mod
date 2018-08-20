@@ -1,13 +1,6 @@
-
-
-
 {include file='user/header_info.tpl'}
 
-
 {$ssr_prefer = URL::SSRCanConnect($user, $mu)}
-
-
-
 
 	<main class="content">
 		<div class="content-header ui-content-header">
@@ -30,8 +23,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<div class="col-lg-12 col-sm-12">
 							<div class="card">
 								<div class="card-main">
@@ -83,16 +74,11 @@
 								</div>
 							</div>
 						</div>
-
-
-
 						<div class="col-lg-12 col-sm-12">
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
 										<p class="card-heading">客户端下载</p>
-
-
 										<nav class="tab-nav margin-top-no">
 											<ul class="nav nav-list">
 												<li {if $ssr_prefer}class="active"{/if}>
@@ -126,13 +112,10 @@
 												<p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
 											{/if}
 										</div>
-
 									</div>
-
 								</div>
 							</div>
 						</div>
-
 						<div class="col-lg-12 col-sm-12">
 							<div class="card">
 								<div class="card-main">
@@ -190,13 +173,10 @@
 												<p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
 											{/if}
 										</div>
-
 									</div>
-
 								</div>
 							</div>
 						</div>
-
 						<div class="col-lg-12 col-sm-12">
 							<div class="card">
 								<div class="card-main">
@@ -230,18 +210,14 @@
 											{/if}
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
-
 						<div class="col-lg-12 col-sm-12">
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
 										<p class="card-heading">配置二维码</p>
-
-
 										<nav class="tab-nav margin-top-no">
 											<ul class="nav nav-list">
 												<li {if $ssr_prefer}class="active"{/if}>
@@ -288,27 +264,16 @@
 											{/if}
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
-
-
-
 					</div>
 				</div>
 			</section>
 		</div>
 	</main>
 
-
-
-
-
-
-
 {include file='user/footer.tpl'}
-
 
 <script src="/assets/public/js/jquery.qrcode.min.js"></script>
 <script>
@@ -317,19 +282,15 @@
 	jQuery('#ss-qr').qrcode({
 		"text": text_qrcode
 	});
-
 	var text_qrcode_win = '{URL::getItemUrl($ss_item, 2)}';
 	jQuery('#ss-qr-win').qrcode({
 		"text": text_qrcode_win
 	});
 	{/if}
-
 	{if URL::SSRCanConnect($user, $mu)}
 	var text_qrcode2 = '{URL::getItemUrl($ssr_item, 0)}';
 	jQuery('#ss-qr-n').qrcode({
 		"text": text_qrcode2
 	});
 	{/if}
-
-
 </script>
