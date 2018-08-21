@@ -75,8 +75,8 @@
 														<p><span class="icon icon-lg text-white">filter_3</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSR服务器订阅（绕过代理）。</p>
 														<p> <span class="icon icon-lg text-white">filter_4</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网。</p>
 														<p><span class="icon icon-lg text-white">filter_5</span> 备用导入节点方法：点击<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这里（普通端口）</a>或者<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这个(单端口多用户）</a>，然后右键小飞机->从剪贴板复制地址</p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
 														<!--p><a href="/user/announcement">点击这里查看Windows傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_mac">
@@ -86,29 +86,17 @@
 														<p><span class="icon icon-lg text-white">filter_4</span> 打开Launchapad里的ShadowsocksX</p>
 														<p><span class="icon icon-lg text-white">filter_5</span> 菜单栏的纸飞机图标-服务器-服务器订阅填入以下订阅地址，更新后出现您的节点</p>
 														<p><span class="icon icon-lg text-white">filter_6</span> 菜单栏的纸飞机图标-打开shadowsocks</p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
 														<!--p><a href="/user/announcement">点击这里查看Mac傻瓜式教程</a></p-->
 													</div>
                                           <div class="tab-pane fade" id="all_ssr_linux">
 														<!--p><a href="/user/announcement">点击这里查看Linux傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_ios">
-														<!--p><span class="icon icon-lg text-white">looks_one</span> 切换<code>App Store</code>账号-ID:<code>
-														    {if $user->class>0}                                          	 xxxx@apple.com(帐号密码请在resources/views/materials/user/index.tpl中修改)
-															{else}															VIP用户可见
-															{/if}
-														</code>密码<code>
-														{if $user->class>0}															xxxxxx
-															{else}															VIP用户可见
-															{/if}														</code>注意特殊符号与大小写,如果显示需要解锁账号，请提交工单或邮件。（千万不要试图登陆iCloud，会導致您的隱私資料外泄以及機器被鎖定）</p-->
-                                             <p><span class="icon icon-lg text-white">filter_1</span> 切换至非国区App Store账号，商店搜索<code>Shadowrocket</code>或者<code>Quantumult</code>下载安装</p>
-                                             <p><span class="icon icon-lg text-white">filter_2</span> 在 Safari 中点击<a href="{$ssr_url_all}">这个（普通端口）</a>或者<a href="{$ssr_url_all_mu}">这个（单端口多用户）</a>，然后点击确定，就可以批量添加节点。</p>
-                                             <p><span class="icon icon-lg text-white">filter_3</span> 注意：第一次连接可能不能用，导入后程序退出并重新打开程序后连接即可！</p>
-														<p><span class="icon icon-lg text-white">filter_4</span> 备用导入节点方法“”打开Shadowrocket，点击右上角<span class="icon icon-lg text-white">add</span>，添加类型为<code>Subscribe</code>，URL填写以下地址即可自动更新节点</p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
-                                             <!--p><a href="/user/announcement">点击这里查看iOS傻瓜式教程</a></p-->
+														<p><a href="https://docs.walllink.io/%E4%BD%BF%E7%94%A8shadowrocket%E9%8F%88%E6%8E%A5%E5%88%B0%E5%A2%BB%E9%8F%88%E6%9C%8D%E5%8B%99%EF%BC%88ssr%EF%BC%89/" target="_blank">查看Shadowrocket具體使用教程</a></p>														
+														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>                                             
 													</div>
 													<div class="tab-pane fade" id="all_ssr_android">
 														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-android.apk"> 点击我下载</a>并安装</p>
@@ -120,8 +108,8 @@
 														<p><span class="icon icon-lg text-white">filter_7</span> 点击选择任意节点， 路由选择：略过区域网路以及中国大陆</p>
 														<p><span class="icon icon-lg text-white">filter_8</span> 点击右上角的纸飞机图标即可连接</p>
 														<p><span class="icon icon-lg text-white">filter_9</span> 备用导入节点方法：在手机上默认浏览器中点击<a href="{$ssr_url_all}">这个链接（普通端口）</a>或者<a href="{$ssr_url_all_mu}">这个链接（单端口多用户）</a>，然后点击确定</p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
 														<!--p><a href="/user/announcement">点击这里查看Android傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_router">
@@ -137,8 +125,8 @@
 														<p><span class="icon icon-lg text-white">filter_3</span> 打开桌面程序SSTap</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 齿轮图标-SSR订阅-SSR订阅管理添加以下订阅链接即可</p>
 														<p><span class="icon icon-lg text-white">filter_5</span> 更新后选择其中一个节点闪电图标测试节点-测试UDP转发...通过!（UDP通过即可连接并开始游戏），如测试不通过，点击齿轮图标设置DNS，推荐谷歌DNS</p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 普通节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">点击拷贝订阅地址</button><br></p>
-														<p><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">点击拷贝订阅地址</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
+														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
 														<!--p><a href="/user/announcement">点击这里查看游戏客户端傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_info">
@@ -166,8 +154,9 @@
 															<p>同时, ShadowsocksR 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
 															<p>请注意，在当前状态下您的 SSR 订阅链接已经失效，您无法通过此种方式导入节点。</p>
 														{/if}
-													</div>
-													<div class="tab-pane fade" id="all_v2ray">
+													</div>													
+												</div>
+												<div class="tab-pane fade" id="all_v2ray">
 														<nav class="tab-nav margin-top-no">
 															<ul class="nav nav-list">
 																<li class="active">
@@ -180,16 +169,15 @@
 															<a class="copy-text" data-clipboard-text="{$v2_url_all}">点击这里复制全部 VMess 链接</a>
 															<p>
 																<span class="icon icon-lg text-white">flash_auto</span> 
-																单端口节点订阅地址：
+																單端口接入點订阅地址：
 																<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$baseUrl}/link/{$ssr_sub_token}?v2ray=1" readonly="true" />
 																<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$baseUrl}/link/{$ssr_sub_token}?v2ray=1">
-																点击拷贝订阅地址
+																點擊拷貝
 															</button>
 															<br>
 															</p>                                                     
 														</div>
 													</div>
-												</div>
 											</div>
 										</div>
 										<div class="card-action">
@@ -293,7 +281,7 @@
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
 										<div id="traffic_chart" style="height: 300px; width: 100%;"></div>
-										<script src="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.4/public/assets/js/canvasjs.min.js"> </script>
+										<script src="//cdn.jsdelivr.net/gh/YihanH/canvasjs.js@v2.2/canvasjs.min.js"> </script>
 										<script type="text/javascript">
 											var chart = new CanvasJS.Chart("traffic_chart",
 											{
