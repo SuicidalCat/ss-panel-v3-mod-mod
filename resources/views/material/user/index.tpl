@@ -279,29 +279,27 @@
 									</div>
 								</div>
 							</div>
+							{if $user->class!=0}
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
 										<p class="card-heading"><i class="mdi mdi-telegram"></i>Telegram安全IM工具</p>
-										<dl class="dl-horizontal">
-											{if $user->class!=0}
-												<p><dt>Telegram頻道</dt>
-													<dd><i class="mdi mdi-telegram"></i>&nbsp;<a href="https://t.me/wallink" target="view_window">點擊進入</a></dd>
-												</p>
-												<p><dt>Telegram群組</dt>
-													<dd><i class="mdi mdi-telegram"></i>&nbsp;<a href="https://t.me/walllink" target="view_window">點擊進入</a></dd>
-												</p>
-											{else}
-											{/if}											
-											<p><dt>獲取客戶端</dt>
-												<dd><i class="mdi mdi-windows"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.exe">Windows</a></dd></br>
-												<dd><i class="mdi mdi-apple"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.dmg">MacOS</a></dd></br>
-												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup32.1.3.10.tar.xz">Linux32</a></dd></br>
-												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.tar.xz">Linux64</a></dd></br>
-												<dd><i class="mdi mdi-android"></i><a href="https://cdn.leezf.com/Telegram/%5BTelegram%5Dorg.telegram.messenger_4.9.0-13370_minAPI16%28arm64-v8a%2Carmeabi-v7a%2Cx86%2Cx86_64%29%28nodpi%29_apkmirror.com.apk">Android</a></dd></br>
-												<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/telegram-messenger/id686449807?mt=8" target="view_window">iOS</a></dd></br>
+										<dl class="dl-horizontal">											
+											<p><dt>Telegram頻道</dt>
+												<dd><i class="mdi mdi-telegram"></i><a href="https://t.me/wallink" target="view_window">  點擊進入</a></dd>
 											</p>
-											<p><dt>MTProxy</dt>
+											<p><dt>Telegram群組</dt>
+												<dd><i class="mdi mdi-telegram"></i><a href="https://t.me/walllink" target="view_window">  點擊進入</a></dd>
+											</p>																					
+											<p><dt>獲取客戶端</dt>
+												<dd><i class="mdi mdi-windows"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.exe">  Windows</a></dd></br>
+												<dd><i class="mdi mdi-apple"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.dmg">  MacOS</a></dd></br>
+												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup32.1.3.10.tar.xz">  Linux32</a></dd></br>
+												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.tar.xz">  Linux64</a></dd></br>
+												<dd><i class="mdi mdi-android"></i><a href="https://cdn.leezf.com/Telegram/%5BTelegram%5Dorg.telegram.messenger_4.9.0-13370_minAPI16%28arm64-v8a%2Carmeabi-v7a%2Cx86%2Cx86_64%29%28nodpi%29_apkmirror.com.apk">  Android</a></dd></br>
+												<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/telegram-messenger/id686449807?mt=8" target="view_window">  iOS</a></dd></br>
+											</p>
+											<p><dt>MTProxy代理</dt>
 												<i class="icon icon-md"></i>
 												<span>伺服器地址：</span>
 												<code><span>mtproto.walllink.org</span></code></br>
@@ -309,15 +307,17 @@
 												<code><span>443</span></code></br>
 												<span>密碼：</span>
 												<code><span>f3af755379199ea75a553e02471c3c1a</span></code></br>
-												<span>TG鏈接（App内打開）：</span>
+												<span>TG鏈接（App内打開）：</span></br>
 												<code><a href="tg://proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a">tg://proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a</a></code></br>
-												<span>Web鏈接（瀏覽器内打開）：</span>
+												<span>Web鏈接（瀏覽器内打開）：</span></br>
 												<code><a href="https://t.me/proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a">https://t.me/proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a</a></code></br>
 											</p>											
 										</dl>
 									</div>
 								</div>
 							</div>
+							{else}
+							{/if}	
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
