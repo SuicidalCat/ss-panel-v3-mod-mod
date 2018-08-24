@@ -300,7 +300,6 @@
 												<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/telegram-messenger/id686449807?mt=8" target="view_window">  iOS</a></dd></br>
 											</p>
 											<p><dt>MTProxy代理</dt>
-												<i class="icon icon-md"></i>
 												<span>伺服器地址：</span>
 												<code><span>mtproto.walllink.org</span></code></br>
 												<span>端口：</span>
