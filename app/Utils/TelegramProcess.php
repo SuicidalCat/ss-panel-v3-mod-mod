@@ -12,28 +12,28 @@ class TelegramProcess
         if ($user != null) {
             switch ($command) {
                 case 'traffic':
-                    $bot->sendMessage($message->getChat()->getId(), "您当前的流量状况：
-今日已使用 ".$user->TodayusedTraffic()." ".number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100, 2)."%
-今日之前已使用 ".$user->LastusedTraffic()." ".number_format($user->last_day_t/$user->transfer_enable*100, 2)."%
-未使用 ".$user->unusedTraffic()." ".number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100, 2)."%
+                    $bot->sendMessage($message->getChat()->getId(), "您當前傳輸量使用情況：
+本日已用 ".$user->TodayusedTraffic()." ".number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100, 2)."%
+總計已用 ".$user->LastusedTraffic()." ".number_format($user->last_day_t/$user->transfer_enable*100, 2)."%
+剩餘 ".$user->unusedTraffic()." ".number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100, 2)."%
 					                        ", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
                     break;
                 case 'checkin':
                     if (!$user->isAbleToCheckin()) {
-                        $bot->sendMessage($message->getChat()->getId(), "您今天已经签过到了！", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
+                        $bot->sendMessage($message->getChat()->getId(), "您已經簽到，請勿重複簽到！", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
                         break;
                     }
                     $traffic = rand(Config::get('checkinMin'), Config::get('checkinMax'));
                     $user->transfer_enable = $user->transfer_enable + Tools::toMB($traffic);
                     $user->last_check_in_time = time();
                     $user->save();
-                    $bot->sendMessage($message->getChat()->getId(), "签到成功！获得了 ".$traffic." MB 流量！", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
+                    $bot->sendMessage($message->getChat()->getId(), "簽到成功，您獲得了 ".$traffic." MB 傳輸量！", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
                     break;
                 default:
                     $bot->sendMessage($message->getChat()->getId(), "???", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
             }
         } else {
-            $bot->sendMessage($message->getChat()->getId(), "您未绑定本站账号。", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
+            $bot->sendMessage($message->getChat()->getId(), "您尚未綁定WallLink賬戶。", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
         }
     }
 
@@ -62,19 +62,18 @@ class TelegramProcess
                     TelegramProcess::needbind_method($bot, $message, $command, $user, $message->getMessageId());
                     break;
                 case 'help':
-                    $help_list = "命令列表：
-						/ping  获取群组ID
-						/traffic 查询流量
-						/checkin 签到续命
-						/help 获取帮助信息
+                    $help_list = "指令列表：
+						/traffic 查詢傳輸量使用情況
+						/checkin 進行賬戶簽到
+						/help 獲取使用幫助
 
-						您可以在面板里点击 资料编辑 ，滑到页面最下方，就可以看到 Telegram 绑定指示了，绑定您的账号，更多精彩功能等着您去发掘。
+						您可以在用戶面板中的“資料編輯” 獲取綁定設置。
 					          ";
                     $bot->sendMessage($message->getChat()->getId(), $help_list);
                     break;
                 default:
                     if ($message->getPhoto() != null) {
-                        $bot->sendMessage($message->getChat()->getId(), "正在解码，请稍候。。。");
+                        $bot->sendMessage($message->getChat()->getId(), "正在嘗試讀取二維碼...");
                         $bot->sendChatAction($message->getChat()->getId(), 'typing');
 
                         $photos = $message->getPhoto();
@@ -124,9 +123,9 @@ class TelegramProcess
                                     $user->im_type = 4;
                                     $user->im_value = $message->getFrom()->getUsername();
                                     $user->save();
-                                    $bot->sendMessage($message->getChat()->getId(), "绑定成功。邮箱：".$user->email);
+                                    $bot->sendMessage($message->getChat()->getId(), "您已經成功綁定。電子郵箱：".$user->email);
                                 } else {
-                                    $bot->sendMessage($message->getChat()->getId(), "绑定失败，二维码无效。".substr($qrcode_text, 11));
+                                    $bot->sendMessage($message->getChat()->getId(), "綁定出現了錯誤，您提供的QR Code無效。".substr($qrcode_text, 11));
                                 }
                             }
 
@@ -134,12 +133,12 @@ class TelegramProcess
                                 if ($user != null) {
                                     $uid = TelegramSessionManager::verify_login_session(substr($qrcode_text, 12), $user->id);
                                     if ($uid != 0) {
-                                        $bot->sendMessage($message->getChat()->getId(), "登录验证成功。邮箱：".$user->email);
+                                        $bot->sendMessage($message->getChat()->getId(), "您已經成功驗證登錄。電子郵箱：".$user->email);
                                     } else {
-                                        $bot->sendMessage($message->getChat()->getId(), "登录验证失败，二维码无效。".substr($qrcode_text, 12));
+                                        $bot->sendMessage($message->getChat()->getId(), "驗證登錄的過程出現錯誤，您提供的QR Code無效。".substr($qrcode_text, 12));
                                     }
                                 } else {
-                                    $bot->sendMessage($message->getChat()->getId(), "登录验证失败，您未绑定本站账号。".substr($qrcode_text, 12));
+                                    $bot->sendMessage($message->getChat()->getId(), "驗證登錄的過程出現錯誤，您尚未綁定WallLink賬戶。".substr($qrcode_text, 12));
                                 }
                             }
 
@@ -150,12 +149,12 @@ class TelegramProcess
                             if ($user != null) {
                                 $uid = TelegramSessionManager::verify_login_number($message->getText(), $user->id);
                                 if ($uid != 0) {
-                                    $bot->sendMessage($message->getChat()->getId(), "登录验证成功。邮箱：".$user->email);
+                                    $bot->sendMessage($message->getChat()->getId(), "您已經成功驗證登錄。電子郵箱：".$user->email);
                                 } else {
-                                    $bot->sendMessage($message->getChat()->getId(), "登录验证失败，数字无效。");
+                                    $bot->sendMessage($message->getChat()->getId(), "驗證登錄的過程出現錯誤，您提供的驗證代碼無效。");
                                 }
                             } else {
-                                $bot->sendMessage($message->getChat()->getId(), "登录验证失败，您未绑定本站账号。");
+                                $bot->sendMessage($message->getChat()->getId(), "驗證登錄的過程出現錯誤，您尚未綁定WallLink賬戶。");
                             }
                             break;
                         }
@@ -179,7 +178,7 @@ class TelegramProcess
                     if ($message->getChat()->getId() == Config::get('telegram_chatid')) {
                         $bot->sendMessage($message->getChat()->getId(), Tuling::chat($message->getFrom()->getId(), substr($message->getText(), 5)), $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
                     } else {
-                        $bot->sendMessage($message->getChat()->getId(), '不约，叔叔我们不约。', $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
+                        $bot->sendMessage($message->getChat()->getId(), '我只是一個沒有感情的機器人。', $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
                     }
                     break;
                 case 'traffic':
@@ -189,13 +188,12 @@ class TelegramProcess
                     TelegramProcess::needbind_method($bot, $message, $command, $user, $message->getMessageId());
                     break;
                 case 'help':
-                    $help_list_group = "命令列表：
-						/ping  获取群组ID
-						/traffic 查询流量
-						/checkin 签到续命
-						/help 获取帮助信息
+                    $help_list_group = "指令列表：
+						/traffic 查詢傳輸量使用情況
+						/checkin 進行賬戶簽到
+						/help 獲取使用幫助
 
-						您可以在面板里点击 资料编辑 ，滑到页面最下方，就可以看到 Telegram 绑定指示了，绑定您的账号，更多精彩功能等着您去发掘。
+						您可以在用戶面板中的“資料編輯” 獲取綁定設置。
 					";
                     $bot->sendMessage($message->getChat()->getId(), $help_list_group, $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
                     break;
@@ -204,7 +202,7 @@ class TelegramProcess
                         if ($message->getChat()->getId() == Config::get('telegram_chatid')) {
                             $bot->sendMessage($message->getChat()->getId(), Tuling::chat($message->getFrom()->getId(), $message->getText()), $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
                         } else {
-                            $bot->sendMessage($message->getChat()->getId(), '不约，叔叔我们不约。', $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
+                            $bot->sendMessage($message->getChat()->getId(), '我只是一個沒有感情的機器人。', $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
                         }
                     }
             }
