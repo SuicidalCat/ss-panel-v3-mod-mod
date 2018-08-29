@@ -401,7 +401,7 @@ function CountDown() {
     var levelExpireDays = Math.floor(b/(24*3600*1000));
     var accountExpireDays = Math.floor(c/(24*3600*1000));
     if (levelExpireDays < 0 || levelExpireDays > 315360000000) {
-        document.getElementById('days-level-expire').innerHTML = "无限期";
+        document.getElementById('days-level-expire').innerHTML = "無限";
         for (var i=0;i<document.getElementsByClassName('label-level-expire').length;i+=1){
             document.getElementsByClassName('label-level-expire')[i].style.display = 'none';
         }
@@ -409,7 +409,7 @@ function CountDown() {
         document.getElementById('days-level-expire').innerHTML = levelExpireDays;
     }
     if (accountExpireDays < 0 || accountExpireDays > 315360000000) {
-        document.getElementById('days-account-expire').innerHTML = "无限期";
+        document.getElementById('days-account-expire').innerHTML = "無限";
         for (var i=0;i<document.getElementsByClassName('label-account-expire').length;i+=1){
             document.getElementsByClassName('label-account-expire')[i].style.display = 'none';
         }
@@ -424,20 +424,20 @@ $(function(){
 });
 $(".copy-text").click(function () {
 	$("#result").modal();
-	$("#msg").html("已拷贝订阅链接，请您继续接下来的操作。");
+	$("#msg").html("已拷貝您的訂閲鏈接，請將其添加至客戶端中。");
 });
 $(function(){
 	new Clipboard('.reset-link');
 });
 $(".reset-link").click(function () {
 	$("#result").modal();
-	$("#msg").html("已重置您的订阅链接，请变更或添加您的订阅链接！");
+	$("#msg").html("成功重置了您的訂閲鏈接，請請添加新的訂閲鏈接到您的客戶端中。");
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
 });
  {if $user->transfer_enable-($user->u+$user->d) == 0}
 window.onload = function() {
     $("#result").modal();
-    $("#msg").html("您的流量已经用完或账户已经过期了，如需继续使用，请进入商店选购新的套餐~");
+    $("#msg").html("您賬戶中的傳輸量已經全部使用完畢，如需繼續使用接入點服務請購買增量包");
 };
  {/if}
 
