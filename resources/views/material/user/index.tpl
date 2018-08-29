@@ -292,11 +292,11 @@
 												<dd><i class="mdi mdi-telegram"></i><a href="https://t.me/walllink" target="view_window">  點擊進入</a></dd>
 											</p>																					
 											<p><dt>獲取客戶端</dt>
-												<dd><i class="mdi mdi-windows"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.exe">  Windows</a></dd></br>
-												<dd><i class="mdi mdi-apple"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.dmg">  MacOS</a></dd></br>
-												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup32.1.3.10.tar.xz">  Linux32</a></dd></br>
-												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.10.tar.xz">  Linux64</a></dd></br>
-												<dd><i class="mdi mdi-android"></i><a href="https://cdn.leezf.com/Telegram/%5BTelegram%5Dorg.telegram.messenger_4.9.0-13370_minAPI16%28arm64-v8a%2Carmeabi-v7a%2Cx86%2Cx86_64%29%28nodpi%29_apkmirror.com.apk">  Android</a></dd></br>
+												<dd><i class="mdi mdi-windows"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.14.exe">  Windows</a></dd></br>
+												<dd><i class="mdi mdi-apple"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.14.dmg">  MacOS</a></dd></br>
+												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup32.1.3.14.tar.xz">  Linux32</a></dd></br>
+												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.3.14.tar.xz">  Linux64</a></dd></br>
+												<dd><i class="mdi mdi-android"></i><a href="https://cdn.leezf.com/Telegram/%5BTelegram%5Dorg.telegram.messenger_4.9.1-13610_minAPI16%28arm64-v8a%2Carmeabi-v7a%2Cx86%2Cx86_64%29%28nodpi%29_apkmirror.com.apk">  Android</a></dd></br>
 												<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/telegram-messenger/id686449807?mt=8" target="view_window">  iOS</a></dd></br>
 											</p>
 											<p><dt>MTProxy代理</dt>
