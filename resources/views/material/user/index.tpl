@@ -316,7 +316,7 @@
 								</div>
 							</div>
 							{else}
-							{/if}	
+							{/if}
 							<div class="card">
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
