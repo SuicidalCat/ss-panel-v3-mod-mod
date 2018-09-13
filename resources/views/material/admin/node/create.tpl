@@ -66,9 +66,9 @@
 										<label for="mu_only">
 											<label class="floating-label" for="sort">单端口多用户启用</label>
 											<select id="mu_only" class="form-control" name="is_multi_user">
-												<option value="0">单端口多用户与普通端口并存</option>
 												<option value="-1">只启用普通端口</option>
-												<option value="1">只启用单端口多用户</option>
+													<option value="0">单端口多用户与普通端口并存</option>
+													<option value="1">只启用单端口多用户</option>
 											</select>
 										</label>
 									</div>

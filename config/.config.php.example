@@ -1,6 +1,6 @@
 <?php
 
-// 注释里请勿使用英文方括号、分号、单引号，否则迁移Config时可能会出现BUG
+//注释里请勿使用英文方括号、分号、单引号，否则迁移Config时会出错
 
 //config迁移附注（由开发者填写本次config迁移后需要注意的地方，站长勿动）
 //如需换行，直接换行即可，无需换行符
@@ -8,8 +8,9 @@ $System_Config['config_migrate_notice']=
 'daliy job不再包含自动备份，
 自动备份改用crontab进行，以实现每隔20分钟备份一次之类的操作,
 详情请看本wiki底部：
-https://github.com/NimaQu/ss-panel-v3-mod_Uim/wiki/前端安装';
-$System_Config['version']='0';	//仅当涉及【需要修改config以外的文件】时才需要+1
+https://github.com/NimaQu/ss-panel-v3-mod_Uim/wiki/前端安装
+node_offline_warn被改名为enable_detect_offline';
+$System_Config['version']='0';	//仅当涉及【需要修改config以外的文件】时才需要+1，站长勿动
 
 
 //基本设置-----------------------------------------------------------------------
@@ -84,21 +85,21 @@ $System_Config['invite_price']='-1';    					//用户购买邀请码所需要的
 #邮箱验证
 $System_Config['enable_email_verify']='false';      		//是否启用注册邮箱验证码
 $System_Config['email_verify_ttl']='3600';      			//邮箱验证码有效期
-$System_Config['email_verify_iplimit']='10';      			//单IP可请求验证码次数（上面那个周期内）
+$System_Config['email_verify_iplimit']='10';      			//验证码有效期内，单IP可请求验证码次数
 
 
 //已注册用户设置------------------------------------------------------------------
 #基础
-$System_Config['checkinMin'] = '1';       					//用户签到签到最少流量 单位MB
-$System_Config['checkinMax'] = '50';       					//用户签到签到最多流量
+$System_Config['checkinMin'] = '1';       					//用户签到最少流量 单位MB
+$System_Config['checkinMax'] = '50';       					//用户签到最多流量
+$System_Config['enable_auto_clean_uncheck']='false';      	//没签到的0级用户自动清理开关
+$System_Config['enable_auto_clean_uncheck_days']='7';      	//自动清理多少天没签到的0级用户
+$System_Config['auto_clean_min_money']='1';      			//自动清理时余额低于多少的0级用户
+$System_Config['enable_auto_clean_unused']='false';      	//未使用的0级用户自动清理开关
+$System_Config['enable_auto_clean_unused_days']='30';		//自动清理多少天没使用的0级用户
 $System_Config['code_payback']='20';      					//充值返利百分比
 $System_Config['invite_gift']='2';      					//邀请新用户获得流量奖励，单位G
 $System_Config['enable_bought_reset']='true';      			//购买时是否重置流量
-$System_Config['enable_auto_clean_uncheck']='false';      	//没签到的0级用户自动清理开关
-$System_Config['enable_auto_clean_uncheck_days']='7';      	//自动清理多少天没签到的0级用户
-$System_Config['auto_clean_min_money']='1';      			//自动清理时余额低于多少的0级用户会被清理
-$System_Config['enable_auto_clean_unused']='false';      	//未使用的0级用户自动清理开关
-$System_Config['enable_auto_clean_unused_days']='30';		//自动清理多少天没使用的0级用户
 $System_Config['port_price']='-1';    						//用户随机重置端口所需要的价格，价格小于0时视为不开放购买
 $System_Config['port_price_specify']='-1';    				//用户指明钦定端口所需要的价格，价格小于0时视为不开放购买
 
@@ -220,27 +221,32 @@ $System_Config['finance_public']='false';    	//财务报告是否向Telegram群
 $System_Config['enable_flag']='false';    		//启用该项之前务必先仔细阅读教程
 $System_Config['flag_regex']='/.*?(?=\s)/';     //从站点全名中匹配国家/地区的正则表达式(php版)
 
-//节点被墙检测
+
+//节点检测
+#GFW检测
 $System_Config['enable_detect_gfw']='false';
 $System_Config['detect_gfw_interval']='3600';		//检测间隔，单位：秒，低于推荐值会爆炸
 $System_Config['detect_gfw_port']='22';			//所有节点服务器都打开的TCP端口，常用的为22（SSH端口）
 $System_Config['detect_gfw_url']='https://cn-qz-tcping.torch.njs.app/{ip}/{port}';		//检测节点是否被gfw墙了的API的URL
 $System_Config['detect_gfw_count']='3';		//尝试次数
 
-//高级设置（一般不用改，反正估计也看不懂-------------------------------------------------------------
-##杂项
+#离线检测
+$System_Config['enable_detect_offline']='true';
+
+
+//以下所有均为高级设置（一般不用改，反正估计也看不懂-------------------------------------------------------------
+#杂项
 $System_Config['enable_login_bind_ip']='false';     //是否将登陆线程和IP绑定
 $System_Config['authDriver'] = 'cookie';   			//不能更改此项
 $System_Config['salt'] = '';               			// 密码加密用，请留空
 $System_Config['sessionDriver'] = 'cookie'; 		//  可选: cookie,redis
 $System_Config['cacheDriver'] = 'cookie';   		//  可选: cookie,redis
 $System_Config['tokenDriver'] = 'db';   			//  可选: db,redis
-$System_Config['jump_delay']='1200';  				//跳转延时,ms 1000ms=1s 不建议太长
+$System_Config['jump_delay']='1200';  				//跳转延时，单位ms，不建议太长
 $System_Config['theme']    = 'material';   			// 主题
 $System_Config['pacp_offset']='-20000';      		//VPN 端口偏移
 $System_Config['pacpp_offset']='-20000';
 $System_Config['Speedtest_duration']='6';      		//显示多长时间的测速记录
-$System_Config['node_offline_warn']='true';      	//节点离线设置
 $System_Config['login_warn']='false';      			//异地登陆提示
 $System_Config['timeZone'] = 'PRC';        			// PRC 天朝时间  UTC 格林时间
 $System_Config['pwdMethod'] = 'sha256';       		// 密码加密   可选 md5,sha256
@@ -248,12 +254,11 @@ $System_Config['db_charset'] = 'utf8';
 $System_Config['db_collation'] = 'utf8_general_ci';
 $System_Config['db_prefix'] = '';
 
-
-# aws
+#aws
 $System_Config['aws_access_key_id'] = '';
 $System_Config['aws_secret_access_key'] = '';
 
-# redis
+#redis
 $System_Config['redis_scheme'] = 'tcp';
 $System_Config['redis_host'] = '127.0.0.1';
 $System_Config['redis_port'] = '6379';
@@ -290,12 +295,11 @@ $System_Config['cloudxns_apikey']='';      			//自己去 cloudxns.net 申请
 $System_Config['cloudxns_apisecret']='';
 $System_Config['cloudxns_domain']='zhaoj.in';      	//你的域名
 
-#不安全中转模式，这个开启之后使用除了 auth_aes128_md5 或者 auth_aes128_sha1 以外的协议地用户也可以设置和使用中转，但是，强烈推荐不开启。
-$System_Config['relay_insecure_mode']='false';		//默认关闭不安全中转
+#不安全中转模式，这个开启之后使用除了 auth_aes128_md5 或者 auth_aes128_sha1 以外的协议地用户也可以设置和使用中转
+$System_Config['relay_insecure_mode']='false';		//强烈推荐不开启
 
 #是否夹带统计代码，自己在 resources/views/{主题名} 下创建一个 analytics.tpl ，如果有必要就用 literal 界定符
 $System_Config['enable_analytics_code']='false';
-
 
 $System_Config['v2ray_port']='443';
 $System_Config['v2ray_protocol']='HTTP/2 + TLS';
@@ -305,9 +309,6 @@ $System_Config['v2ray_level']='0';
 #在套了CDN之后获取用户真实ip，如果您不知道这是什么，请不要乱动
 
 if ( isset($_SERVER["HTTP_X_FORWARDED_FOR"]) ) {
-
 $list = explode("," , $_SERVER["HTTP_X_FORWARDED_FOR"]);
-
 $_SERVER["REMOTE_ADDR"] = $list[0];
-
 }

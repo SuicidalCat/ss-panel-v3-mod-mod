@@ -1256,7 +1256,7 @@ class UserController extends BaseController
 		$coupon = trim($coupon);
         $code = $coupon;
         $shop = $request->getParam('shop');
-
+		$disableothers=$request->getParam('disableothers');
         $autorenew = $request->getParam('autorenew');
 
         $shop=Shop::where("id", $shop)->where("status", 1)->first();
@@ -1307,6 +1307,14 @@ class UserController extends BaseController
         $user->money=$user->money-$price;
         $user->save();
 
+		if($disableothers==1){
+			$boughts=Bought::where("userid", $user->id)->get();
+			foreach($boughts as $disable_bought){
+				$disable_bought->renew=0;
+				$disable_bought->save();
+			}
+		}
+
         $bought=new Bought();
         $bought->userid=$user->id;
         $bought->shopid=$shop->id;
@@ -1353,7 +1361,7 @@ class UserController extends BaseController
 
         if ($shop==null) {
             $rs['ret'] = 0;
-            $rs['msg'] = "退订失败，订单不存在。";
+            $rs['msg'] = "关闭自动续费失败，订单不存在。";
             return $response->getBody()->write(json_encode($rs));
         }
 
@@ -1363,11 +1371,11 @@ class UserController extends BaseController
 
         if (!$shop->save()) {
             $rs['ret'] = 0;
-            $rs['msg'] = "退订失败";
+            $rs['msg'] = "关闭自动续费失败";
             return $response->getBody()->write(json_encode($rs));
         }
         $rs['ret'] = 1;
-        $rs['msg'] = "退订成功";
+        $rs['msg'] = "关闭自动续费成功";
         return $response->getBody()->write(json_encode($rs));
     }
 
@@ -1629,18 +1637,18 @@ class UserController extends BaseController
         $user->save();
 
         if(!URL::SSCanConnect($user)) {
-            $res['ret'] = 0;
+            $res['ret'] = 1;
             $res['msg'] = "设置成功，但您目前的协议，混淆，加密方式设置会导致 Shadowsocks原版客户端无法连接，请您自行更换到 ShadowsocksR 客户端。";
             return $this->echoJson($response, $res);
         }
 
         if(!URL::SSRCanConnect($user)) {
-            $res['ret'] = 0;
+            $res['ret'] = 1;
             $res['msg'] = "设置成功，但您目前的协议，混淆，加密方式设置会导致 ShadowsocksR 客户端无法连接，请您自行更换到 Shadowsocks 客户端。";
             return $this->echoJson($response, $res);
         }
 
-        $res['ret'] = 0;
+        $res['ret'] = 1;
         $res['msg'] = "设置成功，您可自由选用客户端来连接。";
         return $this->echoJson($response, $res);
     }
@@ -1781,12 +1789,12 @@ class UserController extends BaseController
         }
 
         if(!URL::SSRCanConnect($user)) {
-            $res['ret'] = 0;
+            $res['ret'] = 1;
             $res['msg'] = "设置成功，但您目前的协议，混淆，加密方式设置会导致 ShadowsocksR 客户端无法连接，请您自行更换到 Shadowsocks 客户端。";
             return $this->echoJson($response, $res);
         }
 
-        $res['ret'] = 0;
+        $res['ret'] = 1;
         $res['msg'] = "设置成功，您可自由选用两种客户端来进行连接。";
         return $this->echoJson($response, $res);
     }
