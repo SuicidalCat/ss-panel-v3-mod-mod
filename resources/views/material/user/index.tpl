@@ -31,6 +31,9 @@
 												<li {if $ssr_prefer}class="active"{/if}>
 													<a class="waves-attach" data-toggle="tab" href="#all_ssr"><i class="icon icon-lg">airplanemode_active</i>&nbsp;ShadowsocksR</a>
 												</li>
+												<li>
+													<a class="waves-attach" data-toggle="tab" href="#all_v2ray"><i class="icon icon-lg">flight_land</i>&nbsp;V2RAY</a>
+												</li>
 											</ul>
 										</nav>
 										<div class="card-inner">
@@ -70,11 +73,10 @@
 														{$user = URL::getSSRConnectInfo($pre_user)}
 														{$ssr_url_all = URL::getAllUrl($pre_user, 0, 0)}
 														{$ssr_url_all_mu = URL::getAllUrl($pre_user, 1, 0)}
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-win.7z"> 点击我下载</a></p>
-														<p><span class="icon icon-lg text-white">filter_2</span> 解压至任意磁盘并运行</p>
-														<p><span class="icon icon-lg text-white">filter_3</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSR服务器订阅（绕过代理）。</p>
-														<p> <span class="icon icon-lg text-white">filter_4</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网。</p>
-														<p><span class="icon icon-lg text-white">filter_5</span> 备用导入节点方法：点击<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这里（普通端口）</a>或者<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这个(单端口多用户）</a>，然后右键小飞机->从剪贴板复制地址</p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-win.7z"> 点击我下载</a>，解压至任意磁盘并运行</p>
+														<p><span class="icon icon-lg text-white">filter_2</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSR服务器订阅（绕过代理）。</p>
+														<p> <span class="icon icon-lg text-white">filter_3</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网</p>
+														<p><span class="icon icon-lg text-white">filter_4</span> 备用导入节点方法：点击<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这里（普通端口）</a>或者<a class="copy-text" data-clipboard-text="{$ssr_url_all_mu}">这个(单端口多用户）</a>，然后右键小飞机->从剪贴板复制地址</p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅（CN）：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="http://hxcq.applinzi.com/walllink/?link={$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="http://hxcq.applinzi.com/walllink/?link={$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
@@ -82,12 +84,11 @@
 														<!--p><a href="/user/announcement">点击这里查看Windows傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_mac">
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-mac.dmg"> 点击我下载</a></p>
-														<p><span class="icon icon-lg text-white">filter_2</span> 打开下载的Dmg文件</p>
-														<p><span class="icon icon-lg text-white">filter_3</span> 把ShadowsocksX拖入到Finder的应用程序列表(Applications)</p>
-														<p><span class="icon icon-lg text-white">filter_4</span> 打开Launchapad里的ShadowsocksX</p>
-														<p><span class="icon icon-lg text-white">filter_5</span> 菜单栏的纸飞机图标-服务器-服务器订阅填入以下订阅地址，更新后出现您的节点</p>
-														<p><span class="icon icon-lg text-white">filter_6</span> 菜单栏的纸飞机图标-打开shadowsocks</p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-mac.dmg"> 点击我下载</a>，并打开</p>
+														<p><span class="icon icon-lg text-white">filter_2</span> 把ShadowsocksX拖入到Finder的应用程序列表(Applications)</p>
+														<p><span class="icon icon-lg text-white">filter_3</span> 打开Launchapad里的ShadowsocksX</p>
+														<p><span class="icon icon-lg text-white">filter_4</span> 菜单栏的纸飞机图标-服务器-服务器订阅填入以下订阅地址，更新后出现您的节点</p>
+														<p><span class="icon icon-lg text-white">filter_5</span> 菜单栏的纸飞机图标-打开shadowsocks</p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅（CN）：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="http://hxcq.applinzi.com/walllink/?link={$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="http://hxcq.applinzi.com/walllink/?link={$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
@@ -128,8 +129,8 @@
 														执行完毕以后就可以到路由器的设置面板里随意选择 Shadowsocks 服务器进行连接了。</p>
 													</div>
 													<div class="tab-pane fade" id="all_ssr_game">
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/SSTap.7z">点击我下载</a></p>
-														<p><span class="icon icon-lg text-white">filter_2</span> 安装，期间会安装虚拟网卡，请点击允许或确认</p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/SSTap.7z">点击下载</a>，并安装</p>
+														<p><span class="icon icon-lg text-white">filter_2</span> 期间会安装虚拟网卡，请点击允许或确认</p>
 														<p><span class="icon icon-lg text-white">filter_3</span> 打开桌面程序SSTap</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 齿轮图标-SSR订阅-SSR订阅管理添加以下订阅链接即可</p>
 														<p><span class="icon icon-lg text-white">filter_5</span> 更新后选择其中一个节点闪电图标测试节点-测试UDP转发...通过!（UDP通过即可连接并开始游戏），如测试不通过，点击齿轮图标设置DNS，推荐谷歌DNS</p>
@@ -178,8 +179,8 @@
 															<p>
 																<span class="icon icon-lg text-white">flash_auto</span> 
 																單端口接入點订阅地址：
-																<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$baseUrl}/link/{$ssr_sub_token}?v2ray=1" readonly="true" />
-																<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$baseUrl}/link/{$ssr_sub_token}?v2ray=1">
+																<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$baseUrl}/link/{$ssr_sub_token}?mu=2" readonly="true" />
+																<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$baseUrl}/link/{$ssr_sub_token}?mu=2">
 																點擊拷貝
 															</button>
 															<br>

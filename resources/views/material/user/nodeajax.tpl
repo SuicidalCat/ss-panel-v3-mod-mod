@@ -234,7 +234,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "CT下載"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "CT下載"
 								{literal}
 								}
 								{/literal}
@@ -243,7 +243,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "CT下載"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "CT下載"
 								{literal}
 								}
 								{/literal}
@@ -265,7 +265,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "CT上傳"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "CT上傳"
 								{literal}
 								}
 								{/literal}
@@ -274,7 +274,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "CT上傳"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "CT上傳"
 								{literal}
 								}
 								{/literal}
@@ -296,7 +296,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "CU下載"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "CU下載"
 								{literal}
 								}
 								{/literal}
@@ -305,7 +305,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "CU下載"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "CU下載"
 								{literal}
 								}
 								{/literal}
@@ -327,7 +327,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "CU上傳"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "CU上傳"
 								{literal}
 								}
 								{/literal}
@@ -336,7 +336,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "CU上傳"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "CU上傳"
 								{literal}
 								}
 								{/literal}
@@ -358,7 +358,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "CM下載"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "CM下載"
 								{literal}
 								}
 								{/literal}
@@ -367,7 +367,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "CM下載"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "CM下載"
 								{literal}
 								}
 								{/literal}
@@ -389,7 +389,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "CM上傳"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "CM上傳"
 								{literal}
 								}
 								{/literal}
@@ -398,7 +398,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "CM上傳"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "CM上傳"
 								{literal}
 								}
 								{/literal}

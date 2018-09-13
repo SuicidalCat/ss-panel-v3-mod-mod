@@ -13,6 +13,7 @@
 							<div class="card-inner">
 								<p>請先選購資源包后再購買增量包，否則將無法使用節點服務</p>
 								<p>選購升級包會覆蓋現有賬戶中的套餐，請結合現有套餐情況謹慎購買！</p>
+								<p>購買新套餐包時，如未關閉舊有套餐自動續費，則舊有套餐的自動續費仍然生效。</p>
 								<p>當前賬戶餘額：<code>{$user->money}</code> 元</p>
 							</div>
 						</div>
@@ -32,7 +33,7 @@
 										<td>{$shop->price} 元</td>
 										<td>{$shop->content()}</td>
 										<td>
-											<a class="btn btn-brand-accent" href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})">购买</a>
+											<a class="btn btn-brand-accent" href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew})">购买</a>
 										</td>
 									</tr>
 									{/foreach}
@@ -69,10 +70,17 @@
 									<p id="name">資源包名稱：</p>
 									<p id="credit">優惠幅度：</p>
 									<p id="total">總金額：</p>
-									<p id="auto_reset">到期自動續費</p>									
+									<div class="checkbox switch">
+										<label for="disableothers">
+											<input checked class="access-hide" id="disableothers" type="checkbox">
+											<span class="switch-toggle"></span>关闭旧套餐自动续费
+										</label>
+									</div>
+									<br/>
 									<div class="checkbox switch" id="autor">
 										<label for="autorenew">
-											<input checked class="access-hide" id="autorenew" type="checkbox"><span class="switch-toggle"></span>自动续费
+											<input checked class="access-hide" id="autorenew" type="checkbox">
+											<span class="switch-toggle"></span>到期时自动续费
 										</label>
 									</div>									
 								</div>								
@@ -88,8 +96,7 @@
 	</main>
 {include file='user/footer.tpl'}
 <script>
-function buy(id,auto,auto_reset) {
-	auto_renew=auto;
+function buy(id,auto) {
 	if(auto==0)
 	{
 		document.getElementById('autor').style.display="none";
@@ -124,9 +131,9 @@ $("#coupon_input").click(function () {
 			},
 			success: function (data) {
 				if (data.ret) {
-					$("#name").html("商品名称："+data.name);
-					$("#credit").html("优惠额度："+data.credit);
-					$("#total").html("总金额："+data.total);
+					$("#name").html("產品名稱："+data.name);
+					$("#credit").html("優惠幅度："+data.credit);
+					$("#total").html("總計金額："+data.total);
 					$("#order_modal").modal();
 				} else {
 					$("#result").modal();
@@ -150,6 +157,12 @@ $("#order_input").click(function () {
 		{
 			var autorenew=0;
 		}
+		if(document.getElementById('disableothers').checked){
+			var disableothers=1;
+		}
+		else{
+			var disableothers=0;
+		}
 			
 		$.ajax({
 			type: "POST",
@@ -158,7 +171,8 @@ $("#order_input").click(function () {
 			data: {
 				coupon: $("#coupon").val(),
 				shop: shop,
-				autorenew: autorenew
+				autorenew: autorenew,
+				disableothers:disableothers
 			},
 			success: function (data) {
 				if (data.ret) {
