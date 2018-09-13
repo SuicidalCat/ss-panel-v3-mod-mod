@@ -1,34 +1,21 @@
 
-
-
-
 {include file='user/main.tpl'}
-
-
-
-
-
-
 
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">充值</h1>
-
-
+				<h1 class="content-heading">賬戶充值</h1>
 			</div>
 		</div>
 		<div class="container">
 			<section class="content-inner margin-top-no">
 				<div class="row">
-
 				    <div class="col-lg-12 col-md-12">
                         <div class="card margin-bottom-no">
                             <div class="card-main">
                                 <div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">注意!</p>
-										<p>充值完成后需刷新网页以查看余额，通常一分钟内到账。</p>
+										<p>正常情況下充值金額及時到賬，如果沒有正常入賬請立即與客服聯係。</p>
 										{if $config["enable_admin_contact"] == 'true'}
 											<p class="card-heading">如果没有到账请立刻联系站长：</p>
 											{if $config["admin_contact1"]!=null}
@@ -42,14 +29,12 @@
 											{/if}
 										{/if}
 										<br/>
-										<p><i class="icon icon-lg">attach_money</i>当前余额：<font color="red" size="5">{$user->money}</font> 元</p>
+										<p>当前余额：<font color="red" size="5">{$user->money}</font> 元</p>
 									</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-					
 				    {if $pmw!=''}
 					<div class="col-lg-12 col-md-12">
 						<div class="card margin-bottom-no">
@@ -61,7 +46,6 @@
 						</div>
 					</div>
 					{/if}
-
 					<div class="col-lg-12 col-md-12">
 						<div class="card margin-bottom-no">
 							<div class="card-main">
@@ -81,8 +65,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					
+					</div>				
 					<div class="col-lg-12 col-md-12">
 						<div class="card margin-bottom-no">
 							<div class="card-main">
@@ -98,7 +81,6 @@
 														<th>类型</th>
 														<th>操作</th>
 														<th>使用时间</th>
-
 													</tr>
 													{foreach $codes as $code}
 														{if $code->type!=-2}
@@ -138,7 +120,6 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -157,7 +138,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div aria-hidden="true" class="modal modal-va-middle fade" id="alipay" role="dialog" tabindex="-1">
 						<div class="modal-dialog modal-xs">
 							<div class="modal-content">
@@ -166,15 +146,14 @@
                               <h2 class="modal-title">请使用支付宝App扫码充值：</h2>
 								</div>
 								<div class="modal-inner">
-                                   <div class="text-center">
-                                    <p id="divide">-------------------------------------------------------------</p>
-									<p id="title">手机端点击二维码即可转跳app支付</p>
-									<p id="divide">-------------------------------------------------------------</p>
-									<p id="qrcode"></p>
-									<p id="info"></p>
+									<div class="text-center">
+										<p id="divide">-------------------------------------------------------------</p>
+										<p id="title">手机端点击二维码即可转跳app支付</p>
+										<p id="divide">-------------------------------------------------------------</p>
+										<p id="qrcode"></p>
+										<p id="info"></p>
+									</div>
 								</div>
-                                  </div>
-
 								<div class="modal-footer">
 									<p class="text-right"><button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" id="alipay_cancel" type="button">取消</button></p>
 								</div>
@@ -187,14 +166,7 @@
 		</div>
 	</main>
 
-
-
-
-
-
-
 {include file='user/footer.tpl'}
-
 
 <script>
 	$(document).ready(function () {

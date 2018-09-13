@@ -4,14 +4,13 @@
 	<div id="up{$id}_chart" style="height: 300px; width: 100%;"></div>
 	<div id="alive{$id}_chart" style="height: 300px; width: 100%;"></div>
 	<div id="speedtest{$id}_chart" style="height: 300px; width: 100%;"></div>
-	<div id="speedtest{$id}_ping_chart" style="height: 300px; width: 100%;"></div>
-				
+	<div id="speedtest{$id}_ping_chart" style="height: 300px; width: 100%;"></div>				
 	<script type="text/javascript">
 		$().ready(function(){
 			chart{$id} = new CanvasJS.Chart("load{$id}_chart",
 			{
 				title:{
-					text: "节点负载情况 {$prefix}"
+					text: "接入點負載統計 {$prefix}"
 				},
 				data: [
 				{
@@ -42,14 +41,11 @@
 					]
 				}
 				]
-			});
-			
-			
-			
+			});									
 			up_chart{$id} = new CanvasJS.Chart("up{$id}_chart",
 			{
 				title:{
-					text: "最近一天节点在线情况 {$prefix} - 在线 {$point_node->getNodeUptime()}"
+					text: "接入點uptime統計 {$prefix} - 在线 {$point_node->getNodeUptime()}"
 				},
 				data: [
 					{
@@ -72,13 +68,12 @@
 						]
 					}
 					]
-			});
-			
+			});			
 			{$load=$point_node->getNodeAlive()}
 			alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
 			{
 				title:{
-					text: "最近一天节点在线人数情况 {$prefix}"
+					text: "接入點鏈接數統計 {$prefix}"
 				},
 				data: [
 				{
@@ -110,15 +105,12 @@
 					]
 				}
 				]
-			});
-			
-			
-			
+			});									
 			{$speedtests=$point_node->getSpeedtestResult()}
 			speedtest_chart{$id} = new CanvasJS.Chart("speedtest{$id}_chart",
 			{
 				title:{
-					text: "最近节点测速延时情况报告 {$prefix}"
+					text: "接入點延遲統計 {$prefix}"
 				},
 				axisY: {				
 					suffix: " ms"
@@ -127,7 +119,7 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "电信延时",
+					legendText: "CT",
                     yValueFormatString: "##0\"ms\"",
 					dataPoints: [
 						{$i=0}
@@ -136,7 +128,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomPing()},label: "电信延时"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomPing()},label: "CT"
 								{literal}
 								}
 								{/literal}
@@ -145,7 +137,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomPing()},label: "电信延时"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomPing()},label: "CT"
 								{literal}
 								}
 								{/literal}
@@ -157,7 +149,7 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "联通延时",
+					legendText: "CU",
                   yValueFormatString: "##0\"ms\"",
 					dataPoints: [
 						{$i=0}
@@ -166,7 +158,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomPing()},label: "联通延时"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomPing()},label: "CU"
 								{literal}
 								}
 								{/literal}
@@ -175,7 +167,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomPing()},label: "联通延时"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomPing()},label: "CU"
 								{literal}
 								}
 								{/literal}
@@ -187,7 +179,7 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText:"移动延时",
+					legendText:"CM",
                   yValueFormatString: "##0\"ms\"",
 					dataPoints: [
 						{$i=0}
@@ -196,7 +188,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccPing()},label: "移动延时"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccPing()},label: "CM"
 								{literal}
 								}
 								{/literal}
@@ -205,7 +197,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccPing()},label: "移动延时"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccPing()},label: "CM"
 								{literal}
 								}
 								{/literal}
@@ -215,12 +207,11 @@
 					]
 				}
 				]
-			});
-			
+			});			
 			speedtest_ping_chart{$id} = new CanvasJS.Chart("speedtest{$id}_ping_chart",
 			{
 				title:{
-					text: "最近节点测速速度情况报告 {$prefix}"
+					text: "接入點速率統計 {$prefix}"
 				},
 				axisY: {
 					includeZero: false,
@@ -233,8 +224,8 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "电信上传速度",
-                  	name: "电信上传",
+					legendText: "CT下載",
+                  	name: "CT下載",
                   yValueFormatString: "##0.00\"Mb\"",
 					dataPoints: [
 						{$i=0}
@@ -243,7 +234,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "电信上传"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "CT下載"
 								{literal}
 								}
 								{/literal}
@@ -252,7 +243,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "电信上传"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "CT下載"
 								{literal}
 								}
 								{/literal}
@@ -264,8 +255,8 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "电信下载速度",
-                  name: "电信下载",
+					legendText: "CT上傳",
+                  name: "CT上傳",
                   yValueFormatString: "##0.00\"Mb\"",
 					dataPoints: [
 						{$i=0}
@@ -274,7 +265,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "电信下载"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "CT上傳"
 								{literal}
 								}
 								{/literal}
@@ -283,7 +274,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()},label: "电信下载"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()},label: "CT上傳"
 								{literal}
 								}
 								{/literal}
@@ -295,8 +286,8 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "联通上传速度",
-                  name: "联通上传",
+					legendText: "CU下載",
+                  name: "CU下載",
                   yValueFormatString: "##0.00\"Mb\"",
 					dataPoints: [
 						{$i=0}
@@ -305,7 +296,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "联通上传"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "CU下載"
 								{literal}
 								}
 								{/literal}
@@ -314,7 +305,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "联通上传"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "CU下載"
 								{literal}
 								}
 								{/literal}
@@ -326,8 +317,8 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "联通下载速度",
-                  name: "联通下载",
+					legendText: "CU上傳",
+                  name: "CU上傳",
                   yValueFormatString: "##0.00\"Mb\"",
 					dataPoints: [
 						{$i=0}
@@ -336,7 +327,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "联通下载"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "CU上傳"
 								{literal}
 								}
 								{/literal}
@@ -345,7 +336,38 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomDownload()},label: "联通下载"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()},label: "CU上傳"
+								{literal}
+								}
+								{/literal}
+							{/if}
+						{/foreach}
+						
+					]
+				},				
+				{
+					type: "line", 
+					showInLegend: true,
+					legendText:"CM下載",
+                  name: "CM下載",
+                  yValueFormatString: "##0.00\"Mb\"",
+					dataPoints: [
+						{$i=0}
+						{foreach $speedtests as $single_speedtest}
+							{if $i==0}
+								{literal}
+								{
+								{/literal}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "CM下載"
+								{literal}
+								}
+								{/literal}
+								{$i=1}
+							{else}
+								{literal}
+								,{
+								{/literal}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "CM下載"
 								{literal}
 								}
 								{/literal}
@@ -357,8 +379,8 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText:"移动下载速度",
-                  name: "移动下载",
+					legendText:"CM上傳",
+                  name: "CM上傳",
                   yValueFormatString: "##0.00\"Mb\"",
 					dataPoints: [
 						{$i=0}
@@ -367,7 +389,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "移动下载"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "CM上傳"
 								{literal}
 								}
 								{/literal}
@@ -376,38 +398,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()},label: "移动下载"
-								{literal}
-								}
-								{/literal}
-							{/if}
-						{/foreach}
-						
-					]
-				},
-				{
-					type: "line", 
-					showInLegend: true,
-					legendText:"移动上传速度",
-                  name: "移动上传",
-                  yValueFormatString: "##0.00\"Mb\"",
-					dataPoints: [
-						{$i=0}
-						{foreach $speedtests as $single_speedtest}
-							{if $i==0}
-								{literal}
-								{
-								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "移动上传"
-								{literal}
-								}
-								{/literal}
-								{$i=1}
-							{else}
-								{literal}
-								,{
-								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "移动上传"
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()},label: "CM上傳"
 								{literal}
 								}
 								{/literal}
@@ -417,26 +408,11 @@
 					]
 				}
 				]
-			});
-			
-			
-			
-			
-			
-			
-			
-				
+			});								
 			chart{$id}.render();
 			up_chart{$id}.render();
 			alive_chart{$id}.render();
 			speedtest_chart{$id}.render();
-			speedtest_ping_chart{$id}.render();
-			
-			
-		});
-		
-		
-		
-		
-			
+			speedtest_ping_chart{$id}.render();		
+		});			
 	</script>
