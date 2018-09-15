@@ -35,9 +35,14 @@
       line-height: 1.2;
     }
 	
-	img {
-		margin: 0px auto;
-	}
+	err-img {
+		width: 750px;
+		height: 600px;
+		max-width:  100%;
+		display:  flex;
+		align-items: center;
+		justify-content:  center;
+    }
 
     @media only screen and (max-width: 270px) {
 
@@ -56,7 +61,9 @@
   </style>
 </head>
 <body>
-  <img src="//i.jpg.dog/img/039ee208172f81785c1f210efa6798ee.jpg"></img>
-  <p>發現錯誤的訪問方式</p>
+	<div class="err-img">
+		<img src="//i.jpg.dog/img/039ee208172f81785c1f210efa6798ee.jpg"></img>
+	</div>
+	<p>發現錯誤的訪問方式</p>
 </body>
 </html>
