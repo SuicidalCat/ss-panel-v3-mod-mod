@@ -33,7 +33,7 @@
 										<td>{$shop->price} 元</td>
 										<td>{$shop->content()}</td>
 										<td>
-											<a class="btn btn-brand-accent" href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew})">购买</a>
+											<a class="btn btn-brand-accent" href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew})">訂購</a>
 										</td>
 									</tr>
 									{/foreach}
@@ -105,16 +105,6 @@ function buy(id,auto) {
 	{
 		document.getElementById('autor').style.display="";
 	}
-	
-	if(auto_reset==0)
-	{
-		document.getElementById('auto_reset').style.display="none";
-	}
-	else
-	{
-		document.getElementById('auto_reset').style.display="";
-	}
-	
 	shop=id;
 	$("#coupon_modal").modal();
 }
