@@ -52,7 +52,7 @@
   </style>
 </head>
 <body>
-  <h1>500</h1>
+  <img src="//i.jpg.dog/img/a70aef3c4aa42f37b1bb5d7f9614daa2.jpg"></img>
   <p>服務器出現了一些偏差，我們的程序猿正在研究哪裏出了問題</p>
 </body>
 </html>

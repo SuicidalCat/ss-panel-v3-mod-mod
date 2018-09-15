@@ -52,7 +52,7 @@
   </style>
 </head>
 <body>
-  <h1>405</h1>
+  <img src="//i.jpg.dog/img/039ee208172f81785c1f210efa6798ee.jpg"></img>
   <p>發現錯誤的訪問方式</p>
 </body>
 </html>

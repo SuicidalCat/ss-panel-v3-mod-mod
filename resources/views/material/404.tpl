@@ -52,7 +52,7 @@
   </style>
 </head>
 <body>
-  <h1>404</h1>
+  <img src="//i.jpg.dog/img/b15404c4fddc832c7193bd5b32a1b3a4.jpg"></img>
   <p>您請求的頁面無法獲取</p>
 </body>
 </html>
