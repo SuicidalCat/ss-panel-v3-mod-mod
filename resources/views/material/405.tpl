@@ -34,6 +34,10 @@
     p {
       line-height: 1.2;
     }
+	
+	img {
+		margin: 0px auto;
+	}
 
     @media only screen and (max-width: 270px) {
 
