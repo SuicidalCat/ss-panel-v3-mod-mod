@@ -17,20 +17,6 @@
       text-align: center;
     }
 
-    body {
-      left: 50%;
-      margin: -43px 0 0 -150px;
-      position: absolute;
-      top: 50%;
-      width: 300px;
-    }
-
-    h1 {
-      color: #555;
-      font-size: 2em;
-      font-weight: 400;
-    }
-
     p {
       line-height: 1.2;
     }
@@ -42,20 +28,6 @@
 		display:  flex;
 		align-items: center;
 		justify-content:  center;
-    }
-
-    @media only screen and (max-width: 270px) {
-
-      body {
-        margin: 10px auto;
-        position: static;
-        width: 95%;
-      }
-
-      h1 {
-        font-size: 1.5em;
-      }
-
     }
 
   </style>
