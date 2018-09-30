@@ -10,7 +10,7 @@
 - **优化**：css和js等置入本地提升加载速度
 - 增加**v2Ray** 功能，详情请看 [wiki](https://github.com/NimaQu/ss-panel-v3-mod_Uim/wiki/V2Ray-%E5%AF%B9%E6%8E%A5%E6%95%99%E7%A8%8B)
 
-telegram水群：https://t.me/joinchat/GQehSEV7LEU1Z6E8aQ4z3w 参考91yun管理，除非是 bug ，各种疑难杂症提问请先带价（抱歉我们跟你不熟不会帮你免费解决）不然请自行离开
+telegram水群：https://t.me/joinchat/GQehSEV7LEVuh5FxmdqA8Q 参考91yun管理，除非是 bug ，各种疑难杂症提问请先带价（抱歉我们跟你不熟不会帮你免费解决）不然请自行离开
 
 telegtam 频道 ：https://t.me/sspanel_Uim 
 
@@ -73,6 +73,10 @@ Wiki已经启用，欢迎为此面板维护wiki
 - 财务报表
 - xcat一键update
 - 适配SSD
+
+[**CHEN**](https://github.com/ChenSee)
+
+- 免签约支付宝与微信，自带监听，不需第三方软件，直接到个人账户
 
 ##### 还有所有被引用过代码的同学，以及所有提交过issue的同学。
 

@@ -5,28 +5,35 @@ use App\Models\Code;
 use App\Models\Paylist;
 use App\Models\Payback;
 use App\Services\Config;
+use App\Services\Payment;
+
 class Pay
 {
+    // @todo: Will be abandoned.
     public static function getHTML($user)
     {
         $driver = Config::get("payment_system");
         switch ($driver) {
             case "doiampay":
-                return Pay::doiampay_html($user);
+                return Payment::purchaseHTML();
+            case "chenAlipay":
+                return (new AliPay)->getHTML();
             case "paymentwall":
-                return Pay::pmw_html($user);
+                return Payment::purchaseHTML();
             case 'spay':
                 return Pay::spay_html($user);
             case 'zfbjk':
                 return Pay::zfbjk_html($user);
             case 'f2fpay':
-                return Pay::f2fpay_html($user);
+                return Payment::purchaseHTML();
 			case 'yftpay':
                 return Pay::yftpay_html($user);
             case 'codepay':
-                return Pay::codepay_html($user);
+                return Payment::purchaseHTML();
             case 'f2fpay_codepay':
                 return Pay::f2fpay_codepay_html($user);
+            case 'trimepay':
+                return Payment::purchaseHTML();
             default:
                 return "";
         }
@@ -65,9 +72,6 @@ class Pay
                         </script>
                         ';
     }
-    public static function doiampay_html(User $user){
-        return \App\Utils\DoiAMPay::render();
-    }
 
     private static function spay_html($user)
     {
@@ -94,23 +98,7 @@ class Pay
 						<img src="'.Config::get('zfbjk_qrcodeurl').'"/>
 ';
     }
-    private static function f2fpay_html($user)
-    {
-            return '
-                        <div class="form-group pull-left">
-                        <p class="modal-title" >本站支持支付宝在线充值</p>
-                        <p>输入充值金额：</p>
-                        <div class="form-group form-group-label">
-                        <label class="floating-label" for="price">充值金额</label>
-                        <input id="type" class="form-control" name="amount" />
-                        </div>
-                        <a class="btn btn-flat waves-attach" id="urlChange" ><span class="icon">check</span>&nbsp;充值</a>
-                        </div>
-                        <div class="form-group pull-right">
-                        <img src="/images/qianbai-4.png" height="205" width="166" />
-                        </div>
-';
-    }
+
 	private static function yftpay_html($user)
     {
         return '
@@ -133,20 +121,6 @@ class Pay
 ';
     }
 
-    private static function codepay_html($user)
-    {
-        return '
-                        <p class="card-heading">请输入充值金额</p>
-                        <form name="codepay" action="/user/code/codepay" method="get">
-                            <input class="form-control" id="price" name="price" placeholder="输入充值金额后，点击你要付款的应用图标即可" autofocus="autofocus" type="number" min="0.01" max="1000" step="0.01" required="required">
-                            <br>
-                            <button class="btn btn-flat waves-attach" id="btnSubmit" type="submit" name="type" value="1" ><img src="/images/alipay.jpg" width="50px" height="50px" /></button>
-                            <button class="btn btn-flat waves-attach" id="btnSubmit" type="submit" name="type" value="2" ><img src="/images/qqpay.jpg" width="50px" height="50px" /></button>
-                            <button class="btn btn-flat waves-attach" id="btnSubmit" type="submit" name="type" value="3" ><img src="/images/weixin.jpg" width="50px" height="50px" /></button>
-
-                        </form>
-';
-    }
 
     private static function pmw_html($user)
     {
@@ -174,6 +148,7 @@ class Pay
         );
         return $widget->getHtmlCode(array("height"=>Config::get('pmw_height'),"width"=>"100%"));
     }
+
     private static function spay_gen($user, $amount)
     {
         /**************************请求参数**************************/
@@ -233,143 +208,8 @@ class Pay
         return $config;
     }
 
-    public static function alipay_get_qrcode($user, $amount, &$qrPay)
-    {
-        //创建订单
-        $pl = new Paylist();
-        $pl->userid = $user->id;
-        $pl->total = $amount;
-        $pl->save();
 
-        //获取支付宝接口配置
-        $config = Pay::get_alipay_config();
 
-        //$timestamp
-        /**************************请求参数**************************/
-        // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
-        // 需保证商户系统端不能重复，建议通过数据库sequence生成，
-        $outTradeNo = $pl->id."alipay".date('Ymdhis').mt_rand(100,1000);
-
-        // (必填) 订单标题，粗略描述用户的支付目的。如“xxx品牌xxx门店当面付扫码消费”
-        $subject = "￥".$pl->total." - ".Config::get("appName")." - {$user->user_name}({$user->email})";
-
-        // (必填) 订单总金额，单位为元，不能超过1亿元
-        // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
-        $totalAmount = $pl->total;
-
-        // (不推荐使用) 订单可打折金额，可以配合商家平台配置折扣活动，如果订单部分商品参与打折，可以将部分商品总价填写至此字段，默认全部商品可打折
-        // 如果该值未传入,但传入了【订单总金额】,【不可打折金额】 则该值默认为【订单总金额】- 【不可打折金额】
-        //String discountableAmount = "1.00"; //
-
-        // (可选) 订单不可打折金额，可以配合商家平台配置折扣活动，如果酒水不参与打折，则将对应金额填写至此字段
-        // 如果该值未传入,但传入了【订单总金额】,【打折金额】,则该值默认为【订单总金额】-【打折金额】
-        $undiscountableAmount = "0.01";
-
-        // 卖家支付宝账号ID，用于支持一个签约账号下支持打款到不同的收款账号，(打款到sellerId对应的支付宝账号)
-        // 如果该字段为空，则默认为与支付宝签约的商户的PID，也就是appid对应的PID
-        //$sellerId = "";
-
-        // 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
-        $body = "用户名:".$user->user_name." 用户ID:".$user->id." 用户充值共计".$pl->total."元";
-
-        //商户操作员编号，添加此参数可以为商户操作员做销售统计
-        $operatorId = "bak_admin0001";
-
-        // (可选) 商户门店编号，通过门店号和商家后台可以配置精准到门店的折扣信息，详询支付宝技术支持
-        $storeId = "bak_store001";
-
-        // 支付宝的店铺编号
-        //$alipayStoreId= "2016041400077000000003314986";
-
-        // 业务扩展参数，目前可添加由支付宝分配的系统商编号(通过setSysServiceProviderId方法)，系统商开发使用,详情请咨询支付宝技术支持
-        $providerId = ""; //系统商pid,作为系统商返佣数据提取的依据
-        $extendParams = new \ExtendParams();
-        $extendParams->setSysServiceProviderId($providerId);
-        $extendParamsArr = $extendParams->getExtendParams();
-
-        // 支付超时，线下扫码交易定义为5分钟
-        $timeExpress = "5m";
-
-        // 商品明细列表，需填写购买商品详细信息，
-        $goodsDetailList = array();
-
-        // 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail
-        $goods1 = new \GoodsDetail();
-        $goods1->setGoodsId($pl->total);
-        $goods1->setGoodsName("充值");
-        $goods1->setPrice($pl->total);
-        $goods1->setQuantity(1);
-        //得到商品1明细数组
-        $goods1Arr = $goods1->getGoodsDetail();
-        $goodsDetailList = array($goods1Arr);
-
-        //第三方应用授权令牌,商户授权系统商开发模式下使用
-        $appAuthToken = "";//根据真实值填写
-
-        // 创建请求builder，设置请求参数
-        $qrPayRequestBuilder = new \AlipayTradePrecreateContentBuilder();
-        $qrPayRequestBuilder->setOutTradeNo($outTradeNo);
-        $qrPayRequestBuilder->setTotalAmount($totalAmount);
-        $qrPayRequestBuilder->setTimeExpress($timeExpress);
-        $qrPayRequestBuilder->setSubject($subject);
-        $qrPayRequestBuilder->setBody($body);
-        $qrPayRequestBuilder->setUndiscountableAmount($undiscountableAmount);
-        $qrPayRequestBuilder->setExtendParams($extendParamsArr);
-        $qrPayRequestBuilder->setGoodsDetailList($goodsDetailList);
-        $qrPayRequestBuilder->setStoreId($storeId);
-        $qrPayRequestBuilder->setOperatorId($operatorId);
-        //$qrPayRequestBuilder->setAlipayStoreId($alipayStoreId);
-        $qrPayRequestBuilder->setAppAuthToken($appAuthToken);
-
-        // 调用qrPay方法获取当面付应答
-        $qrPay = new \AlipayTradeService($config);
-        $qrPayResult = $qrPay->qrPay($qrPayRequestBuilder);
-
-        return $qrPayResult;
-    }
-    private static function f2fpay_gen($user, $amount)
-    {
-        //$qrPayResult = Pay::query_alipay_order(2017052112230123456);
-        //return ;
-        //生成二维码
-        $qrPayResult = Pay::alipay_get_qrcode($user, $amount, $qrPay);
-
-        //  根据状态值进行业务处理
-        switch ($qrPayResult->getTradeStatus()){
-            case "SUCCESS":
-                echo "支付金额: RMB ".$amount." 元";
-                echo "确认无误后请用支付宝App扫描二维码支付："."<br>---------------------------------------<br>";
-                $response = $qrPayResult->getResponse();
-                $qrcode = $qrPay->create_erweima($response->qr_code);
-                echo $qrcode."<br>";
-                break;
-            case "FAILED":
-                echo "支付宝创建订单二维码失败!!!"."<br>--------------------------<br>";
-                if(!empty($qrPayResult->getResponse())){
-                    print_r($qrPayResult->getResponse());
-                }
-                echo "请使用其他方式付款。";
-                break;
-            case "UNKNOWN":
-                echo "系统异常，状态未知!!!"."<br>--------------------------<br>";
-                if(!empty($qrPayResult->getResponse())){
-                    print_r($qrPayResult->getResponse());
-                }
-                echo "请使用其他方式付款。";
-                break;
-            default:
-                echo "创建订单二维码返回异常!!!"."<br>--------------------------<br>";
-                echo "请使用其他方式付款。";
-                break;
-        }
-
-        if ($qrPayResult->getTradeStatus()) {
-            sleep(1);
-            echo "轮询处理：";
-        }
-
-        return ;
-    }
     public static function getGen($user, $amount)
     {
         $driver = Config::get("payment_system");
@@ -770,67 +610,21 @@ class Pay
         return;
     }
 
-   private static function notify(){
-        //系统订单号
-        $trade_no = $_POST['pay_no'];
-        //交易用户
-        $trade_id = strtok($_POST['pay_id'], "@");
-        //金额
-        $trade_num = $_POST['price'];
-        $param = urldecode($_POST['param']);
-        $codeq=Code::where("code", "=", $trade_no)->first();
-        if($codeq!=null){
-            exit('success'); //说明数据已经处理完毕
-            return;
-        }
-        if($param!=Config::get('alipay')||$trade_no==''){ //鉴权失败
-            exit('fail');
-            return;
-        }
-
-        //更新用户账户
-        $user=User::find($trade_id);
-        $codeq=new Code();
-        $codeq->code=$trade_no;
-        $codeq->isused=1;
-        $codeq->type=-1;
-        $codeq->number=$_POST['price'];
-        $codeq->usedatetime=date("Y-m-d H:i:s");
-        $codeq->userid=$user->id;
-        $codeq->save();
-        $user->money=$user->money+$trade_num;
-        $user->save();
-        //更新返利
-        if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
-            $gift_user=User::where("id", "=", $user->ref_by)->first();
-            $gift_user->money=($gift_user->money+($codeq->number*(Config::get('code_payback')/100)));
-            $gift_user->save();
-
-            $Payback=new Payback();
-            $Payback->total=$trade_num;
-            $Payback->userid=$user->id;
-            $Payback->ref_by=$user->ref_by;
-            $Payback->ref_get=$codeq->number*(Config::get('code_payback')/100);
-            $Payback->datetime=time();
-            $Payback->save();
-        }
-        exit('success'); //返回成功 不要删除哦
-    }
 
     public static function callback($request)
     {
         $driver = Config::get("payment_system");
         switch ($driver) {
             case "paymentwall":
-                return Pay::pmw_callback();
+                return Payment::notify();
             case 'spay':
                 return Pay::spay_callback();
             case 'zfbjk':
                 return Pay::zfbjk_callback($request);
             case 'f2fpay':
-                return Pay::f2fpay_callback();
+                return Payment::notify();
             case 'codepay':
-                return Pay::codepay_callback();
+                return Payment::notify();
             default:
                 return "";
         }

@@ -73,22 +73,27 @@ $app->get('/405', 'App\Controllers\HomeController:page405');
 $app->get('/500', 'App\Controllers\HomeController:page500');
 $app->get('/pwm_pingback', 'App\Controllers\HomeController:pay_callback');
 $app->post('/notify', 'App\Controllers\HomeController:notify');
-$app->post('/alipay_callback', 'App\Controllers\HomeController:pay_callback');
-$app->post('/pay_callback', 'App\Controllers\HomeController:f2fpay_pay_callback');
-$app->get('/pay_callback', 'App\Controllers\HomeController:pay_callback');
+$app->post('/alipay_callback', 'App\Controllers\HomeController:pay_callback');              // @todo: Will be replaced by Payment::notify
+$app->post('/pay_callback', 'App\Services\Payment:notify');
+$app->get('/pay_callback', 'App\Controllers\HomeController:pay_callback');                  // @todo: Will be replaced by Payment::notify
 $app->get('/tos', 'App\Controllers\HomeController:tos');
 $app->get('/staff', 'App\Controllers\HomeController:staff');
 $app->get('/gfwlistjs', 'App\Controllers\LinkController:GetGfwlistJs');
 $app->post('/telegram_callback', 'App\Controllers\HomeController:telegram');
-$app->get('/yft/notify', 'App\Controllers\YFTPayCallBackController:yft_notify');
-$app->get('/codepay_callback', 'App\Controllers\HomeController:codepay_callback');
-$app->post('/codepay_callback', 'App\Controllers\HomeController:codepay_pay_callback');
-
+$app->get('/yft/notify', 'App\Controllers\YFTPayCallBackController:yft_notify');            // @todo: Will be replaced by Payment::notify
+$app->get('/codepay_callback', 'App\Services\Payment:notify');
+$app->post('/codepay_callback', 'App\Services\Payment:notify');
+$app->get('/getOrderList', 'App\Controllers\HomeController:getOrderList');
+$app->get('/setOrder', 'App\Controllers\HomeController:setOrder');
 
 // User Center
 $app->group('/user', function () {
     $this->get('', 'App\Controllers\UserController:index');
     $this->get('/', 'App\Controllers\UserController:index');
+    $this->get('/CheckAliPay', 'App\Controllers\UserController:CheckAliPay');
+    $this->get('/NewAliPay', 'App\Controllers\UserController:NewAliPay');
+//    $this->get('/test', 'App\Controllers\UserController:AliPayTest');
+    $this->get('/AliPayDelete', 'App\Controllers\UserController:AliPayDelete');
     $this->post('/checkin', 'App\Controllers\UserController:doCheckin');
     $this->get('/node', 'App\Controllers\UserController:node');
     $this->get('/announcement', 'App\Controllers\UserController:announcement');
@@ -148,9 +153,9 @@ $app->group('/user', function () {
     $this->get('/yftOrder', 'App\Controllers\YftPay:yftOrder');
     //易付通路由定义 end
     $this->get('/alipay', 'App\Controllers\UserController:alipay');
-    $this->post('/code/f2fpay', 'App\Controllers\UserController:f2fpay');
+    $this->post('/code/f2fpay', 'App\Services\Payment:purchase');
     $this->get('/code/f2fpay', 'App\Controllers\UserController:f2fpayget');
-    $this->get('/code/codepay', 'App\Controllers\UserController:codepay');
+    $this->get('/code/codepay', 'App\Services\Payment:purchase');
     $this->get('/code_check', 'App\Controllers\UserController:code_check');
     $this->post('/code', 'App\Controllers\UserController:codepost');
     $this->post('/gacheck', 'App\Controllers\UserController:GaCheck');
@@ -167,8 +172,15 @@ $app->group('/user', function () {
     $this->delete('/bought', 'App\Controllers\UserController:deleteBoughtGet');
 
     $this->get('/url_reset', 'App\Controllers\UserController:resetURL');
+
+    //Reconstructed Payment System
+    $this->post('/payment/purchase', 'App\Services\Payment:purchase');
+    $this->get('/payment/return', 'App\Services\Payment:returnHTML');
 })->add(new Auth());
 
+$app->group('/payment', function () {
+    $this->post('/notify', 'App\Services\Payment:notify');
+});
 // Auth
 $app->group('/auth', function () {
     $this->get('/login', 'App\Controllers\AuthController:login');
@@ -194,6 +206,10 @@ $app->group('/password', function () {
 $app->group('/admin', function () {
     $this->get('', 'App\Controllers\AdminController:index');
     $this->get('/', 'App\Controllers\AdminController:index');
+
+    $this->get('/editConfig', 'App\Controllers\AdminController:editConfig');
+    $this->post('/saveConfig', 'App\Controllers\AdminController:saveConfig');
+
     $this->get('/trafficlog', 'App\Controllers\AdminController:trafficLog');
     $this->post('/trafficlog/ajax', 'App\Controllers\AdminController:ajax_trafficLog');
     // Node Mange
@@ -357,13 +373,14 @@ $app->group('/link', function () {
 });
 
 $app->group('/user', function () {
-    $this->post("/doiam", "App\Utils\DoiAMPay:handle");
+    $this->post("/doiam", "App\Services\Payment:purchase");
 })->add(new Auth());
 $app->group("/doiam", function () {
-    $this->post("/callback/{type}", "App\Utils\DoiAMPay:handle_callback");
-    $this->get("/return/alipay", "App\Utils\DoiAMPay:handle_return");
-    $this->post("/status", "App\Utils\DoiAMPay:status");
+    $this->post("/callback/{type}", "App\Services\Payment:notify");
+    $this->get("/return/alipay", "App\Services\Payment:returnHTML");
+    $this->post("/status", "App\Services\Payment:getStatus");
 });
+
 
 
 // Run Slim Routes for App
