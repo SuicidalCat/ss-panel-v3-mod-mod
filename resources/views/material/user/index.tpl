@@ -73,7 +73,7 @@
 														{$user = URL::getSSRConnectInfo($pre_user)}
 														{$ssr_url_all = URL::getAllUrl($pre_user, 0, 0)}
 														{$ssr_url_all_mu = URL::getAllUrl($pre_user, 1, 0)}
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-win.7z"> 点击我下载</a>，解压至任意磁盘并运行</p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="//cdn.leezf.com/Shadowsocksr/ShadowsocksR-win-4.9.0.zip"> 点击我下载</a>，解压至任意磁盘并运行</p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSR服务器订阅（绕过代理）。</p>
 														<p> <span class="icon icon-lg text-white">filter_3</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 备用导入节点方法：点击<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这里（普通端口）</a>或者<a class="copy-text" data-clipboard-text="{$ssr_url_all_mu}">这个(单端口多用户）</a>，然后右键小飞机->从剪贴板复制地址</p>
@@ -84,7 +84,7 @@
 														<!--p><a href="/user/announcement">点击这里查看Windows傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_mac">
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-mac.dmg"> 点击我下载</a>，并打开</p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="//cdn.leezf.com/Shadowsocksr/ShadowsocksX-NG-R8.dmg"> 点击我下载</a>，并打开</p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 把ShadowsocksX拖入到Finder的应用程序列表(Applications)</p>
 														<p><span class="icon icon-lg text-white">filter_3</span> 打开Launchapad里的ShadowsocksX</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 菜单栏的纸飞机图标-服务器-服务器订阅填入以下订阅地址，更新后出现您的节点</p>
@@ -99,14 +99,15 @@
 														<!--p><a href="/user/announcement">点击这里查看Linux傻瓜式教程</a></p-->
 													</div>
 													<div class="tab-pane fade" id="all_ssr_ios">
-														<p><a href="https://docs.walllink.io/%E4%BD%BF%E7%94%A8shadowrocket%E9%8F%88%E6%8E%A5%E5%88%B0%E5%A2%BB%E9%8F%88%E6%9C%8D%E5%8B%99%EF%BC%88ssr%EF%BC%89/" target="_blank">查看Shadowrocket具體使用教程</a></p>														
+														<p><a href="//docs.walllink.io/%E4%BD%BF%E7%94%A8shadowrocket%E9%8F%88%E6%8E%A5%E5%88%B0%E5%A2%BB%E9%8F%88%E6%9C%8D%E5%8B%99%EF%BC%88ssr%EF%BC%89/" target="_blank">查看Shadowrocket使用教程</a></p>
+														<p><a href="//docs.walllink.io/%E4%BD%BF%E7%94%A8quantumult%E9%8F%88%E6%8E%A5%E5%88%B0%E5%A2%BB%E9%8F%88%E6%9C%8D%E5%8B%99%EF%BC%88ssr%EF%BC%89/" target="_blank">查看Shadowrocket使用教程</a></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅（CN）：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 單端口接入點订阅（CN）：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1">點擊拷貝</button><br></p>
 													</div>
 													<div class="tab-pane fade" id="all_ssr_android">
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/ssr-android.apk"> 点击我下载</a>并安装</p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="//cdn.leezf.com/Shadowsocksr/shadowsocksr-android-3.5.4.apk"> 点击我下载</a>并安装</p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 打开App，点击右下角的<span class="icon icon-lg text-white">add</span>号图标</p>
 														<p><span class="icon icon-lg text-white">filter_3</span> 添加/升级 SSR订阅</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 添加订阅地址，输入以下订阅地址后确定</p>
@@ -293,11 +294,11 @@
 												<dd><i class="mdi mdi-telegram"></i><a href="https://t.me/walllink" target="view_window">  點擊進入</a></dd>
 											</p>																					
 											<p><dt>獲取客戶端</dt>
-												<dd><i class="mdi mdi-windows"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.4.0.exe">  Windows</a></dd></br>
-												<dd><i class="mdi mdi-apple"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.4.0.dmg">  MacOS</a></dd></br>
-												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup32.1.4.0.tar.xz">  Linux32</a></dd></br>
-												<dd><i class="mdi mdi-linux"></i><a href="https://cdn.leezf.com/Telegram/tsetup.1.4.0.tar.xz">  Linux64</a></dd></br>
-												<dd><i class="mdi mdi-android"></i><a href="https://cdn.leezf.com/Telegram/%5BTelegram%5Dorg.telegram.messenger_4.9.1-13610_minAPI16%28arm64-v8a%2Carmeabi-v7a%2Cx86%2Cx86_64%29%28nodpi%29_apkmirror.com.apk">  Android</a></dd></br>
+												<dd><i class="mdi mdi-windows"></i><a href="//cdn.leezf.com/Telegram/tsetup.1.4.3.dmg">  Windows</a></dd></br>
+												<dd><i class="mdi mdi-apple"></i><a href="//cdn.leezf.com/Telegram/tsetup.1.4.3.dmg">  MacOS</a></dd></br>
+												<dd><i class="mdi mdi-linux"></i><a href="//cdn.leezf.com/Telegram/tsetup32.1.4.3.tar.xz">  Linux32</a></dd></br>
+												<dd><i class="mdi mdi-linux"></i><a href="//cdn.leezf.com/Telegram/tsetup.1.4.3.tar.xz">  Linux64</a></dd></br>
+												<dd><i class="mdi mdi-android"></i><a href="//cdn.leezf.com/Telegram/Telegram_v4.9.1_apkpure.com.apk">  Android</a></dd></br>
 												<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/telegram-messenger/id686449807?mt=8" target="view_window">  iOS</a></dd></br>
 											</p>
 											<p><dt>MTProxy代理</dt>
