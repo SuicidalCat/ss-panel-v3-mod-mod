@@ -302,16 +302,28 @@
 												<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/telegram-messenger/id686449807?mt=8" target="view_window">  iOS</a></dd></br>
 											</p>
 											<p><dt>MTProxy代理</dt>
+												<span>美國西部</span></br>
 												<span>伺服器地址：</span>
 												<code><span>mtproto.walllink.org</span></code></br>
 												<span>端口：</span>
 												<code><span>443</span></code></br>
 												<span>密碼：</span>
 												<code><span>f3af755379199ea75a553e02471c3c1a</span></code></br>
-												<span>TG鏈接（App内打開）：</span></br>
+												<span>TG鏈接（複製至App内打開）：</span></br>
 												<code><a href="tg://proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a">tg://proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a</a></code></br>
-												<span>Web鏈接（瀏覽器内打開）：</span></br>
+												<span>Web鏈接（複製至瀏覽器内打開）：</span></br>
 												<code><a href="https://t.me/proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a">https://t.me/proxy?server=mtproto.walllink.org&port=443&secret=f3af755379199ea75a553e02471c3c1a</a></code></br>
+												<span>日本東部</span></br>
+												<span>伺服器地址：</span>
+												<code><span>jp.tproto.walllink.org</span></code></br>
+												<span>端口：</span>
+												<code><span>443</span></code></br>
+												<span>密碼：</span>
+												<code><span>30ce8f8572f7127bbb3d08d8de2ee73a</span></code></br>
+												<span>TG鏈接（複製至App内打開）：</span></br>
+												<code><a href="tg://proxy?server=jp.tproto.walllink.org&port=443&secret=30ce8f8572f7127bbb3d08d8de2ee73a">tg://proxy?server=jp.tproto.walllink.org&port=443&secret=30ce8f8572f7127bbb3d08d8de2ee73a</a></code></br>
+												<span>Web鏈接（複製至瀏覽器内打開）：</span></br>
+												<code><a href="https://t.me/proxy?server=jp.tproto.walllink.org&port=443&secret=30ce8f8572f7127bbb3d08d8de2ee73a">https://t.me/proxy?server=jp.tproto.walllink.org&port=443&secret=30ce8f8572f7127bbb3d08d8de2ee73a</a></code></br>
 											</p>											
 										</dl>
 									</div>
