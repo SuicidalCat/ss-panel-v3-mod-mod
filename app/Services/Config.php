@@ -95,9 +95,7 @@ class Config
     {
         switch ($type) {
             case 'obfs':
-                $list = array('plain', 'http_simple', 'http_simple_compatible', 'http_post', 'http_post_compatible',
-                            'tls1.2_ticket_auth', 'tls1.2_ticket_auth_compatible', 'tls1.2_ticket_fastauth', 'tls1.2_ticket_fastauth_compatible',
-                            'simple_obfs_http', 'simple_obfs_http_compatible', 'simple_obfs_tls', 'simple_obfs_tls_compatible');
+                $list = array('plain', 'http_simple', 'http_simple_compatible', 'http_post', 'http_post_compatible', 'simple_obfs_http', 'simple_obfs_http_compatible', 'simple_obfs_tls', 'simple_obfs_tls_compatible');
                 return $list;
             case 'protocol':
                 $list = array('origin', 'verify_deflate',
@@ -117,8 +115,7 @@ class Config
                 $list = array('simple_obfs_http', 'simple_obfs_http_compatible', 'simple_obfs_tls', 'simple_obfs_tls_compatible');
                 return $list;
             default:
-                $list = array('rc4-md5', 'rc4-md5-6', 'aes-128-cfb', 'aes-192-cfb', 'aes-256-cfb',
-                            'aes-128-ctr', 'aes-192-ctr', 'aes-256-ctr', 'camellia-128-cfb', 'camellia-192-cfb', 'camellia-256-cfb',
+                $list = array('rc4-md5', 'rc4-md5-6', 'camellia-128-cfb', 'camellia-192-cfb', 'camellia-256-cfb',
                             'bf-cfb', 'cast5-cfb', 'des-cfb', 'des-ede3-cfb', 'idea-cfb',
                             'rc2-cfb', 'seed-cfb', 'salsa20', 'chacha20', 'xsalsa20', 'chacha20-ietf', 'aes-128-gcm', 'aes-192-gcm', 'none',
                             'aes-256-gcm', 'chacha20-ietf-poly1305', 'xchacha20-ietf-poly1305');
