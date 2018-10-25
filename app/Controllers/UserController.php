@@ -14,6 +14,8 @@ use App\Models\Coupon;
 use App\Models\Bought;
 use App\Models\Ticket;
 use App\Services\Config;
+use App\Services\Gateway\ChenPay;
+use App\Services\Payment;
 use App\Utils;
 use App\Utils\AliPay;
 use App\Utils\Hash;
@@ -253,56 +255,12 @@ class UserController extends BaseController
         }
         $codes = Code::where('type', '<>', '-2')->where('userid', '=', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         $codes->setPath('/user/code');
-        if (Config::get('payment_system') == 'chenAlipay') {
-            $config = new AliPay();
-            return $this->view()->assign('codes', $codes)->assign('QRcodeUrl', $config->getConfig('AliPay_QRcode'))
-                ->assign('WxQRcodeUrl', $config->getConfig('WxPay_QRcode'))
-                ->assign('pmw', Pay::getHTML($this->user))->display('user/code.tpl');
-        } else return $this->view()->assign('codes', $codes)->assign('pmw', Pay::getHTML($this->user))->display('user/code.tpl');
+        return $this->view()->assign('codes', $codes)->assign('pmw', Payment::purchaseHTML())->display('user/code.tpl');
     }
 
-    public function CheckAliPay($request, $response, $args)
+    public function orderDelete($request, $response, $args)
     {
-        $id = $request->getQueryParams()["id"];
-        if ($id == "") {
-            $res['ret'] = 0;
-            $res['msg'] = "请输入Id";
-            return $response->getBody()->write(json_encode($res));
-        }
-        return $response->getBody()->write(json_encode(AliPay::checkOrder($id)));
-    }
-
-    public function NewAliPay($request, $response, $args)
-    {
-        $fee = $request->getQueryParams()["fee"];
-        $type = $request->getQueryParams()["type"];
-        $url = $request->getQueryParams()["url"];
-        if (!is_numeric($fee) || !is_numeric($type)) {
-            $res['ret'] = 0;
-            $res['msg'] = "请输入正确金额";
-            return $response->getBody()->write(json_encode($res));
-        } elseif ($fee <= 0) {
-            $res['ret'] = 0;
-            $res['msg'] = "请输入正确金额";
-            return $response->getBody()->write(json_encode($res));
-        }
-        return $response->getBody()->write(json_encode(AliPay::newOrder($this->user, $fee, $type, $url)));
-    }
-
-    public function AliPayDelete($request, $response, $args)
-    {
-        $id = $request->getQueryParams()["id"];
-        if ($id == "") {
-            $res['ret'] = 0;
-            $res['msg'] = "请输入Id";
-            return $response->getBody()->write(json_encode($res));
-        }
-        return $response->getBody()->write(json_encode(['res' => AliPay::orderDelete($id, $this->user->id)]));
-    }
-
-    public function AliPayTest($request, $response, $args)
-    {
-        print_r((new AliPay)->getWxPay());
+        return (new ChenPay())->orderDelete($request);
     }
 
     public function donate($request, $response, $args)
@@ -1839,27 +1797,17 @@ class UserController extends BaseController
             $res['msg'] = " 密码错误";
             return $this->echoJson($response, $res);
         }
-
-        if ($user->money > 1) {
+		        
+        if (Config::get('enable_kill') == 'true') {
+            Auth::logout();
+            $user->kill_user();
+            $res['ret'] = 1;
+            $res['msg'] = "您的帐号已经从我们的系统中删除。欢迎下次光临!";
+        } 
+		else {
             $res['ret'] = 0;
-            $res['msg'] = "不可删除,您当前的余额 [" . $user->money . "]元 大于 [1.00]元.";
-        } else {
-            if ($user->class != '0') {
-                $res['ret'] = 0;
-                $res['msg'] = "不可删除,您的会员还未失效.";
-            } else {
-                if (Config::get('enable_kill') == 'true') {
-                    Auth::logout();
-                    $user->kill_user();
-                    $res['ret'] = 1;
-                    $res['msg'] = "GG!您的帐号已经从我们的系统中删除.欢迎下次光临!";
-                } else {
-                    $res['ret'] = 0;
-                    $res['msg'] = "管理员不允许删除,如需删除请联系管理员.";
-                }
-            }
-
-        }
+            $res['msg'] = "管理员不允许删除，如需删除请联系管理员。";
+        }          
         return $this->echoJson($response, $res);
     }
 

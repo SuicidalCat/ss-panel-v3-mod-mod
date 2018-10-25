@@ -9,7 +9,9 @@
 namespace App\Services;
 
 use App\Services\Config;
-use App\Services\Gateway\{AopF2F, Codepay, DoiAMPay, PaymentWall, ChenPay, TrimePay};
+use App\Services\Gateway\{
+    AopF2F, Codepay, DoiAMPay, PaymentWall, ChenPay, SPay, TrimePay, YftPay
+};
 
 class Payment
 {
@@ -22,14 +24,12 @@ class Payment
                 return new DoiAMPay();
             case("paymentwall"):
                 return new PaymentWall();
-            case("zfbjk"):
-
             case("spay"):
-
+                return new SPay();
             case("f2fpay"):
                 return new AopF2F();
             case("yftpay"):
-
+                return new YftPay();
             case("chenAlipay"):
                 return new ChenPay();
             case("trimepay"):
@@ -40,7 +40,7 @@ class Payment
     }
 
     public static function notify($request, $response, $args){
-        self::getClient()->notify($request, $response, $args);
+        return self::getClient()->notify($request, $response, $args);
     }
 
     public static function returnHTML($request, $response, $args){
