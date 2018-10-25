@@ -190,7 +190,7 @@
 															<br>
 															</p>                                                     
 														</div>
-														<div class="tab-pane fade active in" id="v2ray_client_download">
+														<div class="tab-pane fade in" id="v2ray_client_download">
 															<p><dt>獲取客戶端</dt>
 																<dd><i class="mdi mdi-windows"></i><a href="//cdn.leezf.com/V2Ray/v2rayN.exe">  Windows</a></dd></br>
 																<dd><i class="mdi mdi-apple"></i><a href="//cdn.leezf.com/V2Ray/V2RayX.app.zip ">  MacOS</a></dd></br>
