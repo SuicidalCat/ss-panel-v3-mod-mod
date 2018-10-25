@@ -43,7 +43,7 @@
 
 													<nav class="tab-nav margin-top-no">
 														<ul class="nav nav-list">
-															<li class="active">
+															<li>
 																<a class="waves-attach" data-toggle="tab" href="#all_ssr_windows"><i class="icon icon-lg">desktop_windows</i>&nbsp;Windows</a>
 															</li>
 															<li>
@@ -64,7 +64,7 @@
 															<li>
 																<a class="waves-attach" data-toggle="tab" href="#all_ssr_game"><i class="icon icon-lg">videogame_asset</i>&nbsp;游戏端</a>
 															</li>
-															<li>
+															<li class="active">
 																<a class="waves-attach" data-toggle="tab" href="#all_ssr_info"><i class="icon icon-lg">info_outline</i>&nbsp;连接信息</a>
 															</li>
 														</ul>
@@ -172,6 +172,9 @@
 																<li class="active">
 																	<a class="waves-attach" data-toggle="tab" href="#all_v2ray_info"><i class="icon icon-lg">info_outline</i>&nbsp;连接信息</a>
 																</li>
+																<li class="active">
+																	<a class="waves-attach" data-toggle="tab" href="#all_v2ray_info"><i class="icon icon-lg">download</i>&nbsp;客戶端下載</a>
+																</li>
 															</ul>
 														</nav>
 														<div class="tab-pane fade active in" id="all_v2ray_info">
@@ -186,6 +189,14 @@
 															</button>
 															<br>
 															</p>                                                     
+														</div>
+														<div class="tab-pane fade active in" id="v2ray_client_download">
+															<p><dt>獲取客戶端</dt>
+																<dd><i class="mdi mdi-windows"></i><a href="//cdn.leezf.com/V2Ray/v2rayN.exe">  Windows</a></dd></br>
+																<dd><i class="mdi mdi-apple"></i><a href="//cdn.leezf.com/V2Ray/V2RayX.app.zip ">  MacOS</a></dd></br>
+																<dd><i class="mdi mdi-android"></i><a href="//cdn.leezf.com/V2Ray/v2rayNG_v0.5.9_apkpure.com.apk">  Android</a></dd></br>
+																<dd><i class="mdi mdi-apple-ios"></i><a href="https://itunes.apple.com/us/app/quantumult/id1252015438?mt=8" target="view_window">  iOS</a></dd></br>
+															</p>                                                    
 														</div>
 													</div>
 											</div>
