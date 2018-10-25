@@ -172,7 +172,9 @@
 																<li class="active">
 																	<a class="waves-attach" data-toggle="tab" href="#all_v2ray_info"><i class="icon icon-lg">info_outline</i>&nbsp;连接信息</a>
 																</li>
-																<a class="waves-attach" data-toggle="tab" href="#v2ray_client_download"><i class="icon icon-lg">download</i>&nbsp;客戶端下載</a>
+																<li>
+																	<a class="waves-attach" data-toggle="tab" href="#v2ray_client_download"><i class="icon icon-lg">download</i>&nbsp;客戶端下載</a>
+																</li>
 															</ul>
 														</nav>
 														<div class="tab-pane fade active in" id="all_v2ray_info">
