@@ -78,7 +78,7 @@ class Job
                 "text" => $text
             ], ["/tmp/ssmodbackup.zip"
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
         system("rm -rf /tmp/ssmodbackup", $ret);
@@ -128,7 +128,7 @@ class Job
     {
         $nodes = Node::all();
         foreach ($nodes as $node) {
-            if ($node->sort == 0 || $node->sort == 10) {
+            if ($node->sort == 0 || $node->sort == 10 || $node->sort == 11) {
                 if (date("d")==$node->bandwidthlimit_resetday) {
                     $node->node_bandwidth=0;
                     $node->save();
@@ -180,7 +180,7 @@ class Job
                           "user" => $user,"text" => $text
                       ], [
                       ]);
-                  } catch (Exception $e) {
+                  } catch (\Exception $e) {
                       echo $e->getMessage();
                   }
                 }
@@ -210,7 +210,7 @@ class Job
                         "user" => $user,"text" => $text
                     ], [
                     ]);
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     echo $e->getMessage();
                 }
             }
@@ -352,7 +352,7 @@ class Job
             $disconnected->delete();
         }
 
-        //auto renew
+        //自动续费
         $boughts=Bought::where("renew", "<", time())->where("renew", "<>", 0)->get();
         foreach ($boughts as $bought) {
             $user=User::where("id", $bought->userid)->first();
@@ -362,42 +362,47 @@ class Job
                 continue;
             }
 
-            if ($user->money>=$bought->price) {
-                $shop=Shop::where("id", $bought->shopid)->first();
-
-                if ($shop == null) {
-                    $bought->delete();
-                    continue;
-                }
-
-                $user->money=$user->money-$bought->price;
-
+			$shop=Shop::where("id", $bought->shopid)->first();
+			if ($shop == null) {
+                $bought->delete();
+				$subject = Config::get('appName')."-续费失败";
+                    $to = $user->email;
+                    $text = "您好，系统为您自动续费商品时，发现该商品已被下架，为能继续正常使用，建议您登录用户面板购买新的商品。" ;
+                    try {
+                        Mail::send($to, $subject, 'news/warn.tpl', [
+                            "user" => $user,"text" => $text
+                        ], [
+                        ]);
+                    } catch (\Exception $e) {
+                        echo $e->getMessage();
+                    }
+                continue;
+            }
+            if ($user->money >= $shop->price) {    
+                $user->money=$user->money - $shop->price;
                 $user->save();
-
                 $shop->buy($user, 1);
-
                 $bought->renew=0;
                 $bought->save();
-
 
                 $bought_new=new Bought();
                 $bought_new->userid=$user->id;
                 $bought_new->shopid=$shop->id;
                 $bought_new->datetime=time();
                 $bought_new->renew=time()+$shop->auto_renew*86400;
-                $bought_new->price=$bought->price;
+                $bought_new->price=$shop->price;
                 $bought_new->coupon="";
                 $bought_new->save();
 
                 $subject = Config::get('appName')."-续费成功";
                 $to = $user->email;
-                $text = "您好，系统已经为您自动续费，商品名：".$shop->name.",金额:".$bought->price." 元。" ;
+                $text = "您好，系统已经为您自动续费，商品名：".$shop->name.",金额:".$shop->price." 元。" ;
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         "user" => $user,"text" => $text
                     ], [
                     ]);
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     echo $e->getMessage();
                 }
 
@@ -408,13 +413,13 @@ class Job
                 if (!file_exists(BASE_PATH."/storage/".$bought->id.".renew")) {
                     $subject = Config::get('appName')."-续费失败";
                     $to = $user->email;
-                    $text = "您好，系统为您自动续费商品名：".$shop->name.",金额:".$bought->price." 元 时，发现您余额不足，请及时充值，当您充值之后，稍等一会系统就会自动扣费为您续费了。" ;
+                    $text = "您好，系统为您自动续费商品名：".$shop->name.",金额:".$shop->price." 元 时，发现您余额不足，请及时充值。充值后请稍等系统便会自动为您续费。" ;
                     try {
                         Mail::send($to, $subject, 'news/warn.tpl', [
                             "user" => $user,"text" => $text
                         ], [
                         ]);
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         echo $e->getMessage();
                     }
                     $myfile = fopen(BASE_PATH."/storage/".$bought->id.".renew", "w+") or die("Unable to open file!");
@@ -454,7 +459,7 @@ class Job
                                 "user" => $user,"text" => $text
                             ], [
                             ]);
-                        } catch (Exception $e) {
+                        } catch (\Exception $e) {
                             echo $e->getMessage();
                         }
                     }
@@ -486,7 +491,7 @@ class Job
                                 "user" => $user,"text" => $text
                             ], [
                             ]);
-                        } catch (Exception $e) {
+                        } catch (\Exception $e) {
                             echo $e->getMessage();
                         }
 
@@ -552,7 +557,7 @@ class Job
                                 "user" => $user,"text" => $text
                             ], [
                             ]);
-                        } catch (Exception $e) {
+                        } catch (\Exception $e) {
                             echo $e->getMessage();
                         }
 
@@ -629,7 +634,7 @@ class Job
                                         "user" => $user,"text" => $text
                                     ], [
                                     ]);
-                                } catch (Exception $e) {
+                                } catch (\Exception $e) {
                                     echo $e->getMessage();
                                 }
                             }
@@ -649,24 +654,23 @@ class Job
             }
 
 
-            if (strtotime($user->expire_in) < time() && (((Config::get('enable_account_expire_reset')=='true' && strtotime($user->expire_in) < time()) ? $user->transfer_enable != Tools::toGB(Config::get('enable_account_expire_reset_traffic')) : true) && ((Config::get('enable_class_expire_reset')=='true' && ($user->class!=0 && strtotime($user->class_expire)<time() && strtotime($user->class_expire) > 1420041600))? $user->transfer_enable != Tools::toGB(Config::get('enable_class_expire_reset_traffic')) : true))) {
-                if (Config::get('enable_account_expire_reset')=='true') {
-                    $user->transfer_enable = Tools::toGB(Config::get('enable_account_expire_reset_traffic'));
-                    $user->u = 0;
-                    $user->d = 0;
-                    $user->last_day_t = 0;
-
-                    $subject = Config::get('appName')."-您的用户账户已经过期了";
-                    $to = $user->email;
-                    $text = "您好，系统发现您的账号已经过期了。流量已经被重置为".Config::get('enable_account_expire_reset_traffic').'GB' ;
-                    try {
-                        Mail::send($to, $subject, 'news/warn.tpl', [
-                            "user" => $user,"text" => $text
-                        ], [
-                        ]);
-                    } catch (Exception $e) {
-                        echo $e->getMessage();
-                    }
+            if (strtotime($user->expire_in) < time() &&  $user->transfer_enable > 0	) {
+                $user->transfer_enable = 0;
+                $user->transfer_enable = Tools::toGB(Config::get('enable_account_expire_reset_traffic'));
+                $user->u = 0;
+                $user->d = 0;
+                $user->last_day_t = 0;
+				
+				$subject = Config::get('appName')."-您的用户账户已经过期了";
+                $to = $user->email;
+                $text = "您好，系统发现您的账号已经过期了。";
+                try {
+                    Mail::send($to, $subject, 'news/warn.tpl', [
+                        "user" => $user,"text" => $text
+                    ], [
+                    ]);
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
                 }
             }
 
@@ -704,7 +708,7 @@ class Job
 						$txt = "1";
 						fwrite($myfile, $txt);
 						fclose($myfile);
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         echo $e->getMessage();
                     }
                 }
@@ -715,110 +719,88 @@ class Job
 				}
             }
 
-            if (strtotime($user->expire_in)+((int)Config::get('enable_account_expire_delete_days')*86400)<time()) {
-                if (Config::get('enable_account_expire_delete')=='true') {
-                    $subject = Config::get('appName')."-您的用户账户已经被删除了";
-                    $to = $user->email;
-                    $text = "您好，系统发现您的账号已经过期 ".Config::get('enable_account_expire_delete_days')." 天了，帐号已经被删除。" ;
-                    try {
-                        Mail::send($to, $subject, 'news/warn.tpl', [
-                            "user" => $user,"text" => $text
-                        ], [
-                        ]);
-                    } catch (Exception $e) {
-                        echo $e->getMessage();
-                    }
-
-                    $user->kill_user();
-
-
-                    continue;
+            if (Config::get('account_expire_delete_days')>=0&&
+				strtotime($user->expire_in)+Config::get('account_expire_delete_days')*86400<time()
+			) {
+                $subject = Config::get('appName')."-您的用户账户已经被删除了";
+                $to = $user->email;
+                $text = "您好，系统发现您的账号已经过期 ".Config::get('account_expire_delete_days')." 天了，帐号已经被删除。" ;
+                try {
+                    Mail::send($to, $subject, 'news/warn.tpl', [
+                        "user" => $user,"text" => $text
+                    ], [
+                    ]);
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
                 }
+				
+				$user->kill_user();
+                continue;
             }
 
-
-
-            if ((int)Config::get('enable_auto_clean_uncheck_days')!=0 && max($user->last_check_in_time, strtotime($user->reg_date)) + ((int)Config::get('enable_auto_clean_uncheck_days')*86400) < time() && $user->class == 0 && $user->money <= Config::get('auto_clean_min_money')) {
-
-                if (Config::get('enable_auto_clean_uncheck')=='true') {
-                    $subject = Config::get('appName')."-您的用户账户已经被删除了";
-                    $to = $user->email;
-                    $text = "您好，系统发现您的账号已经 ".Config::get('enable_auto_clean_uncheck_days')." 天没签到了，帐号已经被删除。" ;
-                    try {
-                        Mail::send($to, $subject, 'news/warn.tpl', [
-                            "user" => $user,"text" => $text
-                        ], [
-                        ]);
-                    } catch (Exception $e) {
-                        echo $e->getMessage();
-                    }
-
-                    Radius::Delete($user->email);
-
-                    RadiusBan::where('userid', '=', $user->id)->delete();
-
-                    Wecenter::Delete($user->email);
-
-                    $user->delete();
-
-
-                    continue;
+			
+            if (Config::get('auto_clean_uncheck_days')>0 && 
+				max($user->last_check_in_time, strtotime($user->reg_date)) + (Config::get('auto_clean_uncheck_days')*86400) < time() && 
+				$user->class == 0 && 
+				$user->money <= Config::get('auto_clean_min_money')
+			) {
+                $subject = Config::get('appName')."-您的用户账户已经被删除了";
+                $to = $user->email;
+                $text = "您好，系统发现您的账号已经 ".Config::get('auto_clean_uncheck_days')." 天没签到了，帐号已经被删除。" ;
+                try {
+                    Mail::send($to, $subject, 'news/warn.tpl', [
+                        "user" => $user,"text" => $text
+                    ], [
+                    ]);
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
                 }
+                $user->kill_user();
+                continue;
             }
 
-
-            if ((int)Config::get('enable_auto_clean_unused_days')!=0 && max($user->t, strtotime($user->reg_date)) + ((int)Config::get('enable_auto_clean_unused_days')*86400) < time() && $user->class == 0 && $user->money <= Config::get('auto_clean_min_money')) {
-
-                if (Config::get('enable_auto_clean_unused')=='true') {
-                    $subject = Config::get('appName')."-您的用户账户已经被删除了";
-                    $to = $user->email;
-                    $text = "您好，系统发现您的账号已经 ".Config::get('enable_auto_clean_unused_days')." 天没使用了，帐号已经被删除。" ;
-                    try {
-                        Mail::send($to, $subject, 'news/warn.tpl', [
-                            "user" => $user,"text" => $text
-                        ], [
-                        ]);
-                    } catch (Exception $e) {
-                        echo $e->getMessage();
-                    }
-
-                    Radius::Delete($user->email);
-
-                    RadiusBan::where('userid', '=', $user->id)->delete();
-
-                    Wecenter::Delete($user->email);
-
-                    $user->delete();
-
-
-                    continue;
+            if (Config::get('auto_clean_unused_days')>0 && 
+				max($user->t, strtotime($user->reg_date)) + (Config::get('auto_clean_unused_days')*86400) < time() && 
+				$user->class == 0 && 
+				$user->money <= Config::get('auto_clean_min_money')
+			) {
+				$subject = Config::get('appName')."-您的用户账户已经被删除了";
+                $to = $user->email;
+                $text = "您好，系统发现您的账号已经 ".Config::get('auto_clean_unused_days')." 天没使用了，帐号已经被删除。" ;
+                try {
+                    Mail::send($to, $subject, 'news/warn.tpl', [
+                        "user" => $user,"text" => $text
+                    ], [
+                    ]);
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
                 }
+                $user->kill_user();
+                continue;
             }
 
-            if ($user->class!=0 && (((Config::get('enable_account_expire_reset')=='true' && strtotime($user->expire_in) < time()) ? $user->transfer_enable != Tools::toGB(Config::get('enable_account_expire_reset_traffic')) : true) && ((Config::get('enable_class_expire_reset')=='true' && ($user->class!=0 && strtotime($user->class_expire)<time() && strtotime($user->class_expire) > 1420041600))? $user->transfer_enable != Tools::toGB(Config::get('enable_class_expire_reset_traffic')) : true)) && strtotime($user->class_expire)<time() && strtotime($user->class_expire) > 1420041600) {
-                if (Config::get('enable_class_expire_reset')=='true') {
-                    $user->transfer_enable = Tools::toGB(Config::get('enable_class_expire_reset_traffic'));
-                    $user->u = 0;
-                    $user->d = 0;
-                    $user->last_day_t = 0;
+            if ($user->class!=0 && 
+				strtotime($user->class_expire)<time() && 
+				strtotime($user->class_expire) > 1420041600
+			){
+				$reset_traffic=max(Config::get('class_expire_reset_traffic'),0);
+				$user->transfer_enable =Tools::toGB($reset_traffic);				
+                $user->u = 0;
+                $user->d = 0;
+                $user->last_day_t = 0;
 
-                    $subject = Config::get('appName')."-您的用户等级已经过期了";
-                    $to = $user->email;
-                    $text = "您好，系统发现您的账号等级已经过期了。流量已经被重置为".Config::get('enable_class_expire_reset_traffic').'GB' ;
-                    try {
-                        Mail::send($to, $subject, 'news/warn.tpl', [
-                            "user" => $user,"text" => $text
-                        ], [
-                        ]);
-                    } catch (Exception $e) {
-                        echo $e->getMessage();
-                    }
+                $subject = Config::get('appName')."-您的用户等级已经过期了";
+                $to = $user->email;
+                $text = "您好，系统发现您的账号等级已经过期了。流量已经被重置为".$reset_traffic.'GB' ;
+                try {
+                    Mail::send($to, $subject, 'news/warn.tpl', [
+                        "user" => $user,"text" => $text
+                    ], [
+                    ]);
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
                 }
 
-                $user->class=0;
-            }
-
-            if ($user->class!=0 && strtotime($user->class_expire)<time() && strtotime($user->class_expire) > 1420041600) {
                 $user->class=0;
             }
 
@@ -889,7 +871,7 @@ class Job
 									], [
 								]);
 							}
-							catch (Exception $e) {
+							catch (\Exception $e) {
 								echo $e->getMessage();
 							}
 							if (Config::get('enable_cloudxns')=='true' && ($node->sort==0 || $node->sort==10)) {
@@ -944,7 +926,7 @@ class Job
 				                      ], [
 				                         ]);
 							}
-							catch (Exception $e) {
+							catch (\Exception $e) {
 								echo $e->getMessage();
 							}
 							if (Config::get('enable_cloudxns')=='true'&& ($node->sort==0 || $node->sort==10)) {

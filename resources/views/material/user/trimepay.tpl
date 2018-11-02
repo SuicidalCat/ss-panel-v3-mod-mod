@@ -20,10 +20,10 @@
         </div>
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="/assets/js/qrcode.min.js"></script>
 <script>
     var pid = 0;
-
-    $('body').append("<script src=\" \/assets\/public\/js\/jquery.qrcode.min.js \"><\/script>");
 
     function pay(type){
         if (type==='Alipay'){
@@ -38,8 +38,10 @@
 
         console.log("将要使用 "+ type + " 充值" + price + "元");
         if (isNaN(price)) {
+            $("#readytopay").modal('hide');
             $("#result").modal();
             $("#msg").html("非法的金额!");
+            return;
         }
         $('#readytopay').modal();
         $("#readytopay").on('shown.bs.modal', function () {
@@ -53,21 +55,18 @@
                 'type': "POST",
                 success: function (data) {
                     if (data.code == 0) {
-                        $("#result").modal();
-                        $("#msg").html("正在跳转到支付宝...");
                         console.log(data);
-                        if(type == 'ALIPAY_WAP' || type =='ALIPAY_WEB'){
+                        $("#readytopay").modal('hide');
+                        if(type === 'ALIPAY_WAP' || type ==='ALIPAY_WEB'){
                             window.location.href = data.data;
                         } else {
-                            $("#readytopay").modal('hide');
-                            $("#qrarea").html('<div class="text-center"><p>使用微信扫描二维码支付.</p><div id="qrcode" style="padding-top:  10px;"></div><p>充值完毕后会自动跳转</p></div>');
-                            $("#qrcode").qrcode({
+                            $("#qrarea").html('<div class="text-center"><p>使用微信扫描二维码支付.</p><div align="center" id="qrcode" style="padding-top:10px;"></div><p>充值完毕后请刷新网页</p></div>');
+                            var qrcode = new QRCode("qrcode", {
                                 render: "canvas",
-                                width: 100,
-                                height: 100,
-                                "text": data.data
+                                width: 200,
+                                height: 200,
+                                text: encodeURI(data.data)
                             });
-
                         }
                     } else {
                         $("#result").modal();
