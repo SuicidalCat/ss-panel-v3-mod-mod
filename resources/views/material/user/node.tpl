@@ -2,7 +2,7 @@
 {include file='user/main.tpl'}
 
 <script src="//cdn.jsdelivr.net/gh/YihanH/canvasjs.js@v2.2/canvasjs.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/jquery/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1"></script>
 
 	<main class="content">
 		<div class="content-header ui-content-header">
@@ -83,9 +83,6 @@
 																				<p>端口：<span class="label label-brand-red">
 																					{$server_explode[1]}
 																				</span></p>
-																				<p>协议：<span class="label label-brand-accent">
-																					{$server_explode[2]}
-																				</span></p>
 																				<p>协议参数：<span class="label label-green">
 																					{$server_explode[0]}
 																				</span></p>
@@ -96,10 +93,7 @@
 																					{$node->traffic_rate}
 																				</span></p>
 																				<p>AlterId：<span class="label label-green">
-																					{$server_explode[3]}
-																				</span></p>
-																				<p>Level：<span class="label label-brand">
-																					{$server_explode[4]}
+																					{$server_explode[2]}
 																				</span></p>
 																				<p>VMess链接：
 																					<a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">點擊拷貝</a>

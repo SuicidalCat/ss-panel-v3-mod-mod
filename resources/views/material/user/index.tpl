@@ -74,7 +74,7 @@
 														{$ssr_url_all = URL::getAllUrl($pre_user, 0, 0)}
 														{$ssr_url_all_mu = URL::getAllUrl($pre_user, 1, 0)}
 														<p><span class="icon icon-lg text-white">filter_1</span><a href="//cdn.leezf.com/Shadowsocksr/ShadowsocksR-win-4.9.0.zip"> 点击我下载</a>，解压至任意磁盘并运行</p>
-														<p><span class="icon icon-lg text-white">filter_2</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSR服务器订阅（绕过代理）。</p>
+														<p><span class="icon icon-lg text-white">filter_2</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSR服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSR服务器订阅（绕过代理）</p>
 														<p> <span class="icon icon-lg text-white">filter_3</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 备用导入节点方法：点击<a class="copy-text" data-clipboard-text="{$ssr_url_all}">这里（普通端口）</a>或者<a class="copy-text" data-clipboard-text="{$ssr_url_all_mu}">这个(单端口多用户）</a>，然后右键小飞机->从剪贴板复制地址</p>
 														<p><span class="icon icon-lg text-white">flash_auto</span> 普通接入點订阅地址：<input type="text" class="input form-control form-control-monospace" name="input1" readonly value="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0" readonly="true"><button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$config['subUrl']}/link/{$ssr_sub_token}?mu=0">點擊拷貝</button><br></p>
@@ -127,7 +127,7 @@
 														<code>wget -O- {$config['subUrl']}/link/{$router_token}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$config['subUrl']}/link/{$router_token}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </code><br>
 														这个单端口多用户的<br>
 														<code>wget -O- {$config['subUrl']}/link/{$router_token_without_mu}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$config['subUrl']}/link/{$router_token_without_mu}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </code><br>
-														执行完毕以后就可以到路由器的设置面板里随意选择 Shadowsocks 服务器进行连接了。</p>
+														执行完毕以后就可以到路由器的设置面板里随意选择 Shadowsocks 服务器进行连接</p>
 													</div>
 													<div class="tab-pane fade" id="all_ssr_game">
 														<p><span class="icon icon-lg text-white">filter_1</span><a href="https://cdn.jsdelivr.net/gh/YihanH/SS-SSR-Client-Download@v1.0/SSTap.7z">点击下载</a>，并安装</p>
@@ -160,7 +160,7 @@
 															<dd>{$user->obfs_param}</dd></p>
 														</dl>
 														{else}
-															<p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
+															<p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接，请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处</p>
 															<p>同时, ShadowsocksR 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
 															<p>请注意，在当前状态下您的 SSR 订阅链接已经失效，您无法通过此种方式导入节点。</p>
 														{/if}
@@ -405,7 +405,7 @@
 
 {include file='user/footer.tpl'}
 
-<script src="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.4/public/theme/material/js/shake.js/shake.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/shake.js@1.2.2/shake.min.js"></script>
 <script>
 function DateParse(str_date) {
 		var str_date_splited = str_date.split(/[^0-9]/);
@@ -449,14 +449,14 @@ $(function(){
 });
 $(".copy-text").click(function () {
 	$("#result").modal();
-	$("#msg").html("已拷貝您的訂閲鏈接，請將其添加至客戶端中。");
+	$("#msg").html("已拷貝您的訂閲鏈接，請將其添加至客戶端中");
 });
 $(function(){
 	new Clipboard('.reset-link');
 });
 $(".reset-link").click(function () {
 	$("#result").modal();
-	$("#msg").html("成功重置了您的訂閲鏈接，請請添加新的訂閲鏈接到您的客戶端中。");
+	$("#msg").html("成功重置了您的訂閲鏈接，請請添加新的訂閲鏈接到您的客戶端中");
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
 });
  {if $user->transfer_enable-($user->u+$user->d) == 0}

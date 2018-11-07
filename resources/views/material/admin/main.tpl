@@ -12,7 +12,7 @@
 	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.10/public/theme/material/css/base.min.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.10/public/theme/material/css/project.css" rel="stylesheet">
 	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
-	<link href="https://fonts.loli.net/css?family=Material+Icons">
+	<link href="https://fonts.loli.net/css?family=Material+Icons" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.10/public/theme/material/css/material.min.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.10/public/theme/material/css/dataTables.material.min.css" rel="stylesheet">
 
@@ -86,7 +86,6 @@
 
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_user">用户</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_user">
-						        <li><a href="/admin/find"><i class="icon icon-lg">search</i>&nbsp;查找用户</a></li>
 							<li><a href="/admin/user"><i class="icon icon-lg">supervisor_account</i>&nbsp;用户列表</a></li>
 							<li><a href="/admin/relay"><i class="icon icon-lg">compare_arrows</i>&nbsp;中转规则</a></li>
 							<li><a href="/admin/invite"><i class="icon icon-lg">loyalty</i>&nbsp;邀请与返利</a></li>
@@ -107,8 +106,11 @@
 							<li><a href="/admin/shop"><i class="icon icon-lg">shop</i>&nbsp;商品</a></li>
 							<li><a href="/admin/coupon"><i class="icon icon-lg">card_giftcard</i>&nbsp;优惠码</a></li>
 							<li><a href="/admin/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a></li>
-                            {if $config['payment_system']=='yftpay'}
+                      {if $config['payment_system']=='yftpay'}
 							<li><a href="/admin/yftOrder"><i class="icon icon-lg">shopping_cart</i>&nbsp;充值记录</a></li>
+							{/if}
+							{if $config['payment_system']=='chenAlipay'}
+								<li><a href="/admin/editConfig"><i class="icon icon-lg">shopping_cart</i>&nbsp;支付设置</a></li>
 							{/if}
 						</ul>
 
