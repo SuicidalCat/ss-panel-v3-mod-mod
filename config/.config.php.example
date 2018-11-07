@@ -32,7 +32,7 @@ $System_Config['db_password'] = 'sspanel';			//用户名对应的密码
 
 //邮件设置--------------------------------------------------------------------------------------------
 $System_Config['mailDriver'] = 'mailgun';	// mailgun or smtp or sendgrid 选择发送邮件的方式
-
+$System_Config['sendPageLimit']= 50;      //发信分页 解决大站发公告超时问题
 # mailgun
 $System_Config['mailgun_key'] = '';
 $System_Config['mailgun_domain'] = '';
@@ -150,9 +150,14 @@ $System_Config['enable_geetest_reg']='false';		//启用注册验证码
 $System_Config['enable_geetest_login']='false';		//启用登录验证码
 $System_Config['enable_geetest_checkin']='false';	//启用签到验证码
 
+//界面设置
+
+$System_Config['enable_shop_uiswitch'] = '1'; //默认启用卡片式商店或列表商店，1为卡片式，0为列表
+$System_Config['number_viplevel'] = '1'; //节点自动化显示，输入要显示的最高节点等级
+
 
 //支付系统设置----------------------------------------------------------------------------------------
-#取值 none | codepay | doiampay | trimepay | f2fpay | yftpay | chenAlipay | paymentwall | spay | f2fpay_codepay 
+#取值 none | codepay | doiampay | trimepay | f2fpay | yftpay | chenAlipay | paymentwall | spay | f2fpay_codepay
 $System_Config['payment_system']='none';
 
 #codepay码支付

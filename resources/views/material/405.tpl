@@ -1,40 +1,41 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<title>您的访问方式不正确 - {$config["appName"]} </title>
-      <meta name="keywords" content=""/>
-      <meta name="description" content=""/>
-      <meta charset="utf-8" />
-      <link rel="shortcut icon" href="/favicon.ico"/>
-      <link rel="bookmark" href="/favicon.ico" type="image/x-icon"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<link rel="shortcut icon" type="image/ico" href="images/ssr.ico">
-      <link rel="stylesheet" href="/assets/css/main.css" />
+<html lang="zh-hans">
+<head>
+  <meta charset="utf-8">
+  <title>405 訪問方式錯誤 - {$config["appName"]} </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
 
-      <noscript>
-        <link rel="stylesheet" href="/assets/css/noscript.css" />
-      </noscript>
-  </head>	
+    * {
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    html {
+      color: #888;
+      font-family: "Microsoft YaHei", sans-serif;
+      text-align: center;
+    }
+
+    p {
+      line-height: 1.2;
+    }
+	
+	err-img {
+		width: 750px;
+		height: 600px;
+		max-width:  100%;
+		display:  flex;
+		align-items: center;
+		justify-content:  center;
+    }
+
+  </style>
+</head>
 <body>
-			<div id="wrapper">
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-rocket"></span></div>
-						<div class="content">
-							<div class="inner">
-								<h1>405错误</h1>
-								<p>您的访问方式不正确。</p></div></div>	
-						<nav>
-							<ul>
-								<li><a href="./#">返回首页</a></li>
-							</ul>
-						</nav>
-              </header>
-					 <footer id="footer"><p class="copyright">&copy;2014-{date("Y")} {$config["appName"]} </p></footer>
-			</div>
-			<div id="bg"></div>
-			<script src="https://cdn.jsdelivr.net/npm/jquery@1.11.3"></script>
-			<script src="https://cdn.jsdelivr.net/gh/ajlkn/skel@3.0.1/dist/skel.min.js"></script>
-			<script src="/assets/js/util.js"></script>
-			<script src="/assets/js/main.js"></script>
-</body></html>
+	<div class="err-img">
+		<img src="//i.jpg.dog/img/039ee208172f81785c1f210efa6798ee.jpg"></img>
+	</div>
+	<p>發現錯誤的訪問方式</p>
+</body>
+</html>
