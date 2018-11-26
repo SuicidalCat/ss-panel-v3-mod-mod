@@ -306,6 +306,7 @@ class UserController extends AdminController
 		$data=array();
 		foreach ($users as $user) {
 			$tempdata=array();
+			//model里是casts所以没法直接 $tempdata=(array)$user
 			$tempdata['op']='<a class="btn btn-brand" href="/admin/user/'.$user->id.'/edit">编辑</a>
                     <a class="btn btn-brand-accent" id="delete" href="javascript:void(0);" onClick="delete_modal_show(\''.$user->id.'\')">删除</a>
                     <a class="btn btn-brand" id="changetouser" href="javascript:void(0);" onClick="changetouser_modal_show(\''.$user->id.'\')">切换为该用户</a>';;

@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.1"></script>
+
 <style>
     .btn-price {
         margin: 5px;
@@ -13,6 +13,10 @@
         color: #fff;
         /*border: 1px solid #fff;*/
         padding: 8px 20px;
+    }
+
+    #qrcode img {
+        display: initial!important;
     }
 </style>
 <div class="card-inner">
@@ -44,9 +48,6 @@
                                                                                      width="45"></a>
         {/if}
     </div>
-    <div class="form-group pull-right">
-        <img src="/images/qianbai-2.png" height="205"/>
-    </div>
 </div>
 <div aria-hidden="true" class="modal modal-va-middle fade" id="AliPayReadyToPay" role="dialog"
      tabindex="-1">
@@ -65,8 +66,9 @@
                     <p id="qrcode">
                         <a class="pay"
                            href="">
-                            <img src="/images/loading.gif"
-                                 width="300px"/>
+                            {*<img src="/images/loading.gif"*}
+                            {*width="300px"/>*}
+                            <div id="qrcode" style="text-align: center"></div>
                         </a>
                     </p>
                     <p id="title">支付成功后大约一分钟内提示</p>
@@ -79,11 +81,11 @@
 
 <script>
     function chenPayLoad() {
-        var $zxing = 'http://mobile.qq.com/qrcode?url=',
-            $alipay = 'alipays://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=',
+        var $alipay = 'alipays://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=',
             $wxpayApp = 'weixin://',
             $pay_type = 0,
-            $order_id = 0;
+            $order_id = 0,
+            qrcode = new QRCode(document.getElementById("qrcode"));
         if ('{$QRcodeUrl}'.indexOf('|') > 0) {
             var $alipayUrl = '{$QRcodeUrl}'.split('|'),
                 $wxpayUrl = '{$WxQRcodeUrl}'.split('|');
@@ -131,8 +133,10 @@
                         }, 1000);
                         if (data.url) {
                             if ($type == 2)
-                                $('.pay').attr('href', $wxpayApp).children('img').attr('src', $zxing + data.url);
-                            else $('.pay').attr('href', $alipay + data.url).children('img').attr('src', $zxing + data.url);
+                                $('.pay').attr('href', $wxpayApp);
+                            else $('.pay').attr('href', $alipay + data.url);
+                            qrcode.clear();
+                            qrcode.makeCode(data.url);
                         }
                     } else {
                         $("#result").modal();
@@ -151,11 +155,6 @@
                     },
                     success: function (data) {
                         if (data.ret) {
-                            if (data.url) {
-                                if ($type == 2)
-                                    $('.pay').attr('href', $wxpayApp).children('img').attr('src', $zxing + data.url);
-                                else $('.pay').attr('href', $alipay + data.url).children('img').attr('src', $zxing + data.url);
-                            }
                             if (data.status == 1) {
                                 close('充值成功！');
                                 setTimeout(function () {

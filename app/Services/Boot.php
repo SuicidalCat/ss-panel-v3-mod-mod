@@ -2,18 +2,10 @@
 
 namespace App\Services;
 
-use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Boot
 {
-    public static function loadEnv()
-    {
-        // Env
-        $env = new Dotenv(BASE_PATH);
-        $env->load();
-    }
-
     public static function setDebug()
     {
         // debug

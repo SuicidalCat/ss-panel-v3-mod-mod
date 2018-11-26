@@ -11,9 +11,11 @@
 	<!-- css -->
 	<link href="/theme/material/css/base.min.css" rel="stylesheet">
 	<link href="/theme/material/css/project.min.css" rel="stylesheet">
-	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
-	<link href="https://fonts.loli.net/css?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic|Material+Icons" rel="stylesheet">
 
+	<!-- jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1"></script>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
  <style>
     body {
         background: #eee;
@@ -286,10 +288,238 @@
 			font-weight: 300;
 			color: #fff;
 		}
+		
+		.reset-invitelink {
+			margin-left: 1em;
+		}
+
+		.enable-flag {
+			color: #383838;
+		}
+
+		.node-icon {
+			color: #ff9000;
+		}
+
+		.node-alive {
+			color: #474747;
+		}
+
+		.node-load,.node-mothed {
+			color: #828282;
+		}
+
+		.node-band {
+			color: #aaaaaa;
+		}
+
+		.node-tr {
+			color: #a5a5a5;
+		}
+
+		.node-status {
+			color: #c4c4c4;
+		}
+
+		.usercheck {
+			text-align: center;
+			width: 100%;
+		}
+
+		.btn-dl {
+			border-radius: 8px;
+			padding: 3px 12px 3px 10px;
+			margin-left: 8px;
+			margin-right: 8px;
+			background: #f5f5f5;
+			font-size: 13px;
+			border: 1px solid #f5f5f5;
+		}
+		.btn-dl i {
+			font-size: 22px;
+			position: relative;
+			top: 6px;
+			right: 2px;
+		}
+		.btn-dl i.icon-sm {
+            font-size: 18px;
+			top: 4px;
+		}
+		.quickadd p {
+			line-height: 22px;
+		}
+		a.btn-dl:focus,a.btn-dl:visited {
+			text-decoration: none;
+		}
+		.btn-dl:hover {
+			box-shadow: 2px 2px 10px #d6d6d6;
+			transition: .4s all;
+			border: 1px solid #b7b7b7;
+			text-decoration: none;
+		}
+		.copy-text {
+			cursor: pointer;
+		}
+		
+
 	</style>
 
+    <style>
 
+.progressbar{
+    position:relative;
+	display:block;
+    width:90%;
+    height:20px;
+    border-bottom:1px solid rgba(255,255,255,0.25);
+    border-radius:16px;
+	margin:40px auto;
+	margin-top: 60px;
+}
+.progressbar:first-of-type {
+	margin-top: 70px;
+}
 
+.progressbar .before{
+    position:absolute;
+    display:block;
+    content:"";
+    width:calc(100% + 4px);
+    height:20px;
+    left:-2px;
+	right: 1px;
+    border-radius:20px;
+    background:#fff;
+    box-shadow: 0px 0px 2px 0px rgba(180, 180, 180, .85);
+	border:1px solid rgba(222,222,222,.8);
+}
+.progressbar .bar {
+	position:absolute;
+	display:block;
+	width:0px;
+	height:16px;
+	top:2px;
+	left:0px;
+	background:rgb(126,234,25);
+	border-radius:16px;
+	box-shadow:0px 0px 12px 0px rgba(126, 234, 25, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+	overflow:hidden;
+}
+.progressbar .label .bar {
+	position: relative;
+	display: inline-block;
+	top: 12%;
+	left: 0;
+	margin-right: 5px;
+	width: 16px;
+	
+}
+.progressbar .label .bar.color {
+	box-shadow:0px 0px 5px 0px rgba(126, 234, 25, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .label .bar.color2 {
+	box-shadow:0px 0px 5px 0px rgba(229, 195, 25, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .label .bar.color3 {
+	box-shadow:0px 0px 5px 0px rgba(232, 25, 87, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .label .bar.color4 {
+	box-shadow:0px 0px 5px 0px rgba(24, 109, 226, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .bar.color2 {
+	background:rgb(229,195,25);
+	
+	box-shadow:0px 0px 12px 0px rgba(229, 195, 25, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .bar.color3 {
+	background:rgb(255, 104, 149);
+	
+	box-shadow:0px 0px 7px 0px rgba(232, 25, 87, 1), 0px 1px 0px 0px rgba(255, 255, 255, 0.45), 1px 0px 0px 0px rgba(255, 255, 255, 0.25), -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .bar.color4 {
+	background:rgb(24,109,226);
+	
+	box-shadow:0px 0px 12px 0px rgba(24, 109, 226, 1),inset 0px 1px 0px 0px rgba(255, 255, 255, 0.45),inset 1px 0px 0px 0px rgba(255, 255, 255, 0.25),inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25);
+}
+.progressbar .bar:before {
+	position:absolute;
+	display:block;
+	content:"";
+	width:606px;
+	height:150%;
+	top:-25%;
+	left:-25px;
+	/* background:-moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.01) 50%, rgba(255,255,255,0) 51%, rgba(255,255,255,0) 100%);
+	background:-webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.35)), color-stop(50%,rgba(255,255,255,0.01)), color-stop(51%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,0)));
+	background:-webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%);
+	background:-o-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%);
+	background:-ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%);
+	background:radial-gradient(ellipse at center,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%); */
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#59ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+.progressbar .bar:after {
+	position:absolute;
+	display:block;
+	content:"";
+	width:64px;
+	height:16px;
+	right:0;
+	top:0;
+	border-radius:0px 16px 16px 0px;
+	/* background:-moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 98%, rgba(255,255,255,0) 100%);
+	background:-webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(98%,rgba(255,255,255,0.6)), color-stop(100%,rgba(255,255,255,0)));
+	background:-webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 98%,rgba(255,255,255,0) 100%);
+	background:-o-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 98%,rgba(255,255,255,0) 100%);
+	background:-ms-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 98%,rgba(255,255,255,0) 100%);
+	background:linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 98%,rgba(255,255,255,0) 100%); */
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+.progressbar .bar span {
+	position:absolute;
+	display:block;
+	width:100%;
+	height:64px;
+	-webkit-border-radius:16px;
+	border-radius:16px;
+	top:0;
+	left:0;
+	background:url(./theme/material/images/users/trafficbar.png) 0 0;
+	-webkit-animation:sparkle 1500ms linear infinite;
+    -moz-animation:sparkle 1500ms linear infinite;
+    -o-animation:sparkle 1500ms linear infinite;
+    animation:sparkle 1500ms linear infinite;
+	opacity:0.4;
+}
+
+.label.la-top code,.progressbar .label {
+    display:flex;
+    align-items: center;
+}
+.progressbar .label {
+	font-family:'Aldrich', sans-serif;
+	position:relative;
+	width: 100%;
+	height:30px;
+	line-height:30px;
+	bottom:40px;
+	left:0px;
+	background:rgb(255, 255, 255);
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#262626',GradientType=0 );
+	font-weight:bold;
+	font-size:12px;
+	color:#252525;
+    filter:dropshadow(color=#000000, offx=0, offy=-1);
+}
+.label.la-top code {
+    position: absolute;
+	right: 0;
+	top: 6px;
+}
+.traffic-info {
+	margin-top: 6px;
+}
+
+	</style>
 
 </head>
 <body class="page-orange">
@@ -311,7 +541,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li>
-							<a class="padding-right-lg waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>用户中心</a>
+							<a class="waves-attach" href="/user/"><span class="icon icon-lg margin-right">account_box</span>用户中心</a>
 						</li>
 
 						<li>
@@ -348,7 +578,6 @@
 								</a>
 							</li>
 
-
 							<li>
 								<a href="/user/profile">
 									<i class="icon icon-lg">account_box</i>&nbsp;账户信息
@@ -361,26 +590,20 @@
 								</a>
 							</li>
 
-
 							{if $config['enable_ticket']=='true'}
-                          <li>
+                            <li>
 								<a href="/user/ticket">
 									<i class="icon icon-lg">question_answer</i>&nbsp;工单系统
 								</a>
 							</li>
-
 							{/if}
-                               <li>
+
+                            <li>
 								<a href="/user/invite">
 									<i class="icon icon-lg">loyalty</i>&nbsp;邀请链接
 								</a>
 							</li>
 							
-
-
-
-
-
 						</ul>
 
 

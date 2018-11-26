@@ -28,6 +28,12 @@ class Update
 
 		echo(PHP_EOL);
 
+		echo('开始升级ssrdownload...'.PHP_EOL);
+		Job::updatedownload();
+		echo('升级ssrdownload结束'.PHP_EOL);
+
+		echo(PHP_EOL);
+
 		$config_old=file_get_contents(BASE_PATH."/config/.config.php");
 		$config_new=file_get_contents(BASE_PATH."/config/.config.php.example");
 
@@ -124,7 +130,7 @@ class Update
 		system('php '.BASE_PATH.'/composer.phar selfupdate');
 		system('php '.BASE_PATH.'/composer.phar install -d '.BASE_PATH);
 		echo('升级composer依赖结束，请自行根据上方输出确认是否升级成功'.PHP_EOL);
-		system('rm -rf '.BASE_PATH.'/storage/framework/smarty/compile/');
+		system('rm -rf '.BASE_PATH.'/storage/framework/smarty/compile/*');
 		system('chown -R www:www '.BASE_PATH.'/storage');
     }
 

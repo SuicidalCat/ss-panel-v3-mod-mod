@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Node;
 use App\Models\Relay;
 use App\Models\Smartline;
+use App\Utils\ConfRender;
 use App\Utils\Tools;
 use App\Utils\URL;
 use App\Services\Config;
@@ -420,7 +421,7 @@ class LinkController extends BaseController
         $proxy_name="";
         $proxy_group="";
 
-        $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+        $rules = file_get_contents("https://raw.githubusercontent.com/wewall/black-hole/master/Rule.conf");
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
@@ -1494,16 +1495,30 @@ FINAL,Proxy';
         return $bash;
     }
 
+    const V2RYA_MU = 2;
+    const SSD_MU = 3;
+    const CLASH_MU = 4;
+
     public static function GetSSRSub($user, $mu = 0, $max = 0)
     {
         if ($mu==0||$mu==1) {
             return Tools::base64_url_encode(URL::getAllUrl($user, $mu, 0, 1));
         } 
-		elseif ($mu==2){
+		elseif ($mu == LinkController::V2RYA_MU){
             return Tools::base64_url_encode(URL::getAllVMessUrl($user));
         }
-		elseif ($mu==3) {
-			return Tools::base64_url_encode(URL::getAllSSDUrl($user));
-		}
+		elseif ($mu==LinkController::SSD_MU) {
+			return URL::getAllSSDUrl($user);
+		} elseif ($mu==LinkController::CLASH_MU) {
+            // Clash
+            $render = ConfRender::getTemplateRender();
+            $confs = URL::getClashInfo($user);
+
+            $render->assign('user', $user)->assign('confs', $confs)->assign('proxies', array_map(function ($conf) {
+                return $conf['name'];
+            }, $confs));
+
+            return $render->fetch('clash.tpl');
+        }
     }
 }

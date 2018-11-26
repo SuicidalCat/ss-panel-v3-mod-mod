@@ -199,19 +199,18 @@
 <body>
 <div class="empty valign" style="height:100vh">
 <div class="centered">
-<p class="empty-title h1">登陆成功</p>
-<p class="empty-title h4">正在跳转{$config["appName"]}用户中心</p>
+<p class="empty-title h1">{$title}</p>
+<p class="empty-title h4">{$message}</p>
 <div class="divider"></div>
 <div class="empty-action">
 </div>
 <footer class="section section-footer">
 <div id="copyright" class="grid-footer container grid-lg">©
-<span year="">2017 - {date("Y")}</span>
+<span year="">{$config["appStartTime"]} - {date("Y")}</span>
 <a href="{$config["baseUrl"]}" target="_blank">{$config["appName"]}</a>
 </div>
 </footer>
 </div>
 </div>
-<script>var copyrightNow = (new Date).getFullYear(), textContent = document.querySelector("span[year]"); copyrightSince = 2017, textContent.textContent = copyrightSince === copyrightNow ? copyrightNow : copyrightSince + " - " + copyrightNow;</script>
 </body>
 </html>
