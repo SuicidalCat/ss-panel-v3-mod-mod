@@ -4,8 +4,7 @@
 		</div>
 	</footer>
 	<!-- js -->
-	<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="//cdn.jsdelivr.net/gh/jquery-validation/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>		<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+	<script src="//cdn.jsdelivr.net/gh/jquery-validation/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0"></script>
 	<script src="//static.geetest.com/static/tools/gt.js"></script>
 	<script src="//cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.3/public/theme/material/js/base.min.js"></script>
