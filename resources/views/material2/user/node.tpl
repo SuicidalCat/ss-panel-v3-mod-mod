@@ -6,18 +6,18 @@
 
 	<div class="layui-row layui-card" id="top-step">
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/code"><span class="layui-badge">1</span> 账户充值</a>
+			<a href="/user/code"><span class="layui-badge">1</span> 賬戶儲值</a>
 		</div>
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/shop"><span class="layui-badge">2</span> 购买套餐</a>
+			<a href="/user/shop"><span class="layui-badge">2</span> 資源包購買</a>
 		</div>
 		<div class="layui-col-md4 layui-col-sm4 current">
-			<span class="layui-badge">3</span> 节点使用
+			<span class="layui-badge">3</span> 接入點列表
 		</div>
 	</div>
 
 	<!--title-->
-	<h1 class="site-h1">节点使用</h1>
+	<!--h1 class="site-h1">节点使用</h1-->
 
 	<!--content-->
 	<div class="layui-row layui-col-space20" id="page-node">
