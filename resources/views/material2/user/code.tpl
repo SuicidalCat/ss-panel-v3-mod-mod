@@ -6,29 +6,29 @@
 
 	<div class="layui-row layui-card" id="top-step">
 		<div class="layui-col-md4 layui-col-sm4 current">
-			<span class="layui-badge">1</span> 账户充值
+			<span class="layui-badge">1</span> 賬戶儲值
 		</div>
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/shop"><span class="layui-badge">2</span> 购买套餐</a>
+			<a href="/user/shop"><span class="layui-badge">2</span> 資源包購買</a>
 		</div>
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/node"><span class="layui-badge">3</span> 节点使用</a>
+			<a href="/user/node"><span class="layui-badge">3</span> 接入點列表</a>
 		</div>
 	</div>
 
 	<!--title-->
-	<h1 class="site-h1">充值</h1>
+	<!--h1 class="site-h1">充值</h1-->
 
 	<!--content-->
 	<div class="layui-row layui-col-space20" id="page-pay">
 
 		<div class="layui-col-md4">
 			<div class="layui-card pay-con">
-		        <div class="layui-card-header">余额 <div class="layui-layout-right"><a href="/user/code" class="layui-btn layui-btn-primary layui-btn-sm">刷新</a></div> </div>
+		        <div class="layui-card-header">可用餘額 <div class="layui-layout-right"><a href="/user/code" class="layui-btn layui-btn-primary layui-btn-sm">刷新</a></div> </div>
 		        <div class="layui-card-body">
 		        	<div class="price">
 		        		<div><span>{$user->money}</span>元</div>
-		        		<p>余额不足时请及时充值</p>
+		        		<p>不足的餘額將會導致自動續費失敗，服務被暫停</p>
 		        	</div>		        	
 		        </div>
 		      </div>
@@ -42,9 +42,9 @@
 	        	<div class="layui-tab layui-tab-brief" lay-filter="payfor">
 				  <ul class="layui-tab-title">				    
 				    {if $pmw!=''}
-				    	<li class="layui-this">扫码充值</li>
+				    	<li class="layui-this">黛米付</li>
 				    {/if}
-				    <li {if $pmw!=''}{else}class="layui-this"{/if}>充值卡</li>
+				    <li {if $pmw!=''}{else}class="layui-this"{/if}>充值碼</li>
 				  </ul>
 				  <div class="layui-tab-content">
 				  	
@@ -109,10 +109,10 @@
 				  <thead>
 				    <tr>
 				      <th>ID</th>
-				      <th>代码</th>
-				      <th>类型</th>
-				      <th>操作</th>
-				      <th>操作时间</th>
+				      <th>網關名稱</th>
+				      <th>操作類型</th>
+				      <th>内容</th>
+				      <th>時間戳</th>
 				    </tr> 
 				  </thead>
 				  <tbody>
@@ -122,28 +122,28 @@
 								<td>#{$code->id}</td>
 								<td>{$code->code}</td>
 								{if $code->type==-1}
-								<td>金额充值</td>
+								<td>餘額儲值</td>
 								{/if}
 								{if $code->type==10001}
-								<td>流量充值</td>
+								<td>傳輸量儲值</td>
 								{/if}
 								{if $code->type==10002}
-								<td>用户续期</td>
+								<td>用戶續期</td>
 								{/if}
 								{if $code->type>=1&&$code->type<=10000}
-								<td>等级续期 - 等级{$code->type}</td>
+								<td>權限續期 - 權限{$code->type}</td>
 								{/if}
 								{if $code->type==-1}
-								<td>充值 {$code->number} 元</td>
+								<td>儲值 {$code->number} 元</td>
 								{/if}
 								{if $code->type==10001}
-								<td>充值 {$code->number} GB 流量</td>
+								<td>儲值 {$code->number} GB 傳輸量</td>
 								{/if}
 								{if $code->type==10002}
-								<td>延长账户有效期 {$code->number} 天</td>
+								<td>延長賬戶有效期 {$code->number} 天</td>
 								{/if}
 								{if $code->type>=1&&$code->type<=10000}
-								<td>延长等级有效期 {$code->number} 天</td>
+								<td>延長接入權限有效期 {$code->number} 天</td>
 								{/if}
 								<td>{$code->usedatetime}</td>
 							</tr>
@@ -167,7 +167,7 @@
 
 <div id="loading-modal" class="hide layout">
 	<div class="layout-con">
-		正在处理，不要离开...
+		正在處理...
 	</div>
 </div>
 
