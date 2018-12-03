@@ -5,7 +5,7 @@
 <div class="layui-container">
 
 	<!--title-->
-	<h1 class="site-h1">购买记录</h1>
+	<h1 class="site-h1">訂購記錄</h1>
 
 	<!--content-->
 	<div class="layui-row layui-col-space20" id="bought">
@@ -28,12 +28,12 @@
 				  </colgroup>
 				<thead>
 	                <tr>
-	                    <th>购买日期</th>
-	                    <th>商品名称</th>
-						<th>内容</th>
-						<th>价格</th>
-	                    <th>续费时间</th>
-						<th>续费时重置流量</th>                    
+	                    <th>訂購日期</th>
+	                    <th>資源包名稱</th>
+						<th>資源包内容</th>
+						<th>價格</th>
+	                    <th>續費日期</th>
+						<th>續費重置傳輸量</th>                    
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -44,15 +44,15 @@
 						<td>{$shop->shop()->content()}</td>
 						<td>{$shop->price} 元</td>
 						{if $shop->renew==0}
-	                    <td>不自动续费</td>
+	                    <td>不自動續費</td>
 						{else}
-						<td>在 {$shop->renew_date()} 续费</td>
+						<td>在 {$shop->renew_date()} 續費</td>
 						{/if}
 						
 						{if $shop->shop()->auto_reset_bandwidth==0}
-	                    <td>不自动重置</td>
+	                    <td>不自動重置</td>
 						{else}
-						<td>自动重置</td>
+						<td>自動重置</td>
 						{/if}
 	                </tr>	                
 	                {/foreach}	            	
@@ -63,10 +63,7 @@
 			{$shops->render()}
 			</div>
 		</div>
-
 		</div>
-
-		<div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} @ Theme by <a href="https://t.me/serikang" target="_blank">SP</a></div>
 
     </div>
 	<!--content:end-->
