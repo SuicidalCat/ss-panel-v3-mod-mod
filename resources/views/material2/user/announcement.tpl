@@ -4,7 +4,7 @@
 <div class="layadmin-tabsbody-item layui-show">
 <div class="layui-container">
 
-	<h1 class="site-h1">公告<span>修改过的公告会排到最前</span></h1>
+	<h1 class="site-h1">系統公告</h1>
 
 	<!--content-->
 	<div class="layui-row layui-col-space20">
@@ -39,7 +39,7 @@
 
         </div>
 
-        <div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a>  / Theme By <a href="https://t.me/serikang" target="_blank">Sp</a></div>
+        <div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a></div>
 
     </div>
 	<!--content:end-->
