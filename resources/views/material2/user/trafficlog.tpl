@@ -4,7 +4,7 @@
 <div class="layadmin-tabsbody-item layui-show">
 <div class="layui-container">
 
-	<h1 class="site-h1">节点观察</h1>
+	<h1 class="site-h1">流量歷史</h1>
 
 	<!--content-->
 	<div class="layui-row layui-col-space20">
@@ -15,14 +15,8 @@
 			<div class="layui-card-body">
 
 				<div class="layui-tab layui-tab-brief">
-				  <ul class="layui-tab-title">
-				    <li class="layui-this">流量记录</li>
-				    <li><a href="/user/lookingglass">延迟记录</a></li>
-				  </ul>
-				  <div class="layui-tab-content">
-				  	
+				  <div class="layui-tab-content">				  	
 				  	<div class="layui-tab-item layui-show">
-				  		<p>部分节点不支持流量记录.此处只展示最近 72 小时的记录，粒度为分钟。</p>
 				  		<div id="log_chart" style="height: 300px; width: 100%;"></div>
 				  	</div>
 
@@ -33,7 +27,7 @@
 			</div>
 		</div>
 
-		<div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a>  / Theme By <a href="https://t.me/serikang" target="_blank">Sp</a></div>
+		<div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a></div>
 
     </div>
 	<!--content:end-->
@@ -52,18 +46,18 @@ require(['canvasjs'], function(Chart){
 			{
 				zoomEnabled: true,
 				title:{
-					text: "最近72小时的流量消耗",
+					text: "72小時内傳輸量消耗情況",
 					fontSize: 16
 					
 				},  
 				animationEnabled: true,
 				axisX: {
-					title:"时间",
+					title:"時間",
 					labelFontSize: 14,
 					titleFontSize: 18                            
 				},
 				axisY:{
-					title: "流量/KB",
+					title: "傳輸量/KB",
 					lineThickness: 2,
 					labelFontSize: 14,
 					titleFontSize: 18
@@ -73,7 +67,7 @@ require(['canvasjs'], function(Chart){
 				{        
 					type: "scatter", 
 					{literal}														
-					toolTipContent: "<span style='\"'color: {color};'\"'><strong>产生时间: </strong></span>{x} <br/><span style='\"'color: {color};'\"'><strong>流量: </strong></span>{y} KB <br/><span style='\"'color: {color};'\"'><strong>产生节点: </strong></span>{jd}",
+					toolTipContent: "<span style='\"'color: {color};'\"'><strong>時間: </strong></span>{x} <br/><span style='\"'color: {color};'\"'><strong>傳輸量: </strong></span>{y} KB <br/><span style='\"'color: {color};'\"'><strong>接入點: </strong></span>{jd}",
 					{/literal}
 					
 					dataPoints: [
