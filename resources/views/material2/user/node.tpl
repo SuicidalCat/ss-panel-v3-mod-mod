@@ -333,7 +333,7 @@
 							        <!--single-->
 							        <p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node->id}" data-url="/user/node/{$node->id}?ismu={$single_muport['server']->server}&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 配置單端口{$single_muport['server']->server}
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 配置單端口
 					        			</a>
 					        			<!--{$prefix}{if $relay_rule != null}-{$relay_rule->dist_node()->name}{/if}(单端口{$single_muport['server']->server})-->
 					        		</p>
