@@ -18,9 +18,9 @@
                         <div class="content">
 							<div class="inner">
 								<h1>用戶使用協議 Terms of Service</h1>
-                          </div>
-                        </div>
-									<p>{$config["appName"]}，以下簡稱本站。</p>
+                          	</div>
+                        	</div>
+								<p>{$config["appName"]}，以下簡稱本站。</p>
 									<div class="table-wrapper">
 										<table>
 											<tbody>
@@ -50,19 +50,22 @@
 												<tr>
 													<td>使用本站接入點須遵守接入點所在國家法律法規，由於客戶非法行爲影響接入點或站點正常運行的，本站保留永久停用/刪除相關賬戶，并且不退還其所支付一切服務費用的權利</td>			
 												</tr>
-                                              <tr>
+                                              	<tr>
 													<td>對於在站點中注冊超過30天尚未購買任何服務/產生任何消費的賬戶，本站保留清除該賬戶以節省站點資源的權利</td>													
+												</tr>
+												<tr>
+													<td>我們要求客戶所提供的資料必須為真實存在的，能夠在必要時刻與客戶取得聯係的，如果使用虛假信息（例如10分鐘郵箱等服務）注冊的賬戶會被立即刪除，無論賬戶中多少餘額，訂購了何種服務</td>													
 												</tr>                                          
 											</tbody>
 										</table>
 										<p>——最後更新于2018/06/22</p>
 									</div>                                       
-                           <nav>
-							<ul>  
-                          <a href="javascript:history.back();" class="button">返回</a>
-                           </ul>
-						</nav>                              
-              <!--首页结束-->
+                           			<nav>
+										<ul>  
+                          					<a href="javascript:history.back();" class="button">返回</a>
+                           				</ul>
+									</nav>                              
+              					<!--首页结束-->
 					<div id="main">                    
                       <!--全部标签结束-->
                               </div>
