@@ -16,8 +16,8 @@
           <div class="layui-nav-child">
             <div class="nav-u-info">
               <div class="hd">
-                余额：{$user->money}元 
-                <a href="/user/code" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-dollarcurrencymo"></i> 充值</a>
+                餘額：{$user->money}元 
+                <a href="/user/code" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-dollarcurrencymo"></i> 儲值</a>
               </div>
               <div class="bd fix">
                 <ul>
@@ -30,13 +30,13 @@
                   <li>
                     <a href="/user/invite">
                       <i class="icon ptfont pticon-moneycurrencynot"></i>
-                      <span>邀请码</span>
+                      <span>推介返利</span>
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="ft">
-                <a href="/user/logout"><i class="icon ptfont pticon-poweronstandby"></i> 退出网站</a>
+                <a href="/user/logout"><i class="icon ptfont pticon-poweronstandby"></i> 退出登錄</a>
               </div>              
             </div>
           </div>

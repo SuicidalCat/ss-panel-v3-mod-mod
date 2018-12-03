@@ -1,6 +1,6 @@
 
 <div class="layui-footer">
-	{$smarty.now|date_format:"%Y"} &copy; <a href="/staff" target="_blank">Staff</a> - {$config["appName"]} Theme by <a href="https://t.me/serikang" target="_blank">SP</a>
+	{$smarty.now|date_format:"%Y"} &copy; <a href="/staff" target="_blank">Staff</a> - {$config["appName"]}
 </div>
 {if $config["enable_crisp"] == 'true'}{include file='crisp.tpl'}{/if}
 <script>

@@ -23,42 +23,42 @@
     <div class="layui-side-scroll">
 
       <div class="layui-logo logo">
-        <a href="/user/"><em>Spanel</em></a>
+        <a href="/user/"><img src="https://cdn.jsdelivr.net/gh/YihanH/ss-panel-v3-mod-mod@v1.2.0.9/public/images/walllink_logo_black_small.png" height="35"></img>&nbsp;{$config["appName"]}</a>
       </div>
 
       <ul class="layui-nav layui-nav-tree" lay-filter="theme-page-menu">
         
         <li class="layui-nav-item layui-nav-itemed">
-          <a href="javascript:;" class="tsub">用户</a>
+          <a href="javascript:;" class="tsub">站點</a>
           <dl class="layui-nav-child">  
-            <dd class="layui-nav-item"><a href="/user/"><i class="icon ptfont pticon-househomeshelter"></i>首页</a></dd>
-            <dd class="layui-nav-item"><a href="/user/announcement"><i class="icon ptfont pticon-shoutoutspeaker"></i>公告</a></dd>
+            <dd class="layui-nav-item"><a href="/user/"><i class="icon ptfont pticon-househomeshelter"></i>面板首頁</a></dd>
+            <dd class="layui-nav-item"><a href="/user/announcement"><i class="icon ptfont pticon-shoutoutspeaker"></i>系統公告</a></dd>
           </dl>
         </li>
 
         <li class="layui-nav-item layui-nav-itemed">
           <a href="javascript:;" class="tsub">购买</a>
           <dl class="layui-nav-child">  
-            <dd class="layui-nav-item"><a href="/user/code"><i class="icon ptfont pticon-dollarcurrencymo"></i>账户充值</a></dd>
-            <dd class="layui-nav-item"><a href="/user/shop"><i class="icon ptfont pticon-carte-commercesh"></i>购买套餐</a></dd>
-            <dd class="layui-nav-item"><a href="/user/node"><i class="icon ptfont pticon-locationpinmap1"></i>节点使用</a></dd>
+            <dd class="layui-nav-item"><a href="/user/code"><i class="icon ptfont pticon-dollarcurrencymo"></i>賬戶儲值</a></dd>
+            <dd class="layui-nav-item"><a href="/user/shop"><i class="icon ptfont pticon-carte-commercesh"></i>資源包購買</a></dd>
+            <dd class="layui-nav-item"><a href="/user/node"><i class="icon ptfont pticon-locationpinmap1"></i>接入點使用</a></dd>
           </dl>
         </li>
 
         <li class="layui-nav-item layui-nav-itemed">
           <a href="javascript:;" class="tsub">服务</a>
           <dl class="layui-nav-child">
-            <dd class="layui-nav-item"><a href="/user/bought"><i class="icon ptfont pticon-billslipinvoice"></i>购买记录</a></dd>
-            <dd class="layui-nav-item"><a href="/user/ticket"><i class="icon ptfont pticon-mailboxboxletter"></i>工单系统</a></dd>
-            <dd class="layui-nav-item"><a href="/user/trafficlog"><i class="icon ptfont pticon-graphstatsanalyt"></i>节点观察</a></dd>
+            <dd class="layui-nav-item"><a href="/user/bought"><i class="icon ptfont pticon-billslipinvoice"></i>訂購記錄</a></dd>
+            <dd class="layui-nav-item"><a href="/user/trafficlog"><i class="icon ptfont pticon-graphstatsanalyt"></i>流量歷史</a></dd>
           </dl>
         </li>
         
         <li class="layui-nav-item layui-nav-itemed">
-          <a href="javascript:;" class="tsub">其他</a>
+          <a href="javascript:;" class="tsub">雜項</a>
           <dl class="layui-nav-child">              
-            <dd class="layui-nav-item"><a href="/user/detect/log"><i class="icon ptfont pticon-sortfilterarrang"></i>审计记录</a></dd>
-            <dd class="layui-nav-item"><a href="/user/relay"><i class="icon ptfont pticon-circuitnetworkpa"></i>中转规则</a></dd>
+            <dd class="layui-nav-item"><a href="/user/detect/log"><i class="icon ptfont pticon-sortfilterarrang"></i>鏈接審計</a></dd>
+            <dd class="layui-nav-item"><a href="/user/relay"><i class="icon ptfont pticon-circuitnetworkpa"></i>流量中轉</a></dd>
+            <dd class="layui-nav-item"><a href="//docs.walllink.io" target="_blank"><i class="icon ptfont pticon-circuitnetworkpa"></i>技術文檔</a></dd>
           </dl>
         </li>
         
