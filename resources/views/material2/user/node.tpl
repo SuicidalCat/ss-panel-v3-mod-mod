@@ -114,7 +114,7 @@
 	  	<!--div class="layui-col-md12 nodes">	
 	  		
 	  		<!--普通-->
-  			<h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 普通节点列表<span>所有Lv.0级节点</span></h1>			
+  			<!--h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 普通节点列表<span>所有Lv.0级节点</span></h1-->			
 
         	<div class="layui-row layui-col-space20">	        		
 
