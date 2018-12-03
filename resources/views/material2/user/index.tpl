@@ -26,8 +26,8 @@
                                             <span class="layui-badge">Lv.{$user->class}</span>
                                         </h4>
                                         <p>
-                                            <a href="/user/edit" class="layui-btn layui-btn-primary layui-btn-xs">个人中心</a>
-                                            <a href="/user/invite" class="layui-btn layui-btn-primary layui-btn-xs">邀请码</a>
+                                            <a href="/user/edit" class="layui-btn layui-btn-primary layui-btn-xs">資料編輯</a>
+                                            <a href="/user/invite" class="layui-btn layui-btn-primary layui-btn-xs">邀請返利</a>
                                         </p>
                                     </div>
                                 </div>
@@ -37,24 +37,24 @@
                                             {$nodeNow=$smarty.now|date_format:'%Y-%m-%d'}
                                             {$nodeYear=$user->class_expire|date_format:'%Y-%m-%d'}
                                             {if $nodeNow > $nodeYear || $user->transfer_enable-($user->u+$user->d) == 0 }
-                                                <i class="icon ptfont pticon-cautionalerttria"></i> 尚未购买
+                                                <i class="icon ptfont pticon-cautionalerttria"></i> 無已激活資源包
                                             {else}
-                                                套餐截止{$user->class_expire|date_format:'%Y-%m-%d'}
+                                                資源包將會在{$user->class_expire|date_format:'%Y-%m-%d'}過期
                                             {/if}
-                                            &nbsp;&nbsp;<a href="/user/shop" class="layui-btn layui-btn-sm">续费</a>
+                                            &nbsp;&nbsp;<a href="/user/shop" class="layui-btn layui-btn-sm">續費</a>
                                         </p>
-                                        <p>速度限制：
+                                        <p>接入速率：
                                             {if $user->node_speedlimit!=0}
                                                 {$user->node_speedlimit}Mbps
                                             {else}
-                                                不限速
+                                                不限制
                                             {/if}
                                         </p>
-                                        <p>设备限制：
+                                        <p>鏈接數：
                                             {if $user->node_connector!=0}
-                                                允许{$user->node_connector}个设备使用
+                                                允許{$user->node_connector}個設備使用
                                             {else}
-                                                不限制 (当前{$user->online_ip_count()}个在线)
+                                                不限制 (当前{$user->online_ip_count()}個設備在綫)
                                             {/if}
                                         </p>
                                     </div>
@@ -64,34 +64,22 @@
 
                         <div class="layui-col-md12">
                             <div class="layui-card">
-                                <div class="layui-card-header">购买流程
+                                <div class="layui-card-header">購買&使用流程
                                     <div class="layui-layout-right">
-                                        <a href="/user/code" class="layui-btn layui-btn-sm">账户充值</a> 
-                                        <a href="/user/shop" class="layui-btn layui-btn-sm">购买套餐</a> 
-                                        <a href="/user/node" class="layui-btn layui-btn-sm">节点使用</a>
+                                        <a href="/user/code" class="layui-btn layui-btn-sm">賬戶儲值</a> 
+                                        <a href="/user/shop" class="layui-btn layui-btn-sm">資源包購買</a> 
+                                        <a href="/user/node" class="layui-btn layui-btn-sm">接入點使用</a>
                                     </div>
                                 </div>
                                 <div class="layui-card-body">
-                                    <p>严禁BT迅雷下载及非法活动，一经发现有权在不通知的情况下进行封号！</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-col-md5 hide">
-                            <div class="layui-card">
-                                <div class="layui-card-header">工单
-                                    <div class="layui-layout-right"><a class="layui-btn layui-btn-primary layui-btn-sm" href="/user/ticket/create">提交工单</a> <a href="/user/ticket" class="layui-btn layui-btn-primary layui-btn-sm">查看工单</a></div>
-                                </div>
-                                <div class="layui-card-body">
-                                    <p>处理时间：10:00 - 21:00</p>
-                                    <p>如遇紧急问题，提交工单等待答复。</p>
+                                    <p>先為您的賬戶充值足夠的金額，然後在資源包頁面選購，激活后即可正常使用。</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="layui-col-md12" id="page-node">
                           <div class="layui-card learn">
-                            <div class="layui-card-header">使用教程 <span>适合浏览网页看视频用户</span></div>
+                            <div class="layui-card-header">使用指導</div>
                             <div class="layui-card-body" style="min-height:82px">
                                 {include file='user/learn.tpl'}
                             </div>
@@ -99,37 +87,37 @@
                         </div>
                         <div class="layui-col-md12" id="user-super-tut">
                             <div class="layui-card">
-                                <div class="layui-card-header">进阶教程 <span>适合技术宅游戏迷用户</span></div>
+                                <div class="layui-card-header">鏈接信息</div>
                                 <div class="layui-card-body">
                                     {$pre_user = URL::cloneUser($user)}
                                     <div class="layui-tab layui-tab-brief">
                                         <ul class="layui-tab-title">
-                                            <li class="layui-this"><i class="icon ptfont pticon-clipattachmentpa"></i> 订阅地址</li>
-                                                               <li><i class="icon ptfont pticon-clipattachmentpa"></i> 导入节点</li>
-                                                               <li><i class="icon ptfont pticon-locationpinmap2"></i> 游戏加速</li>
-                                                               <li><i class="icon ptfont pticon-circuitelectricbo"></i> 路由器</li>
+                                            <li class="layui-this"><i class="icon ptfont pticon-clipattachmentpa"></i> 訂閲地址</li>
+                                                               <li><i class="icon ptfont pticon-clipattachmentpa"></i> 導入接入點</li>
+                                                               <li><i class="icon ptfont pticon-locationpinmap2"></i> 游戲加速</li>
+                                                               <li><i class="icon ptfont pticon-circuitelectricbo"></i> 網路分享器</li>
                                         </ul>
                                         <div class="layui-tab-content">
                                                 {$user = URL::getSSRConnectInfo($pre_user)}
                                                 {$ssr_url_all = URL::getAllUrl($pre_user, 0, 0)}
                                                 {$ssr_url_all_mu = URL::getAllUrl($pre_user, 1, 0)}
                                             <div class="layui-tab-item layui-show">
-                                                普通订阅地址：
+                                                單端口訂閲鏈接：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">点击复制</button>
+                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
                                                 </div>
                                                 <br>
-                                                单端口订阅地址：
+                                                單端口訂閲鏈接（CN）：
                                                 <div class="clip-input">
-                                                    <input type="text" id="d_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">点击复制</button>
+                                                    <input type="text" id="d_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">點擊複製</button>
                                                 </div>
                                                 <br>
-                                                <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重置订阅链接</a>
+                                                <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>
                                             <div class="layui-tab-item">
-                                                从浏览器点击 <a href="{$ssr_url_all}" class="layui-btn layui-btn-primary">普通端口导入</a>
+                                                点击 <a href="{$ssr_url_all}" class="layui-btn layui-btn-primary">普通端口导入</a>
                                                 <a href="{$ssr_url_all_mu}" class="layui-btn layui-btn-primary">单端口导入</a> 然后点击确定
                                             </div>
                                             <div class="layui-tab-item">
@@ -174,33 +162,18 @@
                 <div class="layui-col-md4">
                     <div class="layui-row layui-col-space20">
 
-                         <div class="layui-col-md12">
-                            <div class="layui-card">
-                                <div class="layui-card-header">公告
-                                    <div class="layui-layout-right"><a href="/user/announcement" class="layui-btn layui-btn-primary layui-btn-sm">查看公告</a></div>
-                                </div>
-                                <div class="layui-card-body layui-text" style="min-height:80px">
-                                    {if $ann != null}
-                                        <p>{$ann->content}</p>
-                                    {else}
-                                        欢迎━(*｀∀´*)ノ亻!
-                                    {/if}                                    
-                                </div>                                
-                            </div>
-                        </div>                      
-                        
                         <div class="layui-col-md12">
                             <div class="layui-card">
-                                <div class="layui-card-header">使用情况 <span>最后使用:{$user->lastSsTime()|date_format:'%Y-%m-%d'}</span>
+                                <div class="layui-card-header">傳輸量使用情況 <span>最後鏈接:{$user->lastSsTime()|date_format:'%Y-%m-%d'}</span>
                                     <div class="layui-layout-right">
                                         <!--签到时验证改为false才能成功-->
                                         {if $user->isAbleToCheckin()}
                                             <p id="checkin-btn">
-                                                <button id="checkin" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-giftrewardbonus"></i> 签到续命</button>
+                                                <button id="checkin" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-giftrewardbonus"></i> 簽到</button>
                                             </p>
-                                            <button id="checked-btn" class="layui-btn layui-btn-disabled layui-btn-sm index-checked-btn">已签到</button>
+                                            <button id="checked-btn" class="layui-btn layui-btn-disabled layui-btn-sm index-checked-btn">已簽到</button>
                                         {else}
-                                            <button class="layui-btn layui-btn-disabled layui-btn-sm index-checked-btn">已签到</button>
+                                            <button class="layui-btn layui-btn-disabled layui-btn-sm index-checked-btn">已簽到</button>
                                         {/if}
                                     </div> 
                                 </div>
@@ -209,11 +182,26 @@
                                 </div>
                             </div>
                         </div>
-                        
+
+                         <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">最新公告
+                                    <div class="layui-layout-right"><a href="/user/announcement" class="layui-btn layui-btn-primary layui-btn-sm">查看全部</a></div>
+                                </div>
+                                <div class="layui-card-body layui-text" style="min-height:80px">
+                                    {if $ann != null}
+                                        <p>{$ann->content}</p>
+                                    {else}
+                                        喵~
+                                    {/if}                                    
+                                </div>                                
+                            </div>
+                        </div>                      
+                                             
                     </div>
                 </div>
 
-                <div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a>  / Theme By <a href="https://t.me/serikang" target="_blank">Sp</a></div>
+                <div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a></div>
             
             </div>
             <!--content:end-->
@@ -251,7 +239,7 @@ require(['jquery','chartjs','cookie','domReady','rounds'], function($,Chart,cook
 
     //reset
     $(".reset-link").click(function () {
-        layer.msg("重置成功！请重新添加订阅链接！");
+        layer.msg("重置成功，請添加更新後的訂閲鏈接至客戶端~");
         window.setTimeout("location.href='/user/url_reset'",1800);
     });
 
