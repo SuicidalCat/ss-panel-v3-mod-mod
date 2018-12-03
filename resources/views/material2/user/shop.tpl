@@ -71,7 +71,7 @@
 							      <tbody>
 							      	{if !$shop->bandwidth()=='0'}
 								        <tr>
-								          <td>傳輸量</td><td>{$shop->bandwidth()} G / 30天</td>
+								          <td>傳輸量</td><td>{$shop->bandwidth()} G 每30天</td>
 								        </tr>
 							        {/if}
 							        {if !$shop->expire()=='0'}
