@@ -23,7 +23,7 @@
     <div class="layui-side-scroll">
 
       <div class="layui-logo logo">
-        <a href="/user/"><img src="https://cdn.jsdelivr.net/gh/SuicidalCat/ss-panel-v3-mod-mod@v1.2.0.10/public/images/walllink_logo_black_small.png" height="35">{$config["appName"]}</a>
+        <a href="/user/"><img src="https://cdn.jsdelivr.net/gh/SuicidalCat/ss-panel-v3-mod-mod@v1.2.0.10/public/images/walllink_logo_black_small.png" height="60"></img>&nbsp;{$config["appName"]}</a>
       </div>
 
       <ul class="layui-nav layui-nav-tree" lay-filter="theme-page-menu">
