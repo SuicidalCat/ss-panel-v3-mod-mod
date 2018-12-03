@@ -261,9 +261,9 @@ require(['jquery','chartjs','cookie','domReady','rounds'], function($,Chart,cook
           borderWidth:ChartBorder
         }],
         labels: [
-          '今日使用 {$user->TodayusedTraffic()}',
-          '已经使用 {$user->LastusedTraffic()}',
-          '剩余流量 {$user->unusedTraffic()}'
+          '今日已用 {$user->TodayusedTraffic()}',
+          '總計使用 {$user->LastusedTraffic()}',
+          '剩餘可用 {$user->unusedTraffic()}'
         ]
       },
       options: {
@@ -318,7 +318,7 @@ require(['jquery','chartjs','cookie','domReady','rounds'], function($,Chart,cook
               ,offset: 'b'
               ,id:'noticetip'
               ,anim: 2
-              ,btn: ['前往购买','知道了']
+              ,btn: ['前往選購','瞭解']
               ,btnAlign: 'c'
               ,success: function(layero){
                 var btn = layero.find('.layui-layer-btn');
