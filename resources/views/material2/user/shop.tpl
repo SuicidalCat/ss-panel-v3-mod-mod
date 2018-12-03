@@ -101,7 +101,7 @@
 							        </tr>
 							        {/if}							        
 							        <tr>
-							          <td>鏈接速率/td>
+							          <td>鏈接速率</td>
 							          <td>
 							          	{if !$shop->speedlimit()=='0'}
 							          	{$shop->speedlimit()} Mbps
