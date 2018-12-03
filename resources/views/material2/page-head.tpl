@@ -58,7 +58,7 @@
           <dl class="layui-nav-child">              
             <dd class="layui-nav-item"><a href="/user/detect/log"><i class="icon ptfont pticon-sortfilterarrang"></i>鏈接審計</a></dd>
             <dd class="layui-nav-item"><a href="/user/relay"><i class="icon ptfont pticon-circuitnetworkpa"></i>流量中轉</a></dd>
-            <dd class="layui-nav-item"><a href="//docs.walllink.io" target="_blank"><i class="icon ptfont pticon-circuitnetworkpa"></i>技術文檔</a></dd>
+            <dd class="layui-nav-item"><a href="//docs.walllink.io" target="_blank"><i class="icon ptfont pticon-listnotesalign"></i>技術文檔</a></dd>
           </dl>
         </li>
         
