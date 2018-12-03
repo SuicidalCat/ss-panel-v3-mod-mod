@@ -71,17 +71,17 @@
 							      <tbody>
 							      	{if !$shop->bandwidth()=='0'}
 								        <tr>
-								          <td>流量</td><td>{$shop->bandwidth()} G / {$shop->class_expire()}天</td>
+								          <td>傳輸量</td><td>{$shop->bandwidth()} G / 30天</td>
 								        </tr>
 							        {/if}
 							        {if !$shop->expire()=='0'}
 							        <tr>
-							          <td>用户有效期</td><td>{$shop->expire()} 天</td>
+							          <td>賬戶有效期</td><td>{$shop->expire()} 天</td>
 							        </tr>
 							        {/if}
 							        {if !$shop->user_class()=='0'}
 							        <tr>
-							          <td>账户等级</td>
+							          <td>接入權限</td>
 							          <td>
 							          	Lv.{$shop->user_class()} 
 							          	{if !$shop->class_expire()=='0'}
@@ -101,17 +101,17 @@
 							        </tr>
 							        {/if}							        
 							        <tr>
-							          <td>速度限制</td>
+							          <td>鏈接速率/td>
 							          <td>
 							          	{if !$shop->speedlimit()=='0'}
 							          	{$shop->speedlimit()} Mbps
 							          	{else}
-							          	不限
+							          	不限制
 							          	{/if}
 							          </td>
 							        </tr>							        
 							        <tr>
-							          <td>设备限制</td>
+							          <td>鏈接數限制</td>
 							          <td>
 							          	{if !$shop->connector()=='0'}
 							          	{$shop->connector()} 个
@@ -124,7 +124,7 @@
 							        <tr>
 							          <td>&nbsp;</td>
 							          <td>
-							          	将在{$shop->auto_renew}天后自动续费										
+							          	每{$shop->auto_renew}天自動續費										
 							          </td>
 							        </tr>
 							        {/if}
@@ -140,7 +140,7 @@
 							    </table>
 							</div>
 						</div>
-						<a href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})" class="layui-btn"><i class="icon ptfont pticon-carte-commercesh"></i> 立即购买</a>
+						<a href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})" class="layui-btn"><i class="icon ptfont pticon-carte-commercesh"></i> 立刻訂購</a>
 					</div>
 				</div>				
 				{/foreach}
@@ -161,14 +161,14 @@
 	<div class="layout-con">
 		<div class="layui-form layui-form-pane">
 		  <div class="layui-form-item">
-		    <label class="layui-form-label">优惠码</label>
+		    <label class="layui-form-label">促銷代碼</label>
 		    <div class="layui-input-block">
-		      <input type="text" id="coupon" class="layui-input" placeholder="输入优惠码">
+		      <input type="text" id="coupon" class="layui-input" placeholder="如無即直接跳過">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
 		    <div class="layui-input-block">
-		      <button class="layui-btn" id="coupon_input" type="button"> 确定 </button>  没有就直接 [确定]
+		      <button class="layui-btn" id="coupon_input" type="button"> 確定 </button>
 		    </div>
 		  </div>
 		</div>
@@ -177,11 +177,11 @@
 
 <div id="order_modal" class="hide layout">
 	<div class="layout-con">
-		<p id="total">总金额：</p>
-		<p id="name">商品名称：</p>
-		<p id="credit">优惠额度：</p>		
-		<p id="auto_reset" class="hide">在到期时自动续费</p>
-		<div class="text-center"><button class="layui-btn" id="order_input" type="button">确定购买</button></div>
+		<p id="total">總金額：</p>
+		<p id="name">資源包名稱：</p>
+		<p id="credit">促銷額度：</p>		
+		<p id="auto_reset" class="hide">到期自動續費</p>
+		<div class="text-center"><button class="layui-btn" id="order_input" type="button">確認購買</button></div>
 	</div>
 </div>
 
