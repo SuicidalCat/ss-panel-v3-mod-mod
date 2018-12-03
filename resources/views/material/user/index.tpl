@@ -1,9 +1,6 @@
 
-
-
 {include file='user/main.tpl'}
 {$ssr_prefer = URL::SSRCanConnect($user, 0)}
-
 
 	<main class="content">
 
@@ -453,7 +450,7 @@
 														<p><span class="icon icon-lg text-white">filter_2</span> 打开<a href="/user/node">节点列表</a>，点开自己需要的节点详情，自行导入节点</p>
 													</div>
 													<div class="tab-pane fade" id="all_ss_android">
-														<p><span class="icon icon-lg text-white">filter_1</span><a href="/ssr-download/ssd-android.apk" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载 SSD</a>。<b>因为与原版Shadowsocks包名相同，所以如果手机上如果已安装原版Shadowsocks，需先卸载</b></p>
+														<p><span class="icon icon-lg text-white">filter_1</span><a href="/ssr-download/ssd-android.apk" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载 SSD</a>，<a href="/ssr-download/ss-android-obfs.apk" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载 SS 混淆插件</a></p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 安装后，在手机上点击 <a class="copy-text btn-dl" data-clipboard-text="{$ss_url_all}"><i class="material-icons icon-sm">how_to_vote</i>复制链接</a></p>
 														<p><span class="icon icon-lg text-white">filter_3</span> 打开 ShadowsocksD 客户端，点击右上角的“加号”，选择“添加订阅”，将剪贴板中的内容粘贴进去，点击“OK”，稍等片刻即可看见订阅的节点</p>
 														<div><span class="icon icon-lg text-white">flash_auto</span> 节点订阅地址：</div>
@@ -552,6 +549,9 @@
 											{if $geetest_html != null}
 												<div id="popup-captcha"></div>
 											{/if}
+											{if $recaptcha_sitekey != null && $user->isAbleToCheckin()}
+                                                <div class="g-recaptcha" data-sitekey="{$recaptcha_sitekey}"></div>
+                                            {/if}
 
 
 									<div class="card-action">
@@ -775,7 +775,10 @@ window.onload = function() {
         $.ajax({
                 type: "POST",
                 url: "/user/checkin",
-                dataType: "json",
+                dataType: "json",{if $recaptcha_sitekey != null}
+                data: {
+                    recaptcha: grecaptcha.getResponse()
+                },{/if}
                 success: function (data) {
                     $("#checkin-msg").html(data.msg);
                     $("#checkin-btn").html(checkedmsgGE);
@@ -798,7 +801,10 @@ $(document).ready(function () {
 		$.ajax({
 			type: "POST",
 			url: "/user/checkin",
-			dataType: "json",
+			dataType: "json",{if $recaptcha_sitekey != null}
+            data: {
+                recaptcha: grecaptcha.getResponse()
+            },{/if}
 			success: function (data) {
 				$("#checkin-msg").html(data.msg);
 				$("#checkin-btn").html(checkedmsgGE);
@@ -888,3 +894,4 @@ initGeetest({
 
 
 </script>
+{if $recaptcha_sitekey != null}<script src="https://recaptcha.net/recaptcha/api.js" async defer></script>{/if}
