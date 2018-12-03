@@ -40,7 +40,7 @@
           <dl class="layui-nav-child">  
             <dd class="layui-nav-item"><a href="/user/code"><i class="icon ptfont pticon-dollarcurrencymo"></i>賬戶儲值</a></dd>
             <dd class="layui-nav-item"><a href="/user/shop"><i class="icon ptfont pticon-carte-commercesh"></i>資源包購買</a></dd>
-            <dd class="layui-nav-item"><a href="/user/node"><i class="icon ptfont pticon-locationpinmap1"></i>接入點使用</a></dd>
+            <dd class="layui-nav-item"><a href="/user/node"><i class="icon ptfont pticon-locationpinmap1"></i>接入點列表</a></dd>
           </dl>
         </li>
 
