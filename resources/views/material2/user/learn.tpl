@@ -16,7 +16,6 @@
 	</div>
 	<div class="layui-col-md3 layui-col-sm6 layui-col-xs6">
 		<p><i class="lnr lnr-smartphone"></i> iOS</p>
-			<a href="//docs.walllink.io/htlm" target="_blank" class="layui-btn layui-btn-primary layui-btn-sm">使用教程（Shadowrocket）</a>
-			<a href="//docs.walllink.io/g7mg" target="_blank" class="layui-btn layui-btn-primary layui-btn-sm">使用教程（Quantumult）</a>
+			<a href="//docs.walllink.io/category/ios/" target="_blank" class="layui-btn layui-btn-primary layui-btn-sm">使用教程</a>
 	</div>
 </div>
