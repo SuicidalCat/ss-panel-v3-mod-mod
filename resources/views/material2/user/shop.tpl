@@ -6,28 +6,29 @@
 
 	<div class="layui-row layui-card" id="top-step">
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/code"><span class="layui-badge">1</span> 账户充值</a>
+			<a href="/user/code"><span class="layui-badge">1</span> 賬戶儲值</a>
 		</div>
 		<div class="layui-col-md4 layui-col-sm4 current">
-			<span class="layui-badge">2</span> 购买套餐
+			<span class="layui-badge">2</span> 資源包購買
 		</div>
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/node"><span class="layui-badge">3</span> 节点使用</a>
+			<a href="/user/node"><span class="layui-badge">3</span> 接入點列表</a>
 		</div>
 	</div>
 
 	<!--title-->
-	<h1 class="site-h1">购买套餐</h1>
+	<!--h1 class="site-h1">购买套餐</h1-->
 
 	<!--content-->
 	<div class="layui-row layui-col-space20" id="page-shop">
 
 	  	<div class="layui-col-md4" id="page-pay">
 			<div class="layui-card">
-		        <div class="layui-card-header">余额 <div class="layui-layout-right"><a href="/user/code" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-dollarcurrencymo"></i> 充值</a> <a href="/user/bought" class="layui-btn layui-btn-primary layui-btn-sm">购买记录</a></div> </div>
+		        <div class="layui-card-header">可用餘額 <div class="layui-layout-right"><a href="/user/code" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-dollarcurrencymo"></i> 儲值</a> <a href="/user/bought" class="layui-btn layui-btn-primary layui-btn-sm">訂購記錄</a></div> </div>
 		        <div class="layui-card-body">
 		        	<div class="price">
 		        		<div><span>{$user->money}</span>元</div>
+								<p>不足的餘額將會導致自動續費失敗，服務被暫停</p>
 		        	</div>		        	
 		        </div>
 		      </div>
@@ -37,7 +38,7 @@
 		<div class="layui-col-md8" id="page-node">
 
 	      <div class="layui-card learn">
-	        <div class="layui-card-header">使用教程</div>
+	        <div class="layui-card-header">使用指導</div>
 	        <div class="layui-card-body" style="min-height:82px">
 	        	{include file='user/learn.tpl'}
 	        </div>
@@ -47,7 +48,7 @@
 
 	  	<div class="layui-col-md12 meals">
 
-  			<h1 class="site-h1">流量套餐</h1>
+  			<h1 class="site-h1">資源包套餐</h1>
 
 			{$shops->render()}
         	<div class="layui-row layui-col-space20">
