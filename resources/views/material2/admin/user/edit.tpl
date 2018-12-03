@@ -52,6 +52,14 @@
 					       <input type="checkbox" {if $edit_user->enable==1}checked{/if} id="enable" lay-skin="switch" lay-text="是|否">
 					    </div>
 					  </div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">二次验证启用</label>
+							<div class="layui-input-inline">
+								<label for="ga_enable">
+									<input {if $edit_user->ga_enable==1}checked{/if} id="ga_enable" lay-skin="switch" lay-text="是|否">
+								</label>
+							</div>
+						</div>
 					  <div class="layui-form-item">
 					    <label class="layui-form-label">金钱</label>
 					    <div class="layui-input-inline">
@@ -292,6 +300,15 @@ require(['domReady','jquery','validate'], function(domReady,$,validate){
 				var enable=0;
 			}
 
+			if(document.getElementById('ga_enable').checked)
+			{
+				var ga_enable=1;
+			}
+			else
+			{
+				var ga_enable=0;
+			}
+
             $.ajax({
                 type: "PUT",
                 url: "/admin/user/{$edit_user->id}",
@@ -300,31 +317,32 @@ require(['domReady','jquery','validate'], function(domReady,$,validate){
                     email: $("#email").val(),
                     remark: $("#remark").val(),
                     pass: $("#pass").val(),
-					auto_reset_day: $("#auto_reset_day").val(),
+										auto_reset_day: $("#auto_reset_day").val(),
                     auto_reset_bandwidth: $("#auto_reset_bandwidth").val(),
                     is_multi_user: $("#is_multi_user").val(),
                     port: $("#port").val(),
-					group: $("#group").val(),
+										group: $("#group").val(),
                     passwd: $("#passwd").val(),
                     transfer_enable: $("#transfer_enable").val(),
                     invite_num: $("#invite_num").val(),
-					node_speedlimit: $("#node_speedlimit").val(),
+										node_speedlimit: $("#node_speedlimit").val(),
                     method: $("#method").val(),
-					remark: $("#remark").val(),
-					money: $("#money").val(),
+										remark: $("#remark").val(),
+										money: $("#money").val(),
                     enable: enable,
                     is_admin: is_admin,
+										ga_enable: ga_enable,
                     ref_by: $("#ref_by").val(),
                     forbidden_ip: $("#forbidden_ip").val(),
                     forbidden_port: $("#forbidden_port").val(),
-					class: $("#class").val(),
-					class_expire: $("#class_expire").val(),
-					expire_in: $("#expire_in").val(),
-					node_connector: $("#node_connector").val(),
-					protocol: $("#protocol").val(),
-					protocol_param: $("#protocol_param").val(),
-					obfs: $("#obfs").val(),
-					obfs_param: $("#obfs_param").val()
+										class: $("#class").val(),
+										class_expire: $("#class_expire").val(),
+										expire_in: $("#expire_in").val(),
+										node_connector: $("#node_connector").val(),
+										protocol: $("#protocol").val(),
+										protocol_param: $("#protocol_param").val(),
+										obfs: $("#obfs").val(),
+										obfs_param: $("#obfs_param").val()
                 },
                 success: function (data) {
                     if (data.ret) {
