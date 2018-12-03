@@ -93,7 +93,7 @@
 	    <div class="layui-col-md12">
 
 	      <div class="layui-card">
-	        <div class="layui-card-header">充值记录</div>
+	        <div class="layui-card-header">儲值記錄</div>
 	        <div class="layui-card-body">
 	        	{$codes->render()}
 	        	<div class="table-over">
