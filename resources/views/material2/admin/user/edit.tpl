@@ -43,7 +43,7 @@
 					  <div class="layui-form-item">
 					    <label class="layui-form-label">是否管理员</label>
 					    <div class="layui-input-inline">
-					      <input type="checkbox" id="is_admin" {if $edit_user->is_admin==1}checked{/if} lay-skin="switch" lay-text="是|否">
+					      <input type="checkbox" {if $edit_user->is_admin==1}checked{/if} id="is_admin" lay-skin="switch" lay-text="是|否">
 					    </div>
 					  </div>
 					  <div class="layui-form-item">
@@ -55,7 +55,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">二次验证启用</label>
 							<div class="layui-input-inline">
-								<input {if $edit_user->ga_enable==1}checked{/if} id="ga_enable" lay-skin="switch" lay-text="是|否">
+								<input type="checkbox" {if $edit_user->ga_enable==1}checked{/if} id="ga_enable" lay-skin="switch" lay-text="是|否">
 							</div>
 						</div>
 					  <div class="layui-form-item">
