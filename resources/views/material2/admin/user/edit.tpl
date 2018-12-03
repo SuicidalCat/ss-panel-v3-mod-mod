@@ -80,12 +80,10 @@
 			</div>
 		</div>
 
-
 		<div class="layui-col-md6">
 			<div class="layui-card">
 				<div class="layui-card-header">端口信息</div>
 				<div class="layui-card-body">
-
 					<div class="layui-form layui-form-pane">
 					  <div class="layui-form-item">
 					    <label class="layui-form-label">连接端口</label>
@@ -130,7 +128,6 @@
 					      <input id="obfs_param" type="text" value="{$edit_user->obfs_param}" class="layui-input">
 					    </div>
 					  </div>
-
 					</div>
 				</div>
 			</div>
