@@ -41,9 +41,6 @@
             </div>
           </div>
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;"><i id="logo-notice" class="icon ptfont pticon-exclamationcaution" style="font-size:14px;font-weight:normal;"></i></a>
-        </li>
       </ul>
 
     </div>
