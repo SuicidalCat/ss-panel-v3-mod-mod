@@ -4,7 +4,7 @@
     <div class="layadmin-tabsbody-item layui-show">
         <div class="layui-container">
             <!--title-->
-            <h1 class="site-h1">首页</h1>
+            <h1 class="site-h1">面板首頁</h1>
             <!--content-->
             <div class="layui-row layui-col-space20">                
 
@@ -68,7 +68,7 @@
                                     <div class="layui-layout-right">
                                         <a href="/user/code" class="layui-btn layui-btn-sm">賬戶儲值</a> 
                                         <a href="/user/shop" class="layui-btn layui-btn-sm">資源包購買</a> 
-                                        <a href="/user/node" class="layui-btn layui-btn-sm">接入點使用</a>
+                                        <a href="/user/node" class="layui-btn layui-btn-sm">接入點列表</a>
                                     </div>
                                 </div>
                                 <div class="layui-card-body">
@@ -93,7 +93,7 @@
                                     <div class="layui-tab layui-tab-brief">
                                         <ul class="layui-tab-title">
                                             <li class="layui-this"><i class="icon ptfont pticon-clipattachmentpa"></i> 訂閲地址</li>
-                                                               <li><i class="icon ptfont pticon-clipattachmentpa"></i> 導入接入點</li>
+                                                               <li><i class="icon ptfont pticon-clipattachmentpa"></i> 鏈接導入</li>
                                                                <li><i class="icon ptfont pticon-locationpinmap2"></i> 游戲加速</li>
                                                                <li><i class="icon ptfont pticon-circuitelectricbo"></i> 網路分享器</li>
                                         </ul>
@@ -128,15 +128,15 @@
                                                 <br>(4) 更新后选择其中一个节点闪电图标测试节点-测试UDP转发...通过!（UDP通过即可连接并开始游戏），如测试不通过，点击齿轮图标设置DNS，推荐谷歌DNS
                                                 
                                                 <p>
-                                                普通订阅地址：
+                                                單端口訂閲鏈接：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
+                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">点击复制</button>
                                                 </div>
                                                 <br>
-                                                单端口订阅地址：
+                                                單端口訂閲鏈接（CN）：
                                                 <div class="clip-input">
-                                                    <input type="text" id="d_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <input type="text" id="d_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">点击复制</button>
                                                 </div>
                                                 </p>
