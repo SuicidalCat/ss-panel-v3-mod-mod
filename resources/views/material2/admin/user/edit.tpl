@@ -55,9 +55,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">二次验证启用</label>
 							<div class="layui-input-inline">
-								<label for="ga_enable">
-									<input {if $edit_user->ga_enable==1}checked{/if} id="ga_enable" lay-skin="switch" lay-text="是|否">
-								</label>
+								<input {if $edit_user->ga_enable==1}checked{/if} id="ga_enable" lay-skin="switch" lay-text="是|否">
 							</div>
 						</div>
 					  <div class="layui-form-item">
