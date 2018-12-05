@@ -8,7 +8,7 @@
 <script>
 window.sp={
     js:  "{$config['baseUrl']}/theme/sp/assets/",
-    ver: '1.0',
+    ver: '1.1',
     jump_delay :'{$config['jump_delay']}',
     timestamp : '{time()}'
 };
