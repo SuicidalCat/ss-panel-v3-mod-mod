@@ -34,8 +34,48 @@
 
 <script>
 require(['domReady','jquery','datatables.net'],function(domReady,$,datatables){
+
+	delete_modal_show=function(id) {
+		deleteid=id;
+		layer.confirm('确定中止？', {
+          btn: ['确定','取消'] //按钮
+        }, function(){
+          delete_id()
+        }, function(){
+          layer.close()
+        });
+	}
+
 	domReady(function(){		
 		{include file='table/js_2.tpl'}
+
+		delete_id=function(){
+			$.ajax({
+				type:"DELETE",
+				url:"/admin/bought",
+				dataType:"json",
+				data:{
+					id: deleteid
+				},
+				success:function(data){
+					if(data.ret){
+						{literal}
+						layer.msg(data.msg, {icon: "6"}); 
+						{/literal}
+						$("#row_delete_"+deleteid).attr("disabled","true");
+					}else{
+						layer.msg(data.msg);
+					}
+				},
+				error:function(jqXHR){
+					layer.msg(data.msg+"发生错误了。");
+				}
+			});
+		}
+		$("#delete_input").click(function(){
+			delete_id();
+		});
+
 	})
 })
 </script>

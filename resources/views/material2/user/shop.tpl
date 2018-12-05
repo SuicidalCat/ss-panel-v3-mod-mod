@@ -175,12 +175,18 @@
 	</div>
 </div>
 
-<div id="order_modal" class="hide layout">
+<div id="order_modal" class="hide layout layui-form">
 	<div class="layout-con">
 		<p id="total">總金額：</p>
 		<p id="name">資源包名稱：</p>
-		<p id="credit">促銷額度：</p>		
-		<p id="auto_reset" class="hide">到期自動續費</p>
+		<p id="credit">促銷額度：</p>	
+		<div class="layui-form-item">
+			<span style="font-size:16px;vertical-align:-5px">關閉舊套餐自動續費</span> <input type="checkbox" id="disableothers" name="disableothers" lay-skin="switch" lay-text="开启|关闭" checked>
+		</div>
+		<div class="layui-form-item">
+			<span style="font-size:16px;vertical-align:-5px">到期自動續費</span> <input type="checkbox" id="autorenew" name="autorenew" lay-skin="switch" lay-text="开启|关闭" checked>
+		</div>
+		<hr>
 		<div class="text-center"><button class="layui-btn" id="order_input" type="button">確認購買</button></div>
 	</div>
 </div>
