@@ -1011,13 +1011,7 @@ class UserController extends BaseController
 
     public function shop($request, $response, $args)
     {
-        $pageNum = 1;
-        if (isset($request->getQueryParams()["page"])) {
-            $pageNum = $request->getQueryParams()["page"];
-        }
-        $shops = Shop::where("status", 1)->orderBy("name")->paginate(15, ['*'], 'page', $pageNum);
-        $shops->setPath('/user/shop');
-
+        $shops = Shop::where("status", 1)->orderBy("name")->get();
         return $this->view()->assign('shops', $shops)->display('user/shop.tpl');
     }
 
@@ -1125,13 +1119,13 @@ class UserController extends BaseController
         $price = $shop->price * ((100 - $credit) / 100);
         $user = $this->user;
 
-        if ($user->money < $price) {
+        if (bccomp($user->money , $price,2)==-1) {
             $res['ret'] = 0;
             $res['msg'] = '喵喵喵~ 当前余额不足，总价为' . $price . '元。</br><a href="/user/code">点击进入充值界面</a>';
             return $response->getBody()->write(json_encode($res));
         }
 
-        $user->money = $user->money - $price;
+        $user->money =bcsub($user->money , $price,2);
         $user->save();
 
         if ($disableothers == 1) {
@@ -1655,14 +1649,14 @@ class UserController extends BaseController
         }
 
 		if(strtotime($this->user->expire_in) < time()){
+            $res['ret'] = 0;
 		    $res['msg'] = "您的账户已过期，无法签到。";
-            $res['ret'] = 1;
             return $response->getBody()->write(json_encode($res));
 		}
 
         if (!$this->user->isAbleToCheckin()) {
-            $res['msg'] = "您似乎已经续命过了...";
-            $res['ret'] = 1;
+            $res['ret'] = 0;
+            $res['msg'] = "您似乎已经签到过了...";
             return $response->getBody()->write(json_encode($res));
         }
         $traffic = rand(Config::get('checkinMin'), Config::get('checkinMax'));

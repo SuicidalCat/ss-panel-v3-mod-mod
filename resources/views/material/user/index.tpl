@@ -24,7 +24,7 @@
 											<div class="nodemiddle node-flex">
 												<div class="nodetype">
 													{if $user->class!=0}
-													<dd>VIP{$user->class}</dd>
+													<dd>VIP {$user->class}</dd>
 													{else}
 													<dd>普通用户</dd>
 													{/if}
@@ -272,13 +272,14 @@
 															</b></p>
 														{/if}
 													{/if}
-                                                        <p><span class="icon icon-lg text-white">filter_1</span> 在 Safari 中<a class="btn-dl" href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/xcxnig/ssr-download/master/potatso-lite.plist"><i class="material-icons">save_alt</i> 点击安装 Potatso Lite</a></p>
+													<p><span class="icon icon-lg text-white">filter_1</span> 在 Safari 中<a class="btn-dl" href="itms-services://?action=download-manifest&url=https://dl.ssr.to:500/potatso-lite.plist"><i class="material-icons">save_alt</i> 点击安装 Potatso Lite</a> 或在非国区AppStore中搜索<code>Shadowrocket</code>下载安装 </p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 打开 Potatso Lite，点击添加代理，点击右上角的 + 号，选择“订阅”，名字任意填写，开启自动更新，URL填写以下地址并保存即可</p>
+														<p>如果使用shadowrocket,打开 Shadowrocket，点击右上角的 + 号，类型选择“Subscribe”，URL填写以下地址并点击右上角完成即可。或使用<a href="javascript:void(0);" class="btn-dl" style="margin-left: 5px;" data-onekeyfor="sub0"><i class="material-icons icon-sm">how_to_vote</i>小火箭一键{if !$mergeSub}普通{/if}端口订阅</a> {if !$mergeSub}<a href="javascript:void(0);" class="btn-dl" style="margin-left: 5px;" data-onekeyfor="sub1"><i class="material-icons icon-sm">how_to_vote</i>小火箭一键单端口订阅</a>{/if}</p>
 														<div><span class="icon icon-lg text-white">flash_auto</span> {if !$mergeSub}普通节点{/if}订阅地址：</div>
-														<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$subUrl}{$ssr_sub_token}{if !$mergeSub}?mu=0{/if}" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}{if !$mergeSub}?mu=0{/if}">点击复制</button><br></div>
+														<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" id="sub0" readonly value="{$subUrl}{$ssr_sub_token}{if !$mergeSub}?mu=0{/if}" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}{if !$mergeSub}?mu=0{/if}">点击复制</button><br></div>
 														{if !$mergeSub}
 														<div><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：</div>
-														<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$subUrl}{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=1">点击复制</button><br></div>
+														<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" id="sub1" readonly value="{$subUrl}{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=1">点击复制</button><br></div>
 														{/if}
                                                       <!-- <p><a href="/user/announcement">点击这里查看iOS傻瓜式教程</a></p> -->
 													</div>
@@ -387,7 +388,8 @@
 														{$user = URL::getSSConnectInfo($pre_user)}
 														{$ss_url_all = URL::getAllUrl($pre_user, 0, 1)}
 														{$ss_url_all_mu = URL::getAllUrl($pre_user, 1, 1)}
-														{$ss_url_all_win = URL::getAllUrl($pre_user, 0, 2)}
+														{$ss_url_all_win = URL::getAllUrl($pre_user, 0, 2)}														
+														{$ssd_url_all =URL::getAllSSDUrl($user)}
 
 														{if URL::SSCanConnect($user)}
 														<dl class="dl-horizontal">
@@ -415,7 +417,6 @@
 														{/if}
 													</div>
 													<div class="tab-pane fade active in" id="all_ss_windows">
-													{$ssd_url_all =URL::getAllSSDUrl($user)}
 														<p><span class="icon icon-lg text-white">filter_1</span><a href="/ssr-download/ssd-win.7z" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载 SSD</a>，解压至任意磁盘并运行</p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 任务栏右下角右键纸飞机图标->服务器订阅->SSD服务器订阅设置，将订阅链接设置为下面的地址，确定之后再更新SSD服务器订阅</p>
 														<p><span class="icon icon-lg text-white">filter_3</span> 然后选择一个合适的服务器，代理规则选“绕过局域网和大陆”，然后即可上网</p>
@@ -446,7 +447,7 @@
 															</b></p>
 														{/if}
 													{/if}
-                                                        <p><span class="icon icon-lg text-white">filter_1</span> 在 Safari 中点击<a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/xcxnig/ssr-download/master/potatso-lite.plist">这里</a>安装 Potatso Lite</p>
+                                                        <p><span class="icon icon-lg text-white">filter_1</span> 在 Safari 中点击<a href="itms-services://?action=download-manifest&url=https://dl.ssr.to:500/potatso-lite.plist">这里</a>安装 Potatso Lite</p>
 														<p><span class="icon icon-lg text-white">filter_2</span> 打开<a href="/user/node">节点列表</a>，点开自己需要的节点详情，自行导入节点</p>
 													</div>
 													<div class="tab-pane fade" id="all_ss_android">
@@ -685,7 +686,27 @@
 
 <script src="https://cdn.jsdelivr.net/npm/shake.js@1.2.2/shake.min.js"></script>
 
+<script>
+;(function(){
+	'use strict'
 
+	let onekeysubBTN = document.querySelectorAll('[data-onekeyfor]');
+	for (let i=0;i<onekeysubBTN.length;i++) {
+		onekeysubBTN[i].addEventListener('click',()=>{
+			let onekeyId = onekeysubBTN[i].dataset.onekeyfor;
+			AddSub(onekeyId);
+		});
+	}
+
+	function AddSub(id){
+		let url = document.getElementById(id).value;
+		let tmp = window.btoa(url);
+		tmp = tmp.substring(0,tmp.length);
+		url = "sub://" + tmp + "#";
+		window.location.href = url;
+	}
+})();
+</script>
 
 <script>
 
@@ -780,12 +801,17 @@ window.onload = function() {
                     recaptcha: grecaptcha.getResponse()
                 },{/if}
                 success: function (data) {
-                    $("#checkin-msg").html(data.msg);
-                    $("#checkin-btn").html(checkedmsgGE);
+                    if (data.ret) {
+					$("#checkin-msg").html(data.msg);
+					$("#checkin-btn").html(checkedmsgGE);
 					$("#result").modal();
-                    $("#msg").html(data.msg);
+					$("#msg").html(data.msg);
 					$('#remain').html(data.traffic);
-				    $('.bar.remain.color').css('width',(data.unflowtraffic-({$user->u}+{$user->d}))/data.unflowtraffic*100+'%');
+					$('.bar.remain.color').css('width',(data.unflowtraffic-({$user->u}+{$user->d}))/data.unflowtraffic*100+'%');
+				} else {
+					$("#result").modal();
+					$("#msg").html(data.msg);
+				}
                 },
                 error: function (jqXHR) {
 					$("#result").modal();
@@ -806,12 +832,17 @@ $(document).ready(function () {
                 recaptcha: grecaptcha.getResponse()
             },{/if}
 			success: function (data) {
-				$("#checkin-msg").html(data.msg);
-				$("#checkin-btn").html(checkedmsgGE);
-				$("#result").modal();
-				$("#msg").html(data.msg);
-				$('#remain').html(data.traffic);
-				$('.bar.remain.color').css('width',(data.unflowtraffic-({$user->u}+{$user->d}))/data.unflowtraffic*100+'%');
+				if (data.ret) {
+					$("#checkin-msg").html(data.msg);
+					$("#checkin-btn").html(checkedmsgGE);
+					$("#result").modal();
+					$("#msg").html(data.msg);
+					$('#remain').html(data.traffic);
+					$('.bar.remain.color').css('width',(data.unflowtraffic-({$user->u}+{$user->d}))/data.unflowtraffic*100+'%');
+				} else {
+					$("#result").modal();
+					$("#msg").html(data.msg);
+				}
 			},
 			error: function (jqXHR) {
 				$("#result").modal();
@@ -860,12 +891,17 @@ var handlerPopup = function (captchaObj) {
 				geetest_seccode: validate.geetest_seccode
 			},
 			success: function (data) {
-				$("#checkin-msg").html(data.msg);
-				$("#checkin-btn").html(checkedmsgGE);
-				$("#result").modal();
-				$("#msg").html(data.msg);
-				$('#remain').html(data.traffic);
-				$('.bar.remain.color').css('width',(data.unflowtraffic-({$user->u}+{$user->d}))/data.unflowtraffic*100+'%');
+				if (data.ret) {
+					$("#checkin-msg").html(data.msg);
+					$("#checkin-btn").html(checkedmsgGE);
+					$("#result").modal();
+					$("#msg").html(data.msg);
+					$('#remain').html(data.traffic);
+					$('.bar.remain.color').css('width',(data.unflowtraffic-({$user->u}+{$user->d}))/data.unflowtraffic*100+'%');
+				} else {
+					$("#result").modal();
+					$("#msg").html(data.msg);
+				}
 			},
 			error: function (jqXHR) {
 				$("#result").modal();
