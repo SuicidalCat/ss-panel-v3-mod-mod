@@ -66,9 +66,9 @@
 								</div>
 							</div-->
 							<div class="layui-col-md7">								
-						      	<div class="layui-form layui-form-pane">
+						      	<!--div class="layui-form layui-form-pane">
 						      		<p><span class="layui-badge layui-bg-gray">2</span></p>
-									  <div class="layui-form-item">
+									  <div class="layui-form-item"-->
 									    <label class="layui-form-label" for="code">输入儲值卡key</label>
 									    <div class="layui-input-inline">
 									      <input id="code" type="text" name="title" class="layui-input">
