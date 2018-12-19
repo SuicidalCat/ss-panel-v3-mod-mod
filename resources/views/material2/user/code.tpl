@@ -42,9 +42,9 @@
 	        	<div class="layui-tab layui-tab-brief" lay-filter="payfor">
 				  <ul class="layui-tab-title">				    
 				    {if $pmw!=''}
-				    	<li class="layui-this">黛米付</li>
+				    	<li class="layui-this">在綫支付</li>
 				    {/if}
-				    <li {if $pmw!=''}{else}class="layui-this"{/if}>充值碼</li>
+				    <li {if $pmw!=''}{else}class="layui-this"{/if}>儲值碼</li>
 				  </ul>
 				  <div class="layui-tab-content">
 				  	
@@ -58,23 +58,23 @@
 
     				<div class="layui-tab-item {if $pmw!=''}{else}layui-show{/if}">
 						<div class="layui-row">
-							<div class="layui-col-md5">
+							<!--div class="layui-col-md5">
 								<div class="layui-form">
 									<p><span class="layui-badge layui-bg-gray">1</span></p>
 									<a href="" class="layui-btn">买卡 →</a>
 									<div class="layui-word-aux layui-input-inline">自动发货，自助购买</div>
 								</div>
-							</div>
+							</div-->
 							<div class="layui-col-md7">								
 						      	<div class="layui-form layui-form-pane">
 						      		<p><span class="layui-badge layui-bg-gray">2</span></p>
 									  <div class="layui-form-item">
-									    <label class="layui-form-label" for="code">输入充值卡</label>
+									    <label class="layui-form-label" for="code">输入儲值卡key</label>
 									    <div class="layui-input-inline">
 									      <input id="code" type="text" name="title" class="layui-input">
 									    </div>
 									    <div class="layui-form-mid">
-									    	<button class="layui-btn" lay-submit id="card-update">充值</button>
+									    	<button class="layui-btn" lay-submit id="card-update">儲值</button>
 									    </div>
 									  </div>
 								</div>
