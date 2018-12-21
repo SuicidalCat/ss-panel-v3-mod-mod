@@ -93,9 +93,9 @@
                                     <div class="layui-tab layui-tab-brief">
                                         <ul class="layui-tab-title">
                                             <li class="layui-this"><i class="icon ptfont pticon-clipattachmentpa"></i> 訂閲地址</li>
-                                                               <li><i class="icon ptfont pticon-clipattachmentpa"></i> 鏈接導入</li>
-                                                               <li><i class="icon ptfont pticon-locationpinmap2"></i> 游戲加速</li>
-                                                               <li><i class="icon ptfont pticon-circuitelectricbo"></i> 網路分享器</li>
+                                            <li><i class="icon ptfont pticon-clipattachmentpa"></i> 鏈接導入</li>
+                                            <li><i class="icon ptfont pticon-locationpinmap2"></i> 游戲加速</li>
+                                            <li><i class="icon ptfont pticon-circuitelectricbo"></i> 網路分享器</li>
                                         </ul>
                                         <div class="layui-tab-content">
                                                 {$user = URL::getSSRConnectInfo($pre_user)}
@@ -117,8 +117,8 @@
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>
                                             <div class="layui-tab-item">
-                                                点击 <a href="{$ssr_url_all}" class="layui-btn layui-btn-primary">普通端口导入</a>
-                                                <a href="{$ssr_url_all_mu}" class="layui-btn layui-btn-primary">单端口导入</a> 然后点击确定
+                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}">多端口配置導入</button>
+                                                <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all_mu}">單端口配置導入</button> 後右鍵客戶端導入。
                                             </div>
                                             <div class="layui-tab-item">
                                                 <a href="/ssr-download/SSTap.7z" class="layui-btn">点击下载</a> 解压后，运行一键游戏加速
@@ -131,13 +131,13 @@
                                                 單端口訂閲鏈接：
                                                 <div class="clip-input">
                                                     <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">点击复制</button>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
                                                 </div>
                                                 <br>
                                                 單端口訂閲鏈接（CN）：
                                                 <div class="clip-input">
                                                     <input type="text" id="d_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">点击复制</button>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">點擊複製</button>
                                                 </div>
                                                 </p>
                                             </div>                                  
