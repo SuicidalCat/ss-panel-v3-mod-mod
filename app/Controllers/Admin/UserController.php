@@ -46,7 +46,7 @@ class UserController extends AdminController
             $pageNum = $request->getQueryParams()["page"];
         }
 
-        $users = User::where("email", "LIKE", "%".$text."%")->orWhere("user_name", "LIKE", "%".$text."%")->orWhere("im_value", "LIKE", "%".$text."%")->orWhere("port", "LIKE", "%".$text."%")->orWhere("remark", "LIKE", "%".$text."%")->paginate(20, ['*'], 'page', $pageNum);
+        $users = User::where("email", "LIKE", "%".$text."%")->orWhere("user_name", "LIKE", "%".$text."%")->orWhere("im_value", "LIKE", "%".$text."%")->orWhere("port", "LIKE", "%".$text."%")->orWhere("remark", "LIKE", "%".$text."%")->orWhere("enable_traffic", "LIKE", "%".$text."%")->orWhere("today_traffic", "LIKE", "%".$text."%")->paginate(20, ['*'], 'page', $pageNum);
         $users->setPath('/admin/user/search/'.$text);
 
 
@@ -282,7 +282,9 @@ class UserController extends AdminController
 								->orwhere('user_name','LIKE',"%$search%")
 								->orwhere('email','LIKE',"%$search%")
 								->orwhere('im_value','LIKE',"%$search%")
-								->orwhere('port','LIKE',"%$search%");
+								->orwhere('port','LIKE',"%$search%")
+				    				->orWhere("enable_traffic", "LIKE","%$search%")
+				    				->orWhere("today_traffic", "LIKE","%$search%");
 							}
 						)
                     ->get();
@@ -292,7 +294,9 @@ class UserController extends AdminController
 								->orwhere('user_name','LIKE',"%$search%")
 								->orwhere('email','LIKE',"%$search%")
 								->orwhere('im_value','LIKE',"%$search%")
-								->orwhere('port','LIKE',"%$search%");
+								->orwhere('port','LIKE',"%$search%")
+				    				->orWhere("enable_traffic", "LIKE","%$search%")
+				    				->orWhere("today_traffic", "LIKE","%$search%");
 							}
 						)->count();
 		}
