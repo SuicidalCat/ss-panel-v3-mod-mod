@@ -282,9 +282,7 @@ class UserController extends AdminController
 								->orwhere('user_name','LIKE',"%$search%")
 								->orwhere('email','LIKE',"%$search%")
 								->orwhere('im_value','LIKE',"%$search%")
-								->orwhere('port','LIKE',"%$search%")
-				    				->orWhere("enable_traffic", "LIKE","%$search%")
-								->orWhere("today_traffic", "LIKE","%$search%");
+								->orwhere('port','LIKE',"%$search%");
 							}
 						)
                     ->get();
@@ -294,9 +292,7 @@ class UserController extends AdminController
 								->orwhere('user_name','LIKE',"%$search%")
 								->orwhere('email','LIKE',"%$search%")
 								->orwhere('im_value','LIKE',"%$search%")
-								->orwhere('port','LIKE',"%$search%")
-				    				->orWhere("enable_traffic", "LIKE","%$search%")
-								->orWhere("today_traffic", "LIKE","%$search%");
+								->orwhere('port','LIKE',"%$search%");
 							}
 						)->count();
 		}
