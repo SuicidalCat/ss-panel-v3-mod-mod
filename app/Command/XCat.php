@@ -89,6 +89,8 @@ class XCat
                 return $this->resetAllPort();
 			case("update"):
 			    return Update::update($this);
+            case ("sendDailyUsageByTG"):
+                return $this->sendDailyUsageByTG();
 			default:
                 return $this->defaultAction();
         }
@@ -122,12 +124,12 @@ class XCat
             $rule->port = $user->port;
             $rule->save();
         }
-		
+
 		if ($user->save()) {
             echo "重置成功!\n";
 		}
     }
-	
+
     public function resetAllPort()
     {
         $users = User::all();
@@ -248,10 +250,10 @@ class XCat
     public function initQQWry()
     {
         echo("downloading....");
-        $copywrite = file_get_contents("https://qqwry.speedtests.ml/copywrite.rar");
+        $copywrite = file_get_contents("https://qqwry.mirror.noc.one/copywrite.rar");
         $newmd5 = md5($copywrite);
         file_put_contents(BASE_PATH."/storage/qqwry.md5", $newmd5);
-        $qqwry = file_get_contents("https://qqwry.speedtests.ml/qqwry.rar");
+        $qqwry = file_get_contents("https://qqwry.mirror.noc.one/qqwry.rar");
         if ($qqwry != "") {
             $key = unpack("V6", $copywrite)[6];
             for ($i=0; $i<0x200; $i++) {
@@ -267,6 +269,24 @@ class XCat
                 fclose($fp);
             }
             echo("finish....");
+        }
+    }
+    public function sendDailyUsageByTG()
+    {
+        $bot = new \TelegramBot\Api\BotApi(Config::get('telegram_token'));
+        $users = User::where('telegram_id',">",0)->get();
+        foreach ($users as $user){
+            $reply_message ="您当前的流量状况：
+今日已使用 " . $user->TodayusedTraffic() . " " . number_format(($user->u + $user->d - $user->last_day_t) / $user->transfer_enable * 100, 2) . "%
+今日之前已使用 " . $user->LastusedTraffic() . " " . number_format($user->last_day_t / $user->transfer_enable * 100, 2) . "%
+未使用 " . $user->unusedTraffic() . " " . number_format(($user->transfer_enable - ($user->u + $user->d)) / $user->transfer_enable * 100, 2) . "%
+					                        ";
+            try{
+                $bot->sendMessage($user->get_user_attributes("telegram_id"), $reply_message , $parseMode = null, $disablePreview = false, $replyToMessageId = null);
+
+            } catch (\TelegramBot\Api\HttpException $e){
+                echo 'Message: 用户: '.$user->get_user_attributes("user_name")." 删除了账号或者屏蔽了宝宝";
+            }
         }
     }
 }
