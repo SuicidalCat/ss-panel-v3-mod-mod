@@ -120,10 +120,10 @@
 
 				{if $class == 0}
 					<!--普通-->
-					<h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 普通节点</h1>
+					<h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 免費接入點</h1>
 				{else}
 					<!--VIP-->
-					<h1 class="site-h1 vip_sub"><i class="icon ptfont pticon-prizeawardmerit"></i> VIP{$node['class']} 节点</h1>
+					<h1 class="site-h1 vip_sub"><i class="icon ptfont pticon-prizeawardmerit"></i> 權限{$node['class']} 接入點</h1>
 				{/if}
 
 				<!--Node-->
@@ -138,11 +138,11 @@
 					<div class="n_sub">
 						<h2 style="font-size:16px;font-weight: normal;">
 						{if $node['online']=="1"}
-							<span class="layui-badge layui-bg-green" title="正常">在线</span>
+							<span class="layui-badge layui-bg-green" title="正常">在線</span>
 						{elseif $node['online']=='0'}
-							<span class="layui-badge layui-bg-black" title="离线">维护</span>
+							<span class="layui-badge layui-bg-black" title="离线">維護中</span>
 						{else}
-							<span class="layui-badge layui-bg-black" title="暂无数据">失联</span>
+							<span class="layui-badge layui-bg-black" title="暂无数据">尚無數據</span>
 						{/if}
 						{if $config['enable_flag']=='true'}<img src="/images/prefix/{$node['flag']}" alt="" width="40" height="22">{/if}
 							{$node['name']}
@@ -153,7 +153,7 @@
 
 							{if $node['class'] > $user->class}
 								<div class="c_node_bd text-center mustvip">
-									<i class="icon ptfont pticon-viewdisablednov"></i> 升级VIP即可查看 <a href="/user/shop" class="layui-btn layui-btn-sm">立即升级</a>
+									<i class="icon ptfont pticon-viewdisablednov"></i> 訂購資源包即可查看 <a href="/user/shop" class="layui-btn layui-btn-sm">立刻訂購</a>
 								</div>
 							{else}
 								{$relay_rule = null}
@@ -166,7 +166,7 @@
 									<!--normal-->
 									<p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node['id']}" data-url="/user/node/{$node['id']}?ismu=0&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 扫码使用
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 普通端口
 					        			</a>
 					        		</p>
 									<!--normal:end-->
@@ -191,7 +191,7 @@
 									<!--single-->
 									<p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node['id']}" data-url="/user/node/{$node['id']}?ismu={$single_muport['server']->server}&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 扫码端口{$single_muport['server']->server}
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 單端口{$single_muport['server']->server}
 					        			</a>					        			
 							    	</p>
 							        <!--single:end-->
@@ -220,7 +220,7 @@
 				                        <tbody>
 										<tr>
 											<td><i class="icon ptfont pticon-piechartgraphs"></i></td>
-											<td>{$node['traffic_rate']} 倍率流量</td>
+											<td>{$node['traffic_rate']} 流量權重</td>
 										</tr>
 										<tr>
 											<td><i class="icon ptfont pticon-Userpersonavtar"></i></td>
@@ -247,7 +247,7 @@
 											<tr>
 												<td><i class="icon ptfont pticon-shareexpandenlar"></i></td>
 												<td>
-													<a href="javascript:void(0);" title="查看详情" data-code="infoshow{$node['id']}" data-url="/user/node/{$node['id']}/ajax">节点详情</a>
+													<a href="javascript:void(0);" title="查看详情" data-code="infoshow{$node['id']}" data-url="/user/node/{$node['id']}/ajax">接入點詳情</a>
 												</td>
 											</tr>
 										{/if}
