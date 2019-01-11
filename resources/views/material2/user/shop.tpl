@@ -50,7 +50,6 @@
 
   			<h1 class="site-h1">資源包套餐</h1>
 
-			{$shops->render()}
         	<div class="layui-row layui-col-space20">
 				{foreach $shops as $shop}
 				<div class="meal-con layui-col-md3 layui-col-sm6" id="{$shop->id}">
@@ -145,7 +144,6 @@
 				</div>				
 				{/foreach}
 			</div>
-			{$shops->render()}
 
     	</div>
 

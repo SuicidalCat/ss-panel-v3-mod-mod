@@ -41,7 +41,7 @@
                                 <p>
                                     <input type="text" id="d_code" class="layui-input" value="{$config["baseUrl"]}/auth/register?code={$code->code}" readonly>
                                 </p>
-                                <p><button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_code">点击复制</button></p>
+                                <p><button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_code">点击复制</button>  <a class="reset-link layui-btn layui-btn-sm layui-btn-primary" style="margin-left:15px">重置链接</a></p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,32 @@
                             </div>
                         </div>
                     </div>
-                    {/if}               
+                    {/if}
+
+                    {if $config['custom_invite_price']>=0}
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header">定制链接后缀</div>
+                            <div class="layui-card-body">
+
+                                <p>定制价格：<code>{$config['custom_invite_price']}</code> 元/次</p>                            
+                                <p>例：输入<b>vip</b>则链接变为 <b>{$config["baseUrl"]}/auth/register?code=vip</b></p>
+                                <div class="layui-form layui-form-pane">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label" for="custom-invite-link">输入后缀</label>
+                                        <div class="layui-input-inline">
+                                          <input id="custom-invite-link" type="num" name="num" class="layui-input">
+                                        </div>
+                                        <div class="layui-form-mid" style="padding:0!important">
+                                            <button class="layui-btn" id="custom-invite-confirm">立即定制</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {/if}             
 
                 {else}
 
@@ -156,6 +181,33 @@ require(['jquery'], function($){
                 layer.msg(data.msg+"出现了一些错误");
             }
         })
+    });
+
+    $("#custom-invite-confirm").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/user/custom_invite",
+            dataType: "json",
+            data: {
+                customcode: $("#custom-invite-link").val(),
+            },
+            success: function (data) {
+                 if (data.ret) {
+                    layer.msg(data.msg);
+                    window.setTimeout("location.href='/user/invite'", {$config['jump_delay']});
+                } else {
+                    layer.msg(data.msg);
+                }
+            },
+            error: function (jqXHR) {
+                layer.msg(data.msg+"出现了一些错误");
+            }
+        })
+    });
+
+    $(".reset-link").click(function () {
+        layer.msg("已重置您的邀请链接，复制您的邀请链接发送给其他人！");
+        window.setTimeout("location.href='/user/inviteurl_reset'", {$config['jump_delay']});
     });
 
 })
