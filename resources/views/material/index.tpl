@@ -15,60 +15,87 @@
 </head>
 
 <style>
-.slide-fade-enter-active {
+.slide-fade-enter-active,.fade-enter-active,.loading-fade-enter-active,.rotate-fade-enter-active {
     transition: all .3s ease;
 }
-.slide-fade-leave-active {
+.slide-fade-leave-active,.fade-leave-active,.loading-fade-leave-active,.rotate-fade-leave-active {
     transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.loading-fade-enter {
+    transform: scaleY(.75);
+    opacity: 0;
 }
 .slide-fade-enter {
     transform: translateY(-20px);
+    opacity: 0;
+}
+.rotate-fade-enter {
+    transform: rotateY(90deg);
+    -webkit-transform: rotateY(90deg);
     opacity: 0;
 }
 .slide-fade-leave-to {
     transform: translateY(20px);
     opacity: 0;
 }
+.rotate-fade-leave-to {
+    transform: rotateY(90deg);
+    -webkit-transform: rotateY(90deg);
+    opacity: 0;
+}
+.fade-enter,.fade-leave-to {
+    opacity: 0;
+}
 </style>
 
 <body>
-    <div id="index" class="flex wrap">
-        <div class="nav pure-g">
-            <div class="pure-u-1-2 logo-sm flex align-center">
-                <a href="/indexold" class="flex align-center">
-                    <img class="logo" src="/images/logo_white.png" alt="logo">
-                    <div class="info">
-                        <div class="name">$[globalConfig.indexMsg.appname]$</div>
-                        <div class="sign">世界加钱可及</div>
-                    </div>
-                </a>
+    <div id="index" >
+        <transition name="loading-fade" mode="out-in">
+            <div class="loading flex align-center" v-if="isLoading === 'loading'" key="loading">
+                <div class="spinner"></div>
             </div>
-            <div class="pure-u-1-2 auth-sm flex align-center">
-                <transition name="slide-fade" mode="out-in">
-                <router-link v-if="logintoken == false" class="button-index" :to="routerInfo[routerN].href" key="auth">
-                    <transition name="slide-fade" mode="out-in">
-                    <span v-if="routerN == 0" key="toauth">$[routerInfo[routerN].name]$</span>
-                    <span v-else key="toindex">$[routerInfo[routerN].name]$</span>
+
+            <div v-cloak v-else-if="isLoading === 'loaded'" class="flex wrap" key="loaded">
+                <div class="nav pure-g">
+                    <div class="pure-u-1-2 logo-sm flex align-center">
+                        <a href="/indexold" class="flex align-center">
+                            <img class="logo" src="/images/logo_white.png" alt="logo">
+                            <div class="info">
+                                <div class="name">$[globalConfig.indexMsg.appname]$</div>
+                                <div class="sign">$[globalConfig.indexMsg.jinrishici]$</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="pure-u-1-2 auth-sm flex align-center">
+                        <transition name="fade" mode="out-in">
+                        <router-link v-if="routerN === 'index'" class="button-index" to="/" key="index">
+                            <span key="toindex"><i class="fa fa-home"></i> <span class="hide-sm">回到首页</span></span>
+                        </router-link>
+                        <router-link v-else-if="routerN === 'auth'" class="button-index" to="/auth/login" key="auth">
+                            <span key="toindex"><i class="fa fa-key"></i> <span class="hide-sm">登录/注册</span></span>
+                        </router-link>
+                        <router-link v-else to="/user/panel" class="button-index" key="user"><i class="fa fa-user"></i> <span class="hide-sm">用户中心</span></router-link>
+                        </transition>
+                    </div>
+                </div>
+                <div class="main pure-g">
+                    <transition :name="transType" mode="out-in">
+                    <router-view :routermsg="globalConfig.indexMsg"></router-view>
                     </transition>
-                </router-link>
-                <a v-else href="/user" class="button-index" key="user">用户中心</a>
+                </div>
+                <div class="footer pure-g">
+                    <div class="pure-u-1 pure-u-sm-1-2 staff">POWERED BY <a href="./staff">SSPANEL-UIM</a></div>
+                    <div class="pure-u-1 pure-u-sm-1-2 time">&copy;$[globalConfig.indexMsg.date]$ $[globalConfig.indexMsg.appname]$</div>
+                </div>
+                
+                <transition name="slide-fade" mode="out-in">
+                    <uim-messager v-show="msgrCon.isShow">
+                        <i slot="icon" :class="msgrCon.icon"></i>
+                        <span slot="msg">$[msgrCon.msg]$</span>
+                    </uim-messager>
                 </transition>
             </div>
-        </div>
-        <div class="main pure-g">
-            <transition name="slide-fade" mode="out-in">
-            <router-view :routermsg="globalConfig.indexMsg"></router-view>
-            </transition>
-        </div>
-        <div class="footer pure-g">
-            <div class="pure-u-1 pure-u-sm-1-2 staff">POWERED BY <a href="./staff">SSPANEL-UIM</a></div>
-            <div class="pure-u-1 pure-u-sm-1-2 time">&copy;$[globalConfig.indexMsg.date]$ $[globalConfig.indexMsg.appname]$</div>
-        </div>
-
-        <uim-messager v-show="msgrCon.isShow">
-            <i slot="icon" :class="msgrCon.icon"></i>
-            <span slot="msg">$[msgrCon.msg]$</span>
-        </uim-messager>
+        </transition>
     </div>
 
     {if $recaptcha_sitekey != null}
@@ -87,16 +114,14 @@
 </html>
 
 <script>
-{if $geetest_html != null}
     
-    let validate,captcha;
-
-{/if}
+let validate,captcha;
 
 let globalConfig;
 
 const tmp = new Vuex.Store({
     state: {
+        isLoading: 'loading',
         wait: 60,
         logintoken: false,
         msgrCon: {
@@ -117,10 +142,14 @@ const tmp = new Vuex.Store({
                 appname: '',
                 hitokoto: '',
                 date: '',
+                jinrishici: '',
             },
         },   
     },
     mutations: {
+        SET_LOADSTATE (state) {
+            state.isLoading = 'loaded';
+        },
         SET_LOGINTOKEN (state,n) {
             state.logintoken = n;
         },
@@ -141,8 +170,17 @@ const tmp = new Vuex.Store({
             state.globalConfig.isEmailVeryify = config.enable_email_verify;
             state.globalConfig.enableLoginCaptcha = config.enable_logincaptcha;
             state.globalConfig.enableRegCaptcha = config.enable_regcaptcha;
+            state.globalConfig.login_token = config.login_token;
+            state.globalConfig.login_number = config.login_number;
+            state.globalConfig.telegram_bot = config.telegram_bot;
             state.globalConfig.indexMsg.appname = config.appName;
             state.globalConfig.indexMsg.date = config.dateY;
+        },
+        SET_HITOKOTO (state,content) {
+            state.globalConfig.indexMsg.hitokoto = content;
+        },
+        SET_JINRISHICI (state,content) {
+            state.globalConfig.indexMsg.jinrishici = content;
         }
     },
     actions: {
@@ -151,7 +189,7 @@ const tmp = new Vuex.Store({
             commit('ISSHOW_MSGR',true);
             window.setTimeout(function() {
                 commit('ISSHOW_MSGR',false);
-            },2500)
+            },1000)
         }
     }
 });
@@ -216,7 +254,7 @@ var storeAuth = {
             },300)
         }
     },
-}
+};
 
 const Root = {
     delimiters: ['$[',']$'],
@@ -225,8 +263,9 @@ const Root = {
         <div class="pure-u-1 pure-u-xl-1-2 title-left">
             <h1>$[routermsg.appname]$</h1>
             <span>$[routermsg.hitokoto]$</span>
-            <a class="button-index" href="/auth/login">登录</a>
-            <a class="button-index" href="/auth/register">注册</a>
+            <router-link class="button-index" to="/auth/login">登录</router-link>
+            <router-link class="button-index" to="/auth/register">注册</router-link>
+            <router-link class="button-index" to="/user/panel">用户中心</router-link>
         </div>
         <div class="pure-u-xl-1-2 logo-bg">
             <img src="/images/logo_white.png" alt="" class="logo">
@@ -240,9 +279,10 @@ const Auth = {
     delimiters: ['$[',']$'],
     template: /*html*/ `
     <div class="auth pure-g align-center">
-        <div class="pure-u-1 pure-u-sm-5-24 flex warp space-around auth-links">
-            <router-link class="button-round flex align-center" to="/auth/login"><span class="icon-round"><i class="fa fa-pencil"></i></span> 登录</router-link>
-            <router-link class="button-round flex align-center" to="/auth/register"><span class="icon-round"><i class="fa fa-plus"></i></span> 注册</router-link>
+        <div class="pure-u-1 pure-u-sm-4-24 flex wrap space-around auth-links">
+            <router-link v-for="(links,key) in routerLinks" @click.native="setButtonState" :class="{ active:links.isActive }" class="button-round flex align-center" :to="links.href" :key="links.id">
+                <span class="icon-round"><i :class="links.icon"></i></span> $[links.content]$
+            </router-link>
         </div>
         <transition name="slide-fade" mode="out-in">
         <router-view></router-view>
@@ -250,13 +290,61 @@ const Auth = {
     </div>
     `,
     props: ['routermsg'],
+    data: function() {
+        return {
+            routerLinks: {
+                login: {
+                    id: 'R_AUTH_0',
+                    href: '/auth/login',
+                    content: '登录',
+                    icon: ['fa','fa-pencil'],
+                    isActive: false,
+                },
+                register: {
+                    id: 'R_AUTH_1',
+                    href: '/auth/register',
+                    content: '注册',
+                    icon: ['fa','fa-plus'],
+                    isActive: false,
+                },
+                reset: {
+                    id: 'R_PW_0',
+                    href: '/password/reset',
+                    content: '密码重置',
+                    icon: ['fa','fa-gear'],
+                    isActive: false,
+                },
+            },
+        }
+    },
+    methods: {
+        setButtonState() {
+            for (let key in this.routerLinks) {
+                if (this.$route.path == this.routerLinks[key].href) {
+                    this.routerLinks[key].isActive = true;
+                } else {
+                    this.routerLinks[key].isActive = false;
+                }
+            }
+        },
+    },
+    beforeRouteEnter (to,from,next) {
+        next(vm=>{
+            vm.setButtonState();
+        });
+    },
+    beforeRouteLeave (to,from,next) {
+        this.setButtonState();
+        next();
+    }
 };
 
 const Login = {
     delimiters: ['$[',']$'],
     mixins: [storeAuth],
     template: /*html*/ `
-    <div class="page-auth pure-g pure-u-1 pure-u-sm-19-24">
+    <div class="page-auth pure-g pure-u-1 pure-u-sm-20-24">
+        <div class="title-back flex align-center">LOGIN</div>
         <h1>登录</h1>
         <div class="input-control flex wrap">
             <label for="Email">邮箱</label>
@@ -267,12 +355,17 @@ const Login = {
             <input v-model="passwd" type="password" name="Password">        
         </div>
         <div class="input-control flex wrap">
+            <uim-checkbox v-model="remember_me">
+                <span slot="content">记住我</span>
+            </uim-checkbox>
+        </div>
+        <div class="input-control flex wrap">
             <div v-if="globalConfig.captchaProvider === 'geetest'" id="embed-captcha-login"></div>
             <form action="?" method="POST">    
             <div v-if="globalConfig.recaptchaSiteKey" id="g-recaptcha-login" class="g-recaptcha" :data-sitekey="globalConfig.recaptchaSiteKey"></div>
             </form>
         </div>
-        <button @click="login" class="auth-submit" id="login" type="submit" :disabled="isDisabled">
+        <button @click.prevent="login" @keyup.13.native="login" class="auth-submit" id="login" type="submit" :disabled="isDisabled">
             确认登录
         </button>
     </div>
@@ -281,6 +374,7 @@ const Login = {
         return {
             email: '',
             passwd: '',
+            remember_me: false,
             isDisabled: false,
         }
     },
@@ -292,6 +386,12 @@ const Login = {
             let ajaxCon = {
                 email: this.email,
                 passwd: this.passwd,
+                remember_me: this.remember_me,
+            };
+
+            let callConfig = {
+                msg: '',
+                icon: '',
             };
 
             if (this.globalConfig.enableLoginCaptcha !== 'false') {
@@ -304,7 +404,9 @@ const Login = {
                             ajaxCon.geetest_challenge = validate.geetest_challenge;
                             ajaxCon.geetest_validate = validate.geetest_validate;
                             ajaxCon.geetest_seccode = validate.geetest_seccode;
-                        } 
+                        } else {
+                            callConfig.msg += '请滑动验证码来完成验证。'
+                        }
                         break;
                 }
             }
@@ -315,20 +417,16 @@ const Login = {
                 data: ajaxCon,
             }).then((r)=>{
                 if (r.data.ret == 1) {
-                    let callConfig = {
-                            msg: '登录成功Kira~',
-                            icon: 'fa-check-square-o',
-                        };
+                    callConfig.msg += '登录成功Kira~';
+                    callConfig.icon += 'fa-check-square-o';
                     tmp.dispatch('CALL_MSGR',callConfig);
                     window.setTimeout(()=>{
                         tmp.commit('SET_LOGINTOKEN',1);
                         this.$router.replace('/user/panel');
                     }, this.globalConfig.jumpDelay);
                 } else {
-                    let callConfig = {
-                            msg: '登录失败Boommm',
-                            icon: 'fa-times-circle-o',
-                        };
+                    callConfig.msg += '登录失败Boommm';
+                    callConfig.icon += 'fa-times-circle-o';
                     tmp.dispatch('CALL_MSGR',callConfig);
                     window.setTimeout(()=>{
                         this.isDisabled = false;
@@ -339,6 +437,12 @@ const Login = {
         },
     },
     mounted() {
+        document.addEventListener('keyup',(e)=>{
+            if (e.keyCode == 13) {
+                this.login();
+            }
+        });
+
         if (this.globalConfig.enableLoginCaptcha === 'false') {
             return;
         }
@@ -351,7 +455,8 @@ const Register = {
     delimiters: ['$[',']$'],
     mixins: [storeAuth],
     template: /*html*/ `
-    <div class="page-auth pure-g pure-u-19-24">
+    <div class="page-auth pure-g pure-u-20-24">
+        <div class="title-back flex align-center">REGISTER</div>
         <h1>账号注册</h1>
         <div class="flex space-around reg">
             <div class="input-control flex wrap">
@@ -438,6 +543,11 @@ const Register = {
                     code: this.code,
                 };
 
+            let callConfig = {
+                msg: '',
+                icon: '',
+            };
+
             if (this.globalConfig.registMode !== 'invite') {
                 ajaxCon.code = 0;
                 if ((this.getCookie('code'))!='') {
@@ -455,7 +565,9 @@ const Register = {
                             ajaxCon.geetest_challenge = validate.geetest_challenge;
                             ajaxCon.geetest_validate = validate.geetest_validate;
                             ajaxCon.geetest_seccode = validate.geetest_seccode;
-                        }               
+                        } else {
+                            callConfig.msg += '请滑动验证码来完成验证。'
+                        }      
                         break;
                 }
             }      
@@ -467,19 +579,15 @@ const Register = {
                 data: ajaxCon,
             }).then((r)=>{
                 if (r.data.ret == 1) {
-                    let callConfig = {
-                            msg: '注册成功meow~',
-                            icon: 'fa-check-square-o',
-                        };
+                    callConfig.msg += '注册成功meow~';
+                    callConfig.icon += 'fa-check-square-o';
                     tmp.dispatch('CALL_MSGR',callConfig);
                     window.setTimeout(()=>{
                         this.$router.replace('/auth/login');
                     }, this.globalConfig.jumpDelay);
                 } else {
-                    let callConfig = {
-                            msg: 'WTF……注册失败',
-                            icon: 'fa-times-circle-o',
-                        };
+                    callConfig.msg += 'WTF……注册失败';
+                    callConfig.icon += 'fa-times-circle-o';
                     tmp.dispatch('CALL_MSGR',callConfig);
                     window.setTimeout(()=>{
                         this.isDisabled = false;
@@ -487,9 +595,12 @@ const Register = {
                 }
             });
         },
-        //dumplin：轮子1.js读取url参数
+        //dumplin：轮子1.js读取url参数//nymph: 重拼字符串
         getQueryVariable(variable) {
-            var query = window.location.search.substring(1);
+            var query = window.location.hash.substring(1).split("?")[1];
+            if (typeof query === 'undefined') {
+                return "";
+            }
             var vars = query.split("&");
             for (var i=0;i<vars.length;i++) {
                         var pair = vars[i].split("=");
@@ -566,7 +677,7 @@ const Register = {
         //dumplin:读取url参数写入cookie，自动跳转隐藏url邀请码
         if (this.getQueryVariable('code')!=''){
             this.setCookie('code',this.getQueryVariable('code'),30);
-            window.location.href='#/auth/register'; 
+            this.$router.replace('/auth/register');
         }
         //dumplin:读取cookie，自动填入邀请码框
         if (this.globalConfig.registMode == 'invite') {
@@ -574,6 +685,13 @@ const Register = {
                 this.code = this.getCookie('code');
             }
         }
+        
+        document.addEventListener('keyup',(e)=>{
+            if (e.keyCode == 13) {
+                this.register();
+            }
+        });
+
         //验证加载
         if (this.globalConfig.enableRegCaptcha === 'false') {
             return;
@@ -582,6 +700,24 @@ const Register = {
         this.loadGT('#embed-captcha-reg');    
     }
 };
+
+const Password = {
+    delimiters: ['$[',']$'],
+    template: /*html*/ `
+    <div class="pw pure-g">
+        <router-view></router-view>
+    </div>
+    `,
+}
+
+const Reset = {
+    delimiters: ['$[',']$'],
+    template: /*html*/ `
+    <div class="page-pw pure-u-1">
+        <h1>密码重置页demo</h1>
+    </div>
+    `,
+}
 
 const User = {
     delimiters: ['$[',']$'],
@@ -611,7 +747,13 @@ const Panel = {
             });
     },
     beforeRouteLeave (to, from, next) {
-        next(false);
+        if (to.matched.some(function(record) {
+            return record.meta.alreadyAuth
+        })) {
+            next(false);
+        } else {
+            next();
+        }
     }
 };
 
@@ -625,26 +767,42 @@ const vueRoutes = [
     {
         path: '/auth/',
         component: Auth,
+        redirect: '/auth/login',
+        meta: {
+            alreadyAuth: true
+        },
         children: [
             {
                 path: 'login',
                 component: Login,
-                meta: {
-                    requiresAuth: true
-                }
             },
             {
                 path: 'register',
                 component: Register,
-                meta: {
-                    requiresAuth: true
-                }
+            },
+        ],
+    },
+    {
+        path: '/password/',
+        component: Password,
+        redirect: '/password/reset',
+        meta: {
+            alreadyAuth: true
+        },
+        children: [
+            {
+                path: 'reset',
+                component: Reset,
             },
         ],
     },
     {
         path: '/user/',
         component: User,
+        redirect: '/user/panel',
+        meta: {
+            requireAuth: true
+        },
         children: [
             {
                 path: 'panel',
@@ -681,10 +839,12 @@ Router.beforeEach((to,from,next)=>{
     
     function navGuardsForEach() {
         if ((tmp.state.logintoken != false) && to.matched.some(function(record) {
-            return record.meta.requiresAuth
+            return record.meta.alreadyAuth;
         })) {
             next('/user/panel');
-        } else if (to.path === '/auth' || to.path === '/user') {
+        } else if ((tmp.state.logintoken == false) && to.matched.some(function(record) {
+            return record.meta.requireAuth;
+        })) {
             next('/auth/login');
         } else {
             next();
@@ -702,49 +862,94 @@ Vue.component('uim-messager',{
     `,
 })
 
+Vue.component('uim-checkbox',{
+    delimiters: ['$[',']$'],
+    model: {
+        prop: 'isChecked',
+        event: 'change',
+    },
+    props: ['isChecked'],
+    template: /*html*/ `
+    <label for="remember_me" class="flex align-center">
+        <span class="uim-check" :class="{ uimchecked:boxChecked }">
+        <i class="fa fa-check uim-checkbox-icon"></i>
+        <input :checked="isChecked" @click="setClass" @change="$emit('change',$event.target.checked)"  class="uim-checkbox" type="checkbox">                
+        </span>
+        <span class="uim-check-content"><slot name="content"></slot></span> 
+    </label>
+    `,
+    data: function() {
+        return {
+            boxChecked: false,
+        } 
+    },
+    methods: {
+        setClass() {
+            if (this.boxChecked == false) {
+                this.boxChecked = true;
+            } else {
+                this.boxChecked = false;
+            }
+        },
+    },
+})
+
 const indexPage = new Vue({
     router: Router,
     el: '#index',
     delimiters: ['$[',']$'],
     store: tmp,
     data: {
-        routerInfo: [
-            {
-                name: '登录/注册',
-                href: '/auth/login',
-            },
-            {
-                name: '首页',
-                href: '/',
-            },
-        ],
-        routerN: 0,
+        routerN: 'auth',
+        transType: 'slide-fade'
     },
     computed: Vuex.mapState({
         msgrCon: 'msgrCon',
         globalConfig: 'globalConfig',
         logintoken: 'logintoken',
+        isLoading: 'isLoading',
     }),
     methods: {
         routeJudge() {
-            if (this.$route.path === '/') {
-                this.routerN = 0;
-            } else {
-                this.routerN = 1; 
+            switch(this.$route.path) {
+                case '/':
+                    if (this.logintoken == false) {
+                        this.routerN = 'auth';
+                    } else {
+                        this.routerN = 'user';
+                    }
+                    break;
+                default:
+                    this.routerN = 'index';
             }
-        },
+            },
     },
     watch: {
-        $route: 'routeJudge',
+        '$route' (to,from) {
+            this.routeJudge();
+            if (to.path === '/password/reset' || from.path === '/password/reset') {
+                this.transType = 'rotate-fade';
+            } else {
+                this.transType = 'slide-fade';
+            }
+        }
     },
     beforeMount() {
         axios.get('https://api.lwl12.com/hitokoto/v1')
         .then((r)=>{
-            this.globalConfig.indexMsg.hitokoto = r.data;
+            tmp.commit('SET_HITOKOTO',r.data);
+        })
+        axios.get('https://v2.jinrishici.com/one.json',{
+            withCredentials: true,
+        }).then((r)=>{
+            tmp.commit('SET_JINRISHICI',r.data.data.content);
         })
     },
     mounted() {
         this.routeJudge();
+        setTimeout(()=>{
+            tmp.commit('SET_LOADSTATE');
+        },1000)
     },
     
 });
