@@ -87,8 +87,8 @@
 						<div class="layui-col-md12">
 				            <div class="layui-card">
 				                <div class="layui-card-header">
-				                	套餐信息
-									<div class="layui-layout-right"><a href="/user/shop" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-carte-commercesh"></i> 购买套餐</a></div>
+				                	資源包信息
+									<div class="layui-layout-right"><a href="/user/shop" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-carte-commercesh"></i> 購買</a></div>
 				                </div>
 				                <div class="layui-card-body">
 				                    <table class="layui-table">
@@ -98,7 +98,7 @@
 				                        </colgroup>
 				                        <tbody>           
 				                          <tr>
-				                            <td>套餐到期</td>
+				                            <td>到期日</td>
 				                            <td>
 												{$nodeNow=$smarty.now|date_format:'%Y-%m-%d'}
 				                            	{$nodeYear=$user->class_expire|date_format:'%Y-%m-%d'}
@@ -110,7 +110,7 @@
 				                            </td>
 				                          </tr>                                          
 				                          <tr>
-				                            <td>速度限制</td>
+				                            <td>鏈接速率</td>
 				                            <td>
 				                                {if $user->node_speedlimit!=0}
 				                                	{$user->node_speedlimit}Mbps
@@ -120,12 +120,12 @@
 				                            </td>
 				                          </tr>
 				                          <tr>
-				                            <td>设备限制</td>
+				                            <td>鏈接數限制</td>
 				                            <td>
 				                                {if $user->node_connector!=0}
-				                                    允许{$user->node_connector}个设备 ({$user->online_ip_count()}个在线)
+				                                    允許{$user->node_connector}個設備鏈接 ({$user->online_ip_count()}個鏈接IP)
 				                                {else}
-				                                    不限 ({$user->online_ip_count()}个在线)
+				                                    不限 ({$user->online_ip_count()}個設備在綫)
 				                                {/if}
 				                            </td>
 				                          </tr>                                     
@@ -145,16 +145,15 @@
 					<div class="layui-row layui-col-space20">
 						<div class="layui-col-md12">							
 							<div class="layui-card">
-						        <div class="layui-card-header"><i class="icon ptfont pticon-bulbthoughtidea"></i>注意事项</div>
+						        <div class="layui-card-header"><i class="icon ptfont pticon-bulbthoughtidea"></i>資源包選擇</div>
 						        <div class="layui-card-body">
-						        	<p>流量比例说明：如果为0.5，即使用100MB按照50MB流量结算。</p>
-							      	<p>禁止一切BT违法行为，否则一律删号（且不退款）</p>
+						        	<p>接入權限1的套餐主要以歐美和日本的普通接入點爲主，適合輕量上網的用途；接入權限2的套餐開始提供韓國，新加坡，香港以及日本的優化接入點，速率與穩定性更上一層樓；接入權限3的套餐則包含了中國大陸優化接入點，適合大陸地區網絡加速與海外回大陸加速。</p>
 						        </div>
 						    </div>
 						</div>
 						<div class="layui-col-md12" id="page-node">
 					      <div class="layui-card learn">
-					        <div class="layui-card-header">软件下载</div>
+					        <div class="layui-card-header">使用指導</div>
 					        <div class="layui-card-body" style="min-height:82px">
 					        	{include file='user/learn.tpl'}
 					        </div>
@@ -179,7 +178,7 @@
 					<h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 普通节点</h1>
 				{else}
 					<!--VIP-->
-					<h1 class="site-h1 vip_sub"><i class="icon ptfont pticon-prizeawardmerit"></i> VIP{$node['class']} 节点</h1>
+					<h1 class="site-h1 vip_sub"><i class="icon ptfont pticon-prizeawardmerit"></i> 權限{$node['class']} 接入點</h1>
 				{/if}
 
 				<!--Node-->
@@ -194,11 +193,11 @@
 					<div class="n_sub">
 						<h2 style="font-size:16px;font-weight: normal;">
 						{if $node['online']=="1"}
-							<span class="layui-badge layui-bg-green" title="正常">在线</span>
+							<span class="layui-badge layui-bg-green" title="正常">在綫</span>
 						{elseif $node['online']=='0'}
-							<span class="layui-badge layui-bg-black" title="离线">维护</span>
+							<span class="layui-badge layui-bg-black" title="离线">維護中</span>
 						{else}
-							<span class="layui-badge layui-bg-black" title="暂无数据">失联</span>
+							<span class="layui-badge layui-bg-black" title="暂无数据">尚無數據</span>
 						{/if}
 						{if $config['enable_flag']=='true'}<img src="/images/prefix/{$node['flag']}" alt="" width="40" height="22">{/if}
 							{$node['name']}
@@ -209,7 +208,7 @@
 
 							{if $node['class'] > $user->class}
 								<div class="c_node_bd text-center mustvip">
-									<i class="icon ptfont pticon-viewdisablednov"></i> 升级VIP即可查看 <a href="/user/shop" class="layui-btn layui-btn-sm">立即升级</a>
+									<i class="icon ptfont pticon-viewdisablednov"></i> 訂購網路資源包即可查看 <a href="/user/shop" class="layui-btn layui-btn-sm">購買</a>
 								</div>
 							{else}
 								{$relay_rule = null}
@@ -222,7 +221,7 @@
 									<!--normal-->
 									<p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node['id']}" data-url="/user/node/{$node['id']}?ismu=0&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 扫码使用
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 鏈接信息
 					        			</a>
 					        		</p>
 									<!--normal:end-->
@@ -247,7 +246,7 @@
 									<!--single-->
 									<p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node['id']}" data-url="/user/node/{$node['id']}?ismu={$single_muport['server']->server}&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 扫码端口{$single_muport['server']->server}
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 鏈接信息單端口
 					        			</a>					        			
 							    	</p>
 							        <!--single:end-->
@@ -259,7 +258,7 @@
 								{if $node['sort'] == 11}
 									<section>
 										<p>
-							    			<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-tip="{$node['id']}"><span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 立即使用</a>
+							    			<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-tip="{$node['id']}"><span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 立刻接入</a>
 						        		</p>
 									</section>
 
@@ -276,7 +275,7 @@
 				                        <tbody>
 										<tr>
 											<td><i class="icon ptfont pticon-piechartgraphs"></i></td>
-											<td>{$node['traffic_rate']} 倍率流量</td>
+											<td>{$node['traffic_rate']} 流量權重</td>
 										</tr>
 										<tr>
 											<td><i class="icon ptfont pticon-Userpersonavtar"></i></td>
@@ -303,7 +302,7 @@
 											<tr>
 												<td><i class="icon ptfont pticon-shareexpandenlar"></i></td>
 												<td>
-													<a href="javascript:void(0);" title="查看详情" data-code="infoshow{$node['id']}" data-url="/user/node/{$node['id']}/ajax">节点详情</a>
+													<a href="javascript:void(0);" title="查看详情" data-code="infoshow{$node['id']}" data-url="/user/node/{$node['id']}/ajax">接入點狀態</a>
 												</td>
 											</tr>
 										{/if}
@@ -378,9 +377,9 @@ require(['jquery','chartjs','domReady','rounds'], function($,Chart,domReady){
           borderWidth:ChartBorder
         }],
         labels: [
-          '今日使用 {$user->TodayusedTraffic()}',          
-          '已经使用 {$user->LastusedTraffic()}',
-          '剩余流量 {$user->unusedTraffic()}'
+          '今日已用 {$user->TodayusedTraffic()}',          
+          '總計使用 {$user->LastusedTraffic()}',
+          '剩餘可用 {$user->unusedTraffic()}'
         ]
       },
       options: {
