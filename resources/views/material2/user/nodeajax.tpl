@@ -6,7 +6,7 @@
 	<div class="layui-row layui-col-space20">
 	<div class="layui-col-md12">
 
-	<h1 class="site-h1">节点详情：{$prefix}</h1>
+	<h1 class="site-h1">接入點狀態：{$prefix}</h1>
 
 	{$load=$point_node->getNodeLoad()}
 	<!--content-->
@@ -14,7 +14,7 @@
 
 		<div class="layui-col-md6">
 			<div class="layui-card">
-		        <div class="layui-card-header">节点在线率</div>
+		        <div class="layui-card-header">可用性</div>
 		        <div class="layui-card-body">
 		        	<canvas id="chart-node-up{$id}"></canvas>
 		        </div>
@@ -23,7 +23,7 @@
 
 		<div class="layui-col-md6">
 			<div class="layui-card">
-		        <div class="layui-card-header">节点负载</div>
+		        <div class="layui-card-header">系統負載</div>
 		        <div class="layui-card-body">
 		        	<canvas id="chart-node-load{$id}"></canvas>
 		        </div>
@@ -32,7 +32,7 @@
 
 		<div class="layui-col-md6">
 			<div class="layui-card">
-		        <div class="layui-card-header">节点使用人数</div>
+		        <div class="layui-card-header">連接數</div>
 		        <div class="layui-card-body">
 		        	<canvas id="chart-node-online{$id}"></canvas>
 		        </div>
@@ -41,7 +41,7 @@
 
 		<div class="layui-col-md6">
 			<div class="layui-card">
-		        <div class="layui-card-header">节点延时</div>
+		        <div class="layui-card-header">網絡延遲</div>
 		        <div class="layui-card-body">
 		        	<canvas id="chart-node-ping{$id}"></canvas>
 		        </div>
@@ -50,7 +50,7 @@
 
 		<div class="layui-col-md12">
 			<div class="layui-card">
-		        <div class="layui-card-header">节点测速</div>
+		        <div class="layui-card-header">出網速率</div>
 		        <div class="layui-card-body">
 		        	<canvas id="chart-node-speed{$id}"></canvas>
 		        </div>
@@ -100,8 +100,8 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
           borderWidth:ChartBorder
         }],
         labels: [
-          '在线率 {number_format($point_node->getNodeUpRate()*100)}%',
-          '离线率 {number_format((1-$point_node->getNodeUpRate())*100)}%'
+          '可用時間 {number_format($point_node->getNodeUpRate()*100)}%',
+          '不可用時間 {number_format((1-$point_node->getNodeUpRate())*100)}%'
         ]
       },
       options: {
@@ -146,7 +146,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 		type: 'line',
 		data: {
 			datasets: [{
-				label: '流量(Gb)',
+				label: '傳輸量(Gb)',
 				backgroundColor: window.chartColors.green,
 				fill: false,
 				data: [
@@ -203,7 +203,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			datasets: [{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '人数(个)',
+				label: '連接數',
 				backgroundColor: window.chartColors.orange,
 				fill: false,
 				data: [
@@ -259,7 +259,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			datasets: [{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '电信延时',
+				label: 'CT延遲',
 				backgroundColor: window.chartColors.green,
 				fill: false,
 				data: [
@@ -290,7 +290,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '联通延时',
+				label: 'CU延遲',
 				backgroundColor: window.chartColors.orange,
 				fill: false,
 				data: [
@@ -321,7 +321,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '移动延时',
+				label: 'CM延遲',
 				backgroundColor: window.chartColors.blue,
 				fill: false,
 				data: [
@@ -378,7 +378,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			datasets: [{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '电信下载',
+				label: 'CT下載',
 				backgroundColor: window.chartColors.blue,
 				borderColor: window.chartColors.blue,
 				fill: false,
@@ -409,7 +409,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 
 			{
 				borderWidth:2,				
-				label: '电信上传',
+				label: 'CT上傳',
 				pointStyle:'rectRot',
 				backgroundColor: window.chartColors.white,
 				borderColor: window.chartColors.blue,
@@ -443,7 +443,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '联通下载',
+				label: 'CU下載',
 				backgroundColor: window.chartColors.purple,
 				borderColor: window.chartColors.purple,
 				fill: false,
@@ -473,7 +473,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			},
 			{
 				borderWidth:2,
-				label: '联通上传',
+				label: 'CU上傳',
 				pointStyle:'rectRot',
 				backgroundColor: window.chartColors.white,
 				borderColor: window.chartColors.purple,
@@ -506,7 +506,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			{
 				borderWidth:1,
 				borderCapStyle:'round',
-				label: '移动下载',
+				label: 'CM下載',
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
 				fill: false,
@@ -536,7 +536,7 @@ require(['chartjs','domReady','rounds'], function(Chart,domReady){
 			},
 			{
 				borderWidth:2,
-				label: '移动上传',
+				label: 'CM上傳',
 				pointStyle:'rectRot',
 				backgroundColor: window.chartColors.white,
 				borderColor: window.chartColors.green,
