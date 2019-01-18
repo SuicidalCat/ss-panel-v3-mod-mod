@@ -13,7 +13,7 @@
 	<div class="layui-row layui-col-space20">
 	<div class="layui-col-md8 layui-col-md-offset2">
 
-		<h1 class="site-h1">节点使用：{$node['name']}</h1>
+		<h1 class="site-h1">{$node['name']}</h1>
 		<div class="layui-card">
 		<div class="layui-card-body">			
 			<!--v2ray-->											
@@ -24,7 +24,7 @@
 			    </colgroup>
 			    <tbody>
 				<tr>
-					<td>地址</td>
+					<td>鏈接地址</td>
 					<td>{$server_explode[0]}</td>
 				</tr>
 				<tr>
@@ -32,11 +32,11 @@
 					<td>{$server_explode[1]}</td>
 				</tr>
 				<tr>
-					<td>协议参数</td>
+					<td>協議參數</td>
 					<td>{$server_explode[2]}</td>
 				</tr>
 				<tr>
-					<td>流量比例</td>
+					<td>流量權重</td>
 					<td>{$node['traffic_rate']}</td>
 				</tr>
 				<tr>
@@ -46,7 +46,7 @@
 				</tbody>
 			</table>
 			<section>
-				<p><a class="layui-btn copy-btn" data-clipboard-text="{URL::getV2Url($user, $node['raw_node'])}">点击复制</a></p>
+				<p><a class="layui-btn copy-btn" data-clipboard-text="{URL::getV2Url($user, $node['raw_node'])}">點擊複製</a></p>
 			</section>
 		</div>
 		</div>
@@ -62,18 +62,18 @@
 
 	<div class="layui-row layui-card" id="top-step">
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/code"><span class="layui-badge">1</span> 账户充值</a>
+			<a href="/user/code"><span class="layui-badge">1</span> 賬戶儲值</a>
 		</div>
 		<div class="layui-col-md4 layui-col-sm4">
-			<a href="/user/shop"><span class="layui-badge">2</span> 购买套餐</a>
+			<a href="/user/shop"><span class="layui-badge">2</span> 資源包購買</a>
 		</div>
 		<div class="layui-col-md4 layui-col-sm4 current">
-			<span class="layui-badge">3</span> 开始使用
+			<span class="layui-badge">3</span> 接入點列表
 		</div>
 	</div>
 
 	<!--title-->
-	<h1 class="site-h1">节点使用</h1>
+	<!--h1 class="site-h1">节点使用</h1-->
 
 	<!--content-->
 	<div class="layui-row layui-col-space20" id="page-node">
