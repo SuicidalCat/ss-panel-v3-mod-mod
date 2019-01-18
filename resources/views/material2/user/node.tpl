@@ -201,7 +201,7 @@
 								</section>
 								
 								{if $node['sort'] == 11}
-									<section>
+									<!--section>
 										<p>
 							    			<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-tip="{$node['id']}"><span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 立即使用</a>
 						        		</p>
@@ -209,7 +209,7 @@
 
 									<div id="v-modal{$node['id']}" data-vmodal="v-modal{$node['id']}" class="v-modal-part layui-container">
 										{displayV2rayNode node=$node}
-									</div>									
+									</div-->									
 								{/if}
 									<!--not v2ray-->
 									<table class="layui-table">
