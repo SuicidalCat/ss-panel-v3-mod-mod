@@ -1,4 +1,60 @@
 {include file='page-head.tpl'}
+{literal}
+<style>
+	.v-modal-part{visibility:hidden;display: none}
+	.v-modal-part.layui-layer-wrap{visibility:visible;display:block}
+	.v-modal-showbg .layui-layer{background:#eee}
+</style>
+{/literal}
+
+{function displayV2rayNode node=null}
+{assign var=server_explode value=";"|explode:$node['server']}
+
+	<div class="layui-row layui-col-space20">
+	<div class="layui-col-md8 layui-col-md-offset2">
+
+		<h1 class="site-h1">{$node['name']}</h1>
+		<div class="layui-card">
+		<div class="layui-card-body">			
+			<!--v2ray-->											
+			<table class="layui-table">
+				<colgroup>
+			      <col width="90">
+			      <col>
+			    </colgroup>
+			    <tbody>
+				<tr>
+					<td>鏈接地址</td>
+					<td>{$server_explode[0]}</td>
+				</tr>
+				<tr>
+					<td>端口</td>
+					<td>{$server_explode[1]}</td>
+				</tr>
+				<tr>
+					<td>協議參數</td>
+					<td>{$server_explode[2]}</td>
+				</tr>
+				<tr>
+					<td>流量權重</td>
+					<td>{$node['traffic_rate']}</td>
+				</tr>
+				<tr>
+					<td>用户 UUID：</td>
+					<td>{$user->getUuid()}</td>
+				</tr>
+				</tbody>
+			</table>
+			<section>
+				<p><a class="layui-btn copy-btn" data-clipboard-text="{URL::getV2Url($user, $node['raw_node'])}">點擊複製</a></p>
+			</section>
+		</div>
+		</div>
+		<!--v2ray:end-->
+	</div>
+	</div>
+
+{/function}
 
 <div class="layui-body user-node">
 <div class="layadmin-tabsbody-item layui-show">
@@ -35,7 +91,7 @@
 									<div class="layui-layout-right"><a href="/user/shop" class="layui-btn layui-btn-sm"><i class="icon ptfont pticon-carte-commercesh"></i> 購買</a></div>
 				                </div>
 				                <div class="layui-card-body">
-				                    <table class="layui-table" lay-size="sm">
+				                    <table class="layui-table">
 				                        <colgroup>
 				                          <col width="90">
 				                          <col>
@@ -67,7 +123,7 @@
 				                            <td>鏈接數限制</td>
 				                            <td>
 				                                {if $user->node_connector!=0}
-				                                    允許{$user->node_connector}個設備鏈接
+				                                    允許{$user->node_connector}個設備鏈接 ({$user->online_ip_count()}個鏈接IP)
 				                                {else}
 				                                    不限 ({$user->online_ip_count()}個設備在綫)
 				                                {/if}
@@ -108,8 +164,7 @@
 				
 			</div>
 		</div>
-
-		        
+     
 		<!--nodes-->
 		<div class="layui-col-md12 nodes">
 		    {$class=-1}
@@ -120,7 +175,7 @@
 
 				{if $class == 0}
 					<!--普通-->
-					<h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 免費接入點</h1>
+					<h1 class="site-h1 normal_sub"><i class="icon ptfont pticon-circuitelectricbo1"></i> 普通节点</h1>
 				{else}
 					<!--VIP-->
 					<h1 class="site-h1 vip_sub"><i class="icon ptfont pticon-prizeawardmerit"></i> 權限{$node['class']} 接入點</h1>
@@ -138,7 +193,7 @@
 					<div class="n_sub">
 						<h2 style="font-size:16px;font-weight: normal;">
 						{if $node['online']=="1"}
-							<span class="layui-badge layui-bg-green" title="正常">在線</span>
+							<span class="layui-badge layui-bg-green" title="正常">在綫</span>
 						{elseif $node['online']=='0'}
 							<span class="layui-badge layui-bg-black" title="离线">維護中</span>
 						{else}
@@ -153,7 +208,7 @@
 
 							{if $node['class'] > $user->class}
 								<div class="c_node_bd text-center mustvip">
-									<i class="icon ptfont pticon-viewdisablednov"></i> 訂購資源包即可查看 <a href="/user/shop" class="layui-btn layui-btn-sm">立刻訂購</a>
+									<i class="icon ptfont pticon-viewdisablednov"></i> 訂購網路資源包即可查看 <a href="/user/shop" class="layui-btn layui-btn-sm">購買</a>
 								</div>
 							{else}
 								{$relay_rule = null}
@@ -166,7 +221,7 @@
 									<!--normal-->
 									<p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node['id']}" data-url="/user/node/{$node['id']}?ismu=0&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 普通端口
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 鏈接信息
 					        			</a>
 					        		</p>
 									<!--normal:end-->
@@ -191,7 +246,7 @@
 									<!--single-->
 									<p>
 							    		<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-code="code{$node['id']}" data-url="/user/node/{$node['id']}?ismu={$single_muport['server']->server}&relay_rule={if $relay_rule != null}{$relay_rule->id}{else}0{/if}">
-					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 單端口{$single_muport['server']->server}
+					        				<span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 鏈接信息單端口
 					        			</a>					        			
 							    	</p>
 							        <!--single:end-->
@@ -203,7 +258,7 @@
 								{if $node['sort'] == 11}
 									<section>
 										<p>
-							    			<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-tip="{$node['id']}"><span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 立即使用</a>
+							    			<a href="javascript:void(0);" class="n_btn layui-btn layui-btn-sm" data-tip="{$node['id']}"><span><i class="icon ptfont pticon-scanbarcodeqrc"></i></span> 立刻接入</a>
 						        		</p>
 									</section>
 
@@ -247,7 +302,7 @@
 											<tr>
 												<td><i class="icon ptfont pticon-shareexpandenlar"></i></td>
 												<td>
-													<a href="javascript:void(0);" title="查看详情" data-code="infoshow{$node['id']}" data-url="/user/node/{$node['id']}/ajax">接入點詳情</a>
+													<a href="javascript:void(0);" title="查看详情" data-code="infoshow{$node['id']}" data-url="/user/node/{$node['id']}/ajax">接入點狀態</a>
 												</td>
 											</tr>
 										{/if}
@@ -278,6 +333,10 @@
 
 </div>
 </div>
+</div>
+
+<!--show-->
+<div id="v-modal-show" class="v-modal-showbg">
 </div>
 
 {include file='page-foot.tpl'}
@@ -318,9 +377,9 @@ require(['jquery','chartjs','domReady','rounds'], function($,Chart,domReady){
           borderWidth:ChartBorder
         }],
         labels: [
-          '今日使用 {$user->TodayusedTraffic()}',          
-          '已经使用 {$user->LastusedTraffic()}',
-          '剩余流量 {$user->unusedTraffic()}'
+          '今日已用 {$user->TodayusedTraffic()}',          
+          '總計使用 {$user->LastusedTraffic()}',
+          '剩餘可用 {$user->unusedTraffic()}'
         ]
       },
       options: {
@@ -365,6 +424,26 @@ require(['jquery','chartjs','domReady','rounds'], function($,Chart,domReady){
     domReady(function(){
     	var ctx = document.getElementById('chart-user-traffic').getContext('2d');
       	window.myPie = new Chart(ctx,pieUserTraffic);
+
+      	//tips modal      	
+       
+	    $('a[data-tip]').on('click', function(){
+	        var id = $(this).data('tip');
+	        var vcontent = $('#v-modal'+id).appendTo($('#v-modal-show'))
+	        
+            layer.open({
+              skin: 'layui-layer-demo',
+              type: 1,
+              title: false,
+              shadeClose: true,
+              shade: 0.5,
+              area: ['95%', '75%'],
+              content: $(vcontent)
+            }); 
+
+   		});
+
+   		//
 
     })
     //chart end    
