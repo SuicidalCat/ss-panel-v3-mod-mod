@@ -50,9 +50,7 @@
 				  	
 				  	{if $pmw!=''}
     				<div class="layui-tab-item layui-show pay-show">
-
 					{$pmw}
-
     				</div>
     				{/if}
 
@@ -69,15 +67,13 @@
 						      	<!--div class="layui-form layui-form-pane">
 						      		<p><span class="layui-badge layui-bg-gray">2</span></p>
 									  <div class="layui-form-item"-->
-									    <label class="layui-form-label" for="code">输入儲值卡key</label>
-									    <div class="layui-input-inline">
-									      <input id="code" type="text" name="title" class="layui-input">
-									    </div>
-									    <div class="layui-form-mid">
-									    	<button class="layui-btn" lay-submit id="card-update">儲值</button>
-									    </div>
-									  </div>
-								</div>
+							    <label class="layui-form-label" for="code">输入儲值卡key</label>
+							    <div class="layui-input-inline">
+							      <input id="code" type="text" name="title" class="layui-input">
+							    </div>
+							    <div class="layui-form-mid">
+							    	<button class="layui-btn" lay-submit id="card-update">儲值</button>
+							    </div>
 							</div>
 						</div>				  		
 				  	</div>
