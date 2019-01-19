@@ -41,7 +41,7 @@
                                 <p>
                                     <input type="text" id="d_code" class="layui-input" value="{$config["baseUrl"]}/auth/register?code={$code->code}" readonly>
                                 </p>
-                                <p><button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_code">点击复制</button>  <a class="reset-link layui-btn layui-btn-sm layui-btn-primary" style="margin-left:15px">重置链接</a></p>
+                                <p><button class="layui-btn copy-btn" data-clipboard-target="#d_code">点击复制</button>  <a class="reset-link layui-btn layui-btn-primary" style="margin-left:15px">重置链接</a></p>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                                           <input id="buy-invite-num" type="num" name="num" class="layui-input">
                                         </div>
                                         <div class="layui-form-mid">
-                                            <button id="buy-invite" class="layui-btn">购买</button>
+                                            <button id="buy-invite-btn" class="layui-btn">立即购买</button>
                                         </div>
                                     </div>
                                 </div>                                
@@ -106,8 +106,6 @@
                     </div>
 
                 {/if}
-                
-                
                 
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -161,7 +159,7 @@ require(['jquery'], function($){
         })
     });
 
-    $("#buy-invite").click(function () {
+    $("#buy-invite-btn").click(function () {
         $.ajax({
             type: "POST",
             url: "/user/buy_invite",
