@@ -77,7 +77,6 @@ $app->get('/yft/notify', 'App\Services\Gateway\YftPay:notify');//yft uses GET
 $app->get('/tos', 'App\Controllers\HomeController:tos');
 $app->get('/staff', 'App\Controllers\HomeController:staff');
 $app->post('/telegram_callback', 'App\Controllers\HomeController:telegram');
-$app->get('/globalconfig', 'App\Controllers\VueController:getGlobalConfig');
 
 // User Center
 $app->group('/user', function () {
@@ -102,8 +101,6 @@ $app->group('/user', function () {
     $this->get('/shop', 'App\Controllers\UserController:shop');
     $this->post('/coupon_check', 'App\Controllers\UserController:CouponCheck');
     $this->post('/buy', 'App\Controllers\UserController:buy');
-    $this->get('/getuserinfo', 'App\Controllers\UserController:getUserinfo');
-
 
     // Relay Mange
     $this->get('/relay', 'App\Controllers\RelayController:index');
@@ -178,7 +175,7 @@ $app->group('/payment', function () {
 // Auth
 $app->group('/auth', function () {
     $this->get('/login', 'App\Controllers\AuthController:login');
-    $this->get('/qrcode_check', 'App\Controllers\AuthController:qrcode_check');
+    $this->post('/qrcode_check', 'App\Controllers\AuthController:qrcode_check');
     $this->post('/login', 'App\Controllers\AuthController:loginHandle');
     $this->post('/qrcode_login', 'App\Controllers\AuthController:qrcode_loginHandle');
     $this->get('/register', 'App\Controllers\AuthController:register');
@@ -370,6 +367,19 @@ $app->group("/doiam", function () {
     $this->get("/return/alipay", "App\Services\Payment:returnHTML");
     $this->post("/status", "App\Services\Payment:getStatus");
 });
+
+// Vue
+
+$app->get('/logout', 'App\Controllers\VueController:vuelogout');
+$app->get('/globalconfig', 'App\Controllers\VueController:getGlobalConfig');
+$app->get('/getuserinfo', 'App\Controllers\VueController:getUserInfo');
+$app->post('/getuserinviteinfo', 'App\Controllers\VueController:getUserInviteInfo');
+$app->get('/getusershops', 'App\Controllers\VueController:getUserShops');
+$app->get('/getallresourse', 'App\Controllers\VueController:getAllResourse');
+$app->get('/getnewsubtoken', 'App\Controllers\VueController:getNewSubToken');
+$app->get('/getnewinvotecode', 'App\Controllers\VueController:getNewInviteCode');
+$app->get('/gettransfer', 'App\Controllers\VueController:getTransfer');
+$app->get('/getCaptcha', 'App\Controllers\VueController:getCaptcha');
 
 /**
  * chenPay
