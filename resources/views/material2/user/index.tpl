@@ -113,12 +113,14 @@
                                                     <input type="text" id="d_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">點擊複製</button>
                                                 </div>
-                                                多端口訂閲鏈接（For Android Client）：
+                                                <br>
+                                                多端口訂閲鏈接（For Mobile Client）：
                                                 <div class="clip-input">
                                                     <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
                                                 </div>
-                                                多端口訂閲鏈接（For Android Client, CN）：
+                                                <br>
+                                                多端口訂閲鏈接（For Mobile Client, CN）：
                                                 <div class="clip-input">
                                                     <input type="text" id="p_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
