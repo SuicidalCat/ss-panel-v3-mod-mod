@@ -1,68 +1,73 @@
 <template>
   <div>
     <div class="user-invite-title pure-g">
-      <div class="pure-u-1-2 pure-u-sm-18-24 flex align-center">
+      <div class="pure-u-1-2 pure-u-sm-18-24 flex align-center wrap">
         <div class="card-title">邀请链接</div>
-        <div class="relative flex align-center justify-center text-center">
-          <transition name="fade" mode="out-in">
-            <label v-show="showToolInput" class="relative" for>
-              <input
-                @keyup.13="submitToolInput"
-                v-model="toolInputContent"
-                :data-type="toolInputType"
-                class="coupon-checker tips tips-blue"
-                type="text"
-                :placeholder="placeholder"
-              >
-              <button @click="submitToolInput" class="btn-forinput" name="check">
-                <span class="fa fa-arrow-up"></span>
-              </button>
-              <button @click="hideToolInput" class="btn-forinput" name="reset">
-                <span class="fa fa-refresh"></span>
-              </button>
-            </label>
-          </transition>
-          <uim-tooltip v-show="showOrderCheck" class="uim-tooltip-top flex justify-center">
-            <div slot="tooltip-inner">
-              <span v-if="toolInputType === 'buy'">
+        <div class="user-invite-subtitle">
+          <div class="relative flex align-center justify-center text-center">
+            <transition name="fade" mode="out-in">
+              <label v-show="showToolInput" class="relative" for>
+                <input
+                  @keyup.13="submitToolInput"
+                  v-model="toolInputContent"
+                  :data-type="toolInputType"
+                  class="coupon-checker tips tips-blue"
+                  type="text"
+                  :placeholder="placeholder"
+                >
+                <button @click="submitToolInput" class="btn-forinput" name="check">
+                  <font-awesome-icon icon="arrow-up"/>
+                </button>
+                <button @click="hideToolInput" class="btn-forinput" name="reset">
+                  <font-awesome-icon icon="sync-alt"/>
+                </button>
+              </label>
+            </transition>
+            <uim-tooltip v-show="showOrderCheck" class="uim-tooltip-top flex justify-center">
+              <template #tooltip-inner>
+                <span v-if="toolInputType === 'buy'">
+                  <div>
+                    确认购买
+                    <span class="text-red">{{toolInputContent}}</span>&nbsp;个吗？总价为
+                    <span class="text-red">￥{{totalPrice}}</span>
+                  </div>
+                </span>
+                <span v-if="toolInputType === 'custom'">
+                  确认定制链接后缀为
+                  <span class="text-red">{{toolInputContent}}</span>&nbsp;吗？价格为
+                  <span class="text-red">￥{{customPrice}}</span>
+                </span>
                 <div>
-                  确认购买
-                  <span class="text-red">{{toolInputContent}}</span> 个吗？总价为
-                  <span class="text-red">￥{{totalPrice}}</span>
+                  <button @click="submitOrder" class="tips tips-green">
+                    <font-awesome-icon icon="check" fixed-width/>
+                  </button>
+                  <button @click="hideOrderCheck" class="tips tips-red">
+                    <font-awesome-icon icon="times" fixed-width/>
+                  </button>
                 </div>
-              </span>
-              <span v-if="toolInputType === 'custom'">
-                确认定制链接后缀为
-                <span class="text-red">{{toolInputContent}}</span> 吗？价格为
-                <span class="text-red">￥{{customPrice}}</span>
-              </span>
-              <div>
-                <button @click="submitOrder" class="tips tips-green">
-                  <span class="fa fa-fw fa-check"></span>
-                </button>
-                <button @click="hideOrderCheck" class="tips tips-red">
-                  <span class="fa fa-fw fa-remove"></span>
-                </button>
+              </template>
+            </uim-tooltip>
+          </div>
+          <transition name="fade" mode="out-in">
+            <div class="toolinput-state" v-show="showToolInput">
+              <div class="flex align-center" v-if="toolInputType === 'buy'" key="buy">
+                <span v-show="toolInputType === 'buy'" class="tips tips-green">￥{{invitePrice}}/次</span>
+                <span v-show="toolInputType === 'buy'" class="tips tips-gold">总价：￥{{totalPrice}}</span>
+              </div>
+              <div class="flex align-center" v-else key="custom">
+                <span
+                  v-show="toolInputType === 'custom'"
+                  class="tips tips-green"
+                >价格：￥{{customPrice}}</span>
               </div>
             </div>
-          </uim-tooltip>
+          </transition>
         </div>
-        <transition name="fade" mode="out-in">
-          <div v-show="showToolInput">
-            <div class="flex align-center" v-if="toolInputType === 'buy'" key="buy">
-              <span v-show="toolInputType === 'buy'" class="tips tips-green">￥{{invitePrice}}/次</span>
-              <span v-show="toolInputType === 'buy'" class="tips tips-gold">总价：￥{{totalPrice}}</span>
-            </div>
-            <div class="flex align-center" v-else key="custom">
-              <span v-show="toolInputType === 'custom'" class="tips tips-green">价格：￥{{customPrice}}</span>
-            </div>
-          </div>
-        </transition>
       </div>
       <transition name="fade">
         <div v-if="showInviteLog" class="pure-u-1-2 pure-u-sm-6-24 flex-end flex align-center">
           <button @click="closeInviteLog" class="btn-user">
-            <span class="fa fa-mail-reply"></span> 返回
+            <font-awesome-icon icon="reply"/>&nbsp;返回
           </button>
         </div>
       </transition>
@@ -84,24 +89,24 @@
                 >
                 <span class="invite-tools link-reset relative flex justify-center text-center">
                   <button @click="showInviteReset" class="tips tips-red">
-                    <span class="fa fa-refresh"></span> 重置
+                    <font-awesome-icon icon="sync-alt"/>&nbsp;重置
                   </button>
 
                   <uim-tooltip
                     v-show="inviteResetConfirm"
                     class="uim-tooltip-top flex justify-center"
                   >
-                    <div slot="tooltip-inner">
+                    <template #tooltip-inner>
                       <span>确定要重置邀请链接？</span>
                       <div>
                         <button @click="resetInviteLink" class="tips tips-green">
-                          <span class="fa fa-fw fa-check"></span>
+                          <font-awesome-icon icon="check" fixed-width/>
                         </button>
                         <button @click="hideInviteReset" class="tips tips-red">
-                          <span class="fa fa-fw fa-remove"></span>
+                          <font-awesome-icon icon="times" fixed-width/>
                         </button>
                       </div>
-                    </div>
+                    </template>
                   </uim-tooltip>
                 </span>
                 <span
@@ -113,7 +118,7 @@
                     :disabled="isToolDisabled"
                     class="tips tips-cyan"
                   >
-                    <span class="fa fa-pencil"></span> 定制
+                    <font-awesome-icon icon="pencil-alt"/>&nbsp;定制
                   </button>
                 </span>
               </div>
@@ -127,23 +132,23 @@
                   <button
                     @click="showBuyToolInput"
                     :disabled="isToolDisabled"
-                    class="invite-tools invite-number tips tips-green"
+                    class="invite-number tips tips-green"
                   >
-                    <span class="fa fa-cny"></span> 购买
+                    <font-awesome-icon icon="yen-sign"/>&nbsp;购买
                   </button>
                 </span>
               </h5>
               <h5>
                 每邀请1位用户注册，您会获得
-                <span class="tips tips-sm tips-cyan">{{invite_gift}}G</span> 流量奖励
+                <span class="tips tips-sm tips-cyan">{{invite_gift}}G</span>&nbsp;流量奖励
               </h5>
               <h5>
                 对方将获得
-                <span class="tips tips-sm tips-cyan">￥{{invite_get_money}}</span> 作为初始资金
+                <span class="tips tips-sm tips-cyan">￥{{invite_get_money}}</span>&nbsp;作为初始资金
               </h5>
               <h5>
                 对方充值时您还会获得对方充值金额
-                <span class="tips tips-sm tips-cyan">{{code_payback}}%</span> 的返利
+                <span class="tips tips-sm tips-cyan">{{code_payback}}%</span>&nbsp;的返利
               </h5>
               <h4>
                 已获得返利：
@@ -152,22 +157,21 @@
               <button @click="checkInviteLog" class="tips tips-gold">查看返利明细</button>
             </div>
             <div v-else key="viewLog">
-              <div class="userinvite-table-container">
+              <div class="user-table-container">
                 <uim-table>
-                  <th slot="uim-th">ID</th>
-                  <th slot="uim-th">被邀请用户ID</th>
-                  <th slot="uim-th">获得返利</th>
+                  <template #uim-th>
+                    <th>ID</th>
+                    <th>被邀请用户ID</th>
+                    <th>获得返利</th>
+                  </template>
 
-                  <tr
-                    class="uim-tr-body"
-                    v-for="(item,key) in paybacks.data"
-                    :key="key+item.id"
-                    slot="uim-tr"
-                  >
-                    <td>{{item.id}}</td>
-                    <td>{{item.userid}}</td>
-                    <td>￥{{item.ref_get}}</td>
-                  </tr>
+                  <template #uim-tbd>
+                    <tr class="uim-tr-body" v-for="(item,key) in paybacks.data" :key="key+item.id">
+                      <td>{{item.id}}</td>
+                      <td>{{item.userid}}</td>
+                      <td>￥{{item.ref_get}}</td>
+                    </tr>
+                  </template>
                 </uim-table>
               </div>
               <div class="uim-pagenation-container">
@@ -235,7 +239,10 @@ export default {
       showInviteLog: false,
       paybacks: "",
       paybacks_sum: "",
-      pagenation: ""
+      pagenation: {
+        lastPage: 1,
+        currentPage: 1
+      }
     };
   },
   methods: {
@@ -270,7 +277,7 @@ export default {
         this.showLinkTrans();
         let callConfig = {
           msg: "已重置您的邀请链接，复制您的邀请链接发送给其他人！",
-          icon: "fa-bell",
+          icon: "bell",
           time: 1500
         };
         this.callMsgr(callConfig);
@@ -329,7 +336,7 @@ export default {
       ) {
         let callConfig = {
           msg: "请输入数字",
-          icon: "fa-times-circle-o",
+          icon: "times-circle",
           time: 1500
         };
         this.callMsgr(callConfig);
@@ -341,7 +348,7 @@ export default {
       if (this.toolInputContent === "") {
         let callConfig = {
           msg: "后缀不能为空",
-          icon: "fa-times-circle-o",
+          icon: "times-circle",
           time: 1500
         };
         this.callMsgr(callConfig);
@@ -371,14 +378,14 @@ export default {
           this.setInviteNum(r.invite_num);
           let callConfig = {
             msg: r.msg,
-            icon: "fa-check-square-o",
+            icon: "check-circle",
             time: 1000
           };
           this.callMsgr(callConfig);
         } else {
           let callConfig = {
             msg: r.msg,
-            icon: "fa-times-circle-o",
+            icon: "times-circle",
             time: 1000
           };
           this.callMsgr(callConfig);
@@ -399,7 +406,7 @@ export default {
             this.code = this.oldCode = this.toolInputContent;
             let callConfig = {
               msg: r.msg,
-              icon: "fa-check-square-o",
+              icon: "check-circle",
               time: 1000
             };
             this.callMsgr(callConfig);
@@ -408,7 +415,7 @@ export default {
             this.code = this.oldCode;
             let callConfig = {
               msg: r.msg,
-              icon: "fa-times-circle-o",
+              icon: "times-circle",
               time: 1000
             };
             this.callMsgr(callConfig);
@@ -418,13 +425,14 @@ export default {
     },
     checkInviteLog() {
       this.showInviteLog = true;
+      this.hideToolInput();
     },
     closeInviteLog() {
       this.showInviteLog = false;
     },
     turnInviteLogPage(current) {
       let body = { current: current };
-      _post("getuserinviteinfo", JSON.stringify(body), "include").then(r => {
+      _post("/getuserinviteinfo", JSON.stringify(body), "include").then(r => {
         this.paybacks = r.inviteInfo.paybacks;
         this.pagenation.currentPage = r.inviteInfo.paybacks.current_page;
       });
@@ -432,8 +440,7 @@ export default {
   },
   mounted() {
     let body = { current: 1 };
-    _post("getuserinviteinfo", JSON.stringify(body), "include").then(r => {
-      window.console.log(r);
+    _post("/getuserinviteinfo", JSON.stringify(body), "include").then(r => {
       this.code = this.oldCode = r.inviteInfo.code.code;
       this.invitePrice = r.inviteInfo.invitePrice;
       this.customPrice = r.inviteInfo.customPrice;
@@ -444,9 +451,7 @@ export default {
       this.code_payback = r.inviteInfo.code_payback;
       this.pagenation = {
         lastPage: r.inviteInfo.paybacks.last_page,
-        currentPage: 1
       };
-      window.console.log(this.userCon);
     });
   },
   beforeDestroy() {
@@ -456,7 +461,53 @@ export default {
 </script>
 
 <style>
-.uim-pagenation-container {
-  margin-top: 0.75rem;
+.invite-tools {
+  position: relative;
+  margin: 1rem 0.75rem 0 0;
+}
+.invite-number.tips {
+  margin-right: 0.75rem;
+  font-size: 14px;
+}
+.invite-number.tips:last-of-type {
+  margin-right: 0;
+}
+.invite-tools .tips.tips-red {
+  position: relative;
+  top: 1px;
+}
+.invite-tools.tips-green {
+  padding: 3.5px 0.7rem;
+  bottom: 1px;
+  margin-left: 0.55rem;
+}
+.user-invite-subtitle {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+.toolinput-state .tips {
+  margin-right: 0.75rem;
+}
+.user-invite-title .tips {
+  position: relative;
+}
+@media screen and (min-width: 35.5em) {
+  .invite-tools {
+    margin: 0 0 0 0.75rem;
+  }
+  .user-invite-subtitle > div {
+    display: inline-block;
+  }
+  .user-invite-subtitle {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  .toolinput-state .tips {
+    margin-right: 0;
+    margin-left: 0.75rem;
+  }
+  .user-invite-title .btn-forinput {
+    top: 0.05rem;
+  }
 }
 </style>

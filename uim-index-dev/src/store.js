@@ -12,7 +12,7 @@ export default new Vuex.Store({
     msgrCon: {
       msg: '操作成功',
       html: '',
-      icon: ['fa', 'fa-check-square-o'],
+      icon: 'check-circle',
       isShow: false
     },
     modalCon: {
@@ -57,7 +57,7 @@ export default new Vuex.Store({
         state.msgrCon.html = ''
       }
       state.msgrCon.msg = config.msg
-      state.msgrCon.icon[1] = config.icon
+      state.msgrCon.icon = config.icon
       state.msgrCon.html = config.html
     },
     ISSHOW_MSGR (state, boolean) {
@@ -84,7 +84,7 @@ export default new Vuex.Store({
       state.globalConfig.login_token = config.login_token
       state.globalConfig.login_number = config.login_number
       state.globalConfig.telegram_bot = config.telegram_bot
-      state.globalConfig.crisp = config.enable_crisp
+      state.globalConfig.crisp = config.enable_mylivechat
       state.globalConfig.enable_telegram = config.enable_telegram
       state.globalConfig.indexMsg.appname = config.appName
       state.globalConfig.indexMsg.date = config.dateY

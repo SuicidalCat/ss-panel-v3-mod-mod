@@ -76,7 +76,9 @@ class XCat
             case("userga"):
                 return Job::UserGa();
             case("backup"):
-                return Job::backup();
+                return Job::backup(false);
+			case("backupfull"):
+				return Job::backup(true);
             case("initdownload"):
                 return $this->initdownload();
             case("updatedownload"):
@@ -91,6 +93,8 @@ class XCat
 			    return Update::update($this);
             case ("sendDailyUsageByTG"):
                 return $this->sendDailyUsageByTG();
+			case('npmbuild'):
+				return $this->npmbuild();
 			default:
                 return $this->defaultAction();
         }
@@ -250,19 +254,8 @@ class XCat
     public function initQQWry()
     {
         echo("downloading....");
-        $copywrite = file_get_contents("https://qqwry.mirror.noc.one/copywrite.rar");
-        $newmd5 = md5($copywrite);
-        file_put_contents(BASE_PATH."/storage/qqwry.md5", $newmd5);
-        $qqwry = file_get_contents("https://qqwry.mirror.noc.one/qqwry.rar");
+        $qqwry = file_get_contents("https://qqwry.mirror.noc.one/QQWry.Dat");
         if ($qqwry != "") {
-            $key = unpack("V6", $copywrite)[6];
-            for ($i=0; $i<0x200; $i++) {
-                $key *= 0x805;
-                $key ++;
-                $key = $key & 0xFF;
-                $qqwry[$i] = chr(ord($qqwry[$i]) ^ $key);
-            }
-            $qqwry = gzuncompress($qqwry);
             $fp = fopen(BASE_PATH."/storage/qqwry.dat", "wb");
             if ($fp) {
                 fwrite($fp, $qqwry);
@@ -289,4 +282,11 @@ class XCat
             }
         }
     }
+
+	public function npmbuild(){
+		chdir(BASE_PATH.'/uim-index-dev');
+		system('npm install');
+		system('npm run build');
+		system('cp -u ../public/vuedist/index.html ../resources/views/material/index.tpl');
+	}
 }

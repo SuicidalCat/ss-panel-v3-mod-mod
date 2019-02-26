@@ -1,11 +1,15 @@
 <template>
   <div class="uim-dropdown">
     <button @click.stop="show" class="uim-dropdown-btn">
-      <slot name="dpbtn-content"></slot>
+      <span>
+        <slot name="dpbtn-content"></slot>
+      </span>
     </button>
     <transition name="dropdown-fade" mode="out-in">
       <div v-show="isDropdown" @click.stop="hide" class="uim-dropdown-menu">
-        <slot name="dp-menu"></slot>
+        <ul>
+          <slot name="dp-menu"></slot>
+        </ul>
       </div>
     </transition>
   </div>
@@ -13,31 +17,31 @@
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
       isDropdown: false
-    }
+    };
   },
   methods: {
-    show () {
+    show() {
       if (this.isDropdown === false) {
-        this.isDropdown = true
+        this.isDropdown = true;
       } else {
-        this.isDropdown = false
+        this.isDropdown = false;
       }
     },
-    hide () {
+    hide() {
       if (this.isDropdown === true) {
-        this.isDropdown = false
+        this.isDropdown = false;
       }
     }
   },
-  mounted () {
-    document.addEventListener('click', () => {
-      this.hide()
-    })
+  mounted() {
+    document.addEventListener("click", () => {
+      this.hide();
+    });
   }
-}
+};
 </script>
 
 <style>
@@ -122,7 +126,7 @@ export default {
 }
 @media screen and (min-width: 35.5em) {
   .uim-dropdown-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 0.5rem;
   }
 }
 </style>
