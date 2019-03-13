@@ -105,7 +105,7 @@
                                             <div class="layui-tab-item layui-show">
                                                 單端口訂閲鏈接：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <input type="text" id="p_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
                                                 </div>
                                                 <br>
@@ -117,7 +117,7 @@
                                                 <br>
                                                 多端口訂閲鏈接（For Mobile Client）：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
+                                                    <input type="text" id="p_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
                                                 </div>
                                                 <br>
