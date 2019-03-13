@@ -143,7 +143,7 @@
                                                 <p>
                                                 單端口訂閲鏈接：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$baseUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <input type="text" id="p_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
                                                 </div>
                                                 <br>
@@ -156,11 +156,11 @@
                                             </div>                                  
                                             <div class="layui-tab-item">
                                                 <p>
-                                                    路由器 刷入<a href="http://www.right.com.cn/forum/thread-161324-1-1.html" class="layui-btn layui-btn-primary">这个固件</a> 然后SSH方式登陆路由器，执行以下命令，导入<br>
-                                                    1) 普通端口
-                                                    <pre class="layui-code">wget -O- {$baseUrl}/link/{$router_token}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$baseUrl}/link/{$router_token}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </pre>
-                                                    2) 或者 单端口
-                                                    <pre class="layui-code">wget -O- {$baseUrl}/link/{$router_token_without_mu}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$baseUrl}/link/{$router_token_without_mu}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </pre>
+                                                    網路分享器刷入<a href="http://www.right.com.cn/forum/thread-161324-1-1.html" class="layui-btn layui-btn-primary">这个固件</a> 然后SSH方式登陆路由器，执行以下命令，导入<br>
+                                                    1) 多端口
+                                                    <pre class="layui-code">wget -O- {$subUrl}/link/{$router_token}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$subUrl}/link/{$router_token}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </pre>
+                                                    2) 單端口
+                                                    <pre class="layui-code">wget -O- {$subUrl}/link/{$router_token_without_mu}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$subUrl}/link/{$router_token_without_mu}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </pre>
                                                     执行完毕以后就可以到路由器的设置面板里随意选择 节点 进行连接了。
                                                 </p>
                                             </div>
