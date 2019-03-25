@@ -199,7 +199,7 @@
 																<a class="" data-toggle="tab" href="#all_ssr_mac"><i class="icon icon-lg">laptop_mac</i>&nbsp;MacOS</a>
 															</li>
                                                           <li>
-																<a class="" data-toggle="tab" href="#all_ssr_linux"><i class="icon icon-lg">dvr</i>&nbsp;Linux</a>
+																<a class="" data-toggle="tab" href="#all_ssr_linux"><i class="icon icon-lg">dvr</i>&nbsp;Linux（GUI）</a>
 															</li>
 															<li>
 																<a class="" data-toggle="tab" href="#all_ssr_ios"><i class="icon icon-lg">phone_iphone</i>&nbsp;iOS</a>
@@ -252,24 +252,34 @@
                                                       <p><a href="/user/tutorial">点击这里查看Mac教程</a></p>
 													</div>
                                                   <div class="tab-pane fade" id="all_ssr_linux">
-                                                      <p><a href="/user/tutorial">点击这里查看Linux教程</a></p>
+													  <p><span class="icon icon-lg text-white">filter_1</span>自行安装python，<a href="/ssr-download/ssr-linux.AppImage" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载electron-ssr</a>，安装并启动</p>    
+                                                      <p><span class="icon icon-lg text-white">filter_2</span> 右击托盘纸飞机图标->服务器->订阅管理，点击“添加”，输入以下订阅地址并回车</p>
+													<p><span class="icon icon-lg text-white">filter_3</span >订阅成功后点击“完成”关闭界面，右击托盘纸飞机图标->服务器->{$config["appName"]}->选择一个节点即可</p>
+													<div><span class="icon icon-lg text-white">flash_auto</span> {if $mergeSub!='true'}普通节点{/if}订阅地址：</div>
+													<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$subUrl}{$ssr_sub_token}{if $mergeSub!='true'}?mu=0{/if}" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}{if $mergeSub!='true'}?mu=0{/if}">点击复制</button><br></div>
+													{if $mergeSub!='true'}
+														<div><span class="icon icon-lg text-white">flash_auto</span> 单端口节点订阅地址：</div>
+														<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$subUrl}{$ssr_sub_token}?mu=1" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=1">点击复制</button><br></div>
+													{/if}
 													</div>
 													<div class="tab-pane fade" id="all_ssr_ios">
 													{if $display_ios_class>=0}
-														<div><span class="icon icon-lg text-white">account_box</span> 公共iOS账户：</div>
-														{if $user->class>=$display_ios_class}
+														<div><span class="icon icon-lg text-white">account_box</span> 本站iOS账户：</div>
+														{if $user->class>=$display_ios_class && $user->get_top_up()>=$display_ios_topup}
 															<div class="float-clear">
 																<input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$ios_account}" readonly="true">
 																<button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$ios_account}">点击复制</button><br>
 															</div>
-															<div><span class="icon icon-lg text-white">lock</span> 公共iOS密码：</div>
+															<div><span class="icon icon-lg text-white">lock</span> 本站iOS密码：</div>
 															<div class="float-clear">
 																<input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$ios_password}" readonly="true">
 																<button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$ios_password}">点击复制</button><br>
 															</div>
+															<p><span class="icon icon-lg text-white">error</span><strong>禁止将账户分享给他人！</strong></p>
+															<br/>
 														{else}
 															<p class="card-heading" align="center"><b> 
-																<i class="icon icon-lg">visibility_off</i>等级至少为{$display_ios_class}可见，如需升级请<a href="/user/shop">点击这里</a>升级套餐
+																<i class="icon icon-lg">visibility_off</i>等级至少为<code>{$display_ios_class}</code>且累计充值大于<code>{$display_ios_topup}</code>时可见，如需升级请<a href="/user/shop">点击这里</a>升级套餐
 															</b></p>
 														{/if}
 													{/if}
@@ -439,20 +449,22 @@
 													</div>
 													<div class="tab-pane fade" id="all_ss_ios">													
 													{if $display_ios_class>=0}
-														<div><span class="icon icon-lg text-white">account_box</span> 公共iOS账户：</div>
-														{if $user->class>=$display_ios_class}
+														<div><span class="icon icon-lg text-white">account_box</span> 本站iOS账户：</div>
+														{if $user->class>=$display_ios_class && $user->get_top_up()>=$display_ios_topup}
 															<div class="float-clear">
 																<input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$ios_account}" readonly="true">
 																<button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$ios_account}">点击复制</button><br>
 															</div>
-															<div><span class="icon icon-lg text-white">lock</span> 公共iOS密码：</div>
+															<div><span class="icon icon-lg text-white">lock</span> 本站iOS密码：</div>
 															<div class="float-clear">
 																<input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$ios_password}" readonly="true">
 																<button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$ios_password}">点击复制</button><br>
 															</div>
+															<p><span class="icon icon-lg text-white">error</span><strong>禁止将账户分享给他人！</strong></p>
+															<br/>
 														{else}
 															<p class="card-heading" align="center"><b> 
-																<i class="icon icon-lg">visibility_off</i>等级至少为{$display_ios_class}可见，如需升级请<a href="/user/shop">点击这里</a>升级套餐。
+																<i class="icon icon-lg">visibility_off</i>等级至少为<code>{$display_ios_class}</code>且累计充值大于<code>{$display_ios_topup}</code>时可见，如需升级请<a href="/user/shop">点击这里</a>升级套餐。
 															</b></p>
 														{/if}
 													{/if}
@@ -510,7 +522,8 @@
 														<p><span class="icon icon-lg text-white">filter_2</span> 双击任务栏右下角V2RayN图标->订阅->订阅设置->添加->填入下方的地址，点击确定</p>
 														<p><span class="icon icon-lg text-white">filter_3</span> 再次点击订阅->更新订阅，右击任务栏右下角V2RayN图标->启动Http代理</p>
 														<p><span class="icon icon-lg text-white">filter_4</span> 自行选择“Http代理模式”和“服务器”</p>
-														<p> 也可以使用ClashX进行连接，<a href="/ssr-download/Clash-Windows.7z" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载 ClashX</a></p>
+                                                        <p> 也可以使用 Clash 进行连接，<a href="/ssr-download/Clash-Windows.7z" class="btn-dl"><i class="material-icons">save_alt</i> 点击下载 Clash for Windows
+                                                         </a></p>
 														<div><span class="icon icon-lg text-white">flash_auto</span> 节点订阅地址：</div>
 														<div class="float-clear"><input type="text" class="input form-control form-control-monospace cust-link col-xx-12 col-sm-8 col-lg-7" name="input1" readonly value="{$subUrl}{$ssr_sub_token}?mu=2" readonly="true"><button class="copy-text btn btn-subscription col-xx-12 col-sm-3 col-lg-2" type="button" data-clipboard-text="{$subUrl}{$ssr_sub_token}?mu=2">点击复制</button><br></div>
 													</div>
@@ -806,6 +819,7 @@ $(".copy-text").click(function () {
 	$("#result").modal();
 	$("#msg").html("已拷贝订阅链接，请您继续接下来的操作。");
 });
+
 $(function(){
 	new Clipboard('.reset-link');
 });

@@ -212,6 +212,7 @@ $System_Config['enable_donate']='false';	//是否显示用户捐赠（所有收�
 
 #iOS账户显示
 $System_Config['display_ios_class']='-1';	//至少等级为多少的用户可以看见，小于0时关闭此功能
+$System_Config['display_ios_topup']='0';	//满足等级要求后，累计充值高于多少的用户可以看见
 $System_Config['ios_account']='';			//iOS账户
 $System_Config['ios_password']='';			//iOS密码
 
@@ -238,7 +239,8 @@ $System_Config['v2ray_level']='0';
 #杂项
 $System_Config['enable_login_bind_ip']='false';		//是否将登陆线程和IP绑定
 $System_Config['authDriver'] = 'cookie';			//不能更改此项
-$System_Config['salt'] = '';						//密码加密用，请留空
+$System_Config['pwdMethod'] = 'sha256';				//密码加密 可选 md5, sha256, bcrypt, argon2i（argon2i需要至少php7.2）
+$System_Config['salt'] = '';						//推荐配合 md5/sha256 用，argon2i/bcrypt 强烈建议不要自己设置 salt。只要不设置，它会自动创建安全的盐值
 $System_Config['sessionDriver'] = 'cookie';			//可选: cookie,redis
 $System_Config['cacheDriver'] = 'cookie';			//可选: cookie,redis
 $System_Config['tokenDriver'] = 'db';				//可选: db,redis
@@ -249,7 +251,6 @@ $System_Config['pacpp_offset']='-20000';
 $System_Config['Speedtest_duration']='6';			//显示多长时间的测速记录
 $System_Config['login_warn']='false';				//异地登陆提示
 $System_Config['timeZone'] = 'PRC';					//PRC 天朝时间  UTC 格林时间
-$System_Config['pwdMethod'] = 'sha256';				//密码加密   可选 md5,sha256，argon2i（argon2i需要至少php7.2）
 $System_Config['db_charset'] = 'utf8';
 $System_Config['db_collation'] = 'utf8_general_ci';
 $System_Config['db_prefix'] = '';
