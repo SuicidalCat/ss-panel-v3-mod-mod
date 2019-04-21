@@ -1,7 +1,7 @@
 <div class="layui-row layui-col-space10">
 	<div class="layui-col-md3 layui-col-sm6 layui-col-xs6">
 		<p><i class="lnr lnr-screen"></i> Windows</p>
-			<a href="//cdn.leezf.com/Shadowsocksr/ShadowsocksR-win-4.9.0.zip" class="layui-btn layui-btn-primary layui-btn-sm">客戶端下載↓</a>
+			<a href="//cdn.leezf.com/Shadowsocksr/ShadowsocksR-win-4.9.2.zip" class="layui-btn layui-btn-primary layui-btn-sm">客戶端下載↓</a>
       		<a href="//docs.walllink.io/r5ly" target="_blank" class="layui-btn layui-btn-primary layui-btn-sm">使用教程</a>
 	</div>
 	<div class="layui-col-md3 layui-col-sm6 layui-col-xs6">
@@ -16,6 +16,7 @@
 	</div>
 	<div class="layui-col-md3 layui-col-sm6 layui-col-xs6">
 		<p><i class="lnr lnr-smartphone"></i> iOS</p>
+			<a href="//itunes.apple.com/us/app/quantumult/id1252015438" class="layui-btn layui-btn-primary layui-btn-sm">客戶端購買↓</a>
 			<a href="//docs.walllink.io/category/ios/" target="_blank" class="layui-btn layui-btn-primary layui-btn-sm">使用教程</a>
 	</div>
 </div>
