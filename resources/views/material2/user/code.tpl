@@ -71,6 +71,9 @@
 							    <div class="layui-input-inline">
 							      <input id="code" type="text" name="title" class="layui-input">
 							    </div>
+									<div class="layui-form-mid">
+							    	<button class="layui-btn"><a href="http://6afk.com/shop/2wldx73rinygtl1leemdcl#/buy" target="_blank">購買儲值卡</a></button>
+							    </div>
 							    <div class="layui-form-mid">
 							    	<button class="layui-btn" lay-submit id="card-update">儲值</button>
 							    </div>
