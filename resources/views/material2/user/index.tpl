@@ -105,26 +105,26 @@
                                             <div class="layui-tab-item layui-show">
                                                 單端口訂閲鏈接：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
+                                                    <input type="text" id="single_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port">點擊複製</button>
                                                 </div>
                                                 <br>
                                                 單端口訂閲鏈接（CN）：
                                                 <div class="clip-input">
-                                                    <input type="text" id="d_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#d_port">點擊複製</button>
+                                                    <input type="text" id="single_port_cn" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port_cn">點擊複製</button>
                                                 </div>
                                                 <br>
                                                 多端口訂閲鏈接（For Mobile Client）：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
+                                                    <input type="text" id="multi_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#multi_port">點擊複製</button>
                                                 </div>
                                                 <br>
                                                 多端口訂閲鏈接（For Mobile Client, CN）：
                                                 <div class="clip-input">
-                                                    <input type="text" id="p_port" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#p_port">點擊複製</button>
+                                                    <input type="text" id="multi_port_cn" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#multi_port_cn">點擊複製</button>
                                                 </div>
                                                 <br>
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
