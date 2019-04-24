@@ -100,6 +100,7 @@
                                         </ul>
                                         <div class="layui-tab-content">
                                                 {$user = URL::getSSRConnectInfo($pre_user)}
+                                                {$ss_url_all = URL::getAllUrl($pre_user, 0, 1)}
                                                 {$ssr_url_all = URL::getAllUrl($pre_user, 0, 0)}
                                                 {$ssr_url_all_mu = URL::getAllUrl($pre_user, 1, 0)}
                                             <div class="layui-tab-item layui-show">
@@ -130,7 +131,7 @@
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>
                                             <div class="layui-tab-item">
-                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}">多端口配置導入</button>
+                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ss_url_all}">多端口配置導入</button>
                                                 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all_mu}">單端口配置導入</button> 後右鍵客戶端導入。
                                             </div>
                                             <div class="layui-tab-item">
