@@ -131,8 +131,8 @@
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>
                                             <div class="layui-tab-item">
-                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ss_url_all}">多端口配置導入(SS)</button><button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}">多端口配置導入(SSR)</button>
-                                                <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all_mu}">單端口配置導入</button> 後右鍵客戶端導入。
+                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ss_url_all}">配置導入(SS)</button>
+                                                <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}{$ssr_url_all_mu}">配置導入(SSR)</button> 後右鍵客戶端導入。
                                             </div>
                                             <div class="layui-tab-item">
                                                 <a href="/ssr-download/SSTap.7z" class="layui-btn">点击下载</a> 解压后，运行一键游戏加速
