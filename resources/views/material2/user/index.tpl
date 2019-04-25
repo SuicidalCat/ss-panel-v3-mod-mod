@@ -95,6 +95,7 @@
                                         <ul class="layui-tab-title">
                                             <li class="layui-this"><i class="icon ptfont pticon-clipattachmentpa"></i> 訂閲地址</li>
                                             <li><i class="icon ptfont pticon-clipattachmentpa"></i> 鏈接導入</li>
+                                            <li><i class="icon ptfont pticon-clipattachmentpa"></i> 配置文件下載</li>
                                             <li><i class="icon ptfont pticon-locationpinmap2"></i> 游戲加速</li>
                                             <li><i class="icon ptfont pticon-circuitelectricbo"></i> 網路分享器</li>
                                         </ul>
@@ -133,6 +134,10 @@
                                             <div class="layui-tab-item">
                                                 點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ss_url_all}">配置導入(SS)</button>
                                                 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}{$ssr_url_all_mu}">配置導入(SSR)</button> 後右鍵客戶端導入。
+                                            </div>
+                                            <div class="layui-tab-item">
+                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary"><a href="/user/getpcconf?is_mu=0&is_ss=1">配置下載（SS）</a></button>
+                                                獲取適用於其他類型GUI客戶段的gui-config.json文件。
                                             </div>
                                             <div class="layui-tab-item">
                                                 <a href="/ssr-download/SSTap.7z" class="layui-btn">点击下载</a> 解压后，运行一键游戏加速
