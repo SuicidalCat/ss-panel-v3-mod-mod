@@ -8,18 +8,19 @@
 $System_Config['config_migrate_notice']=
 'enable_geetest_* 已变更为 enable_*_captcha
 crisp已被替换为mylivechat
+telegrma_qrcode被重命名为qrcode
 
 ';
-$System_Config['version']='0';	//仅当涉及【需要修改config以外的文件】时才需要+1，站长勿动
+$System_Config['version']='1';	//仅当涉及【需要修改config以外的文件】时才需要+1，站长勿动
 
 
 //基本设置--------------------------------------------------------------------------------------------
 $System_Config['key'] = '1145141919810';						//!!! 瞎 jb 修改此key为随机字符串确保网站安全 !!!
-$System_Config['debug'] =  'false';								//正式环境请确保为 false
-$System_Config['appName'] = 'sspanel';							//站点名称
-$System_Config['baseUrl'] = 'http://url.com';					//站点地址
+$System_Config['debug'] = 'true';								//正式环境请确保为 false
+$System_Config['appName'] = 'sspanel uim test';							//站点名称
+$System_Config['baseUrl'] = 'http://sspanel.host:23480';					//站点地址
 $System_Config['subUrl'] = $System_Config['baseUrl'].'/link/';	//订阅地址，如需和站点名称相同，请不要修改
-$System_Config['muKey'] = 'NimaQu';								//用于校验ss-go mu的请求，可以随意修改，但请保持前后端一致
+$System_Config['muKey'] = 'NimaQu';								//用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
 $System_Config['db_driver'] = 'mysql';							//数据库程序
 $System_Config['db_host'] = 'localhost';						//数据库地址
 $System_Config['db_database'] = 'sspanel';						//数据库名
@@ -28,7 +29,7 @@ $System_Config['db_password'] = 'sspanel';						//用户名对应的密码
 
 
 //邮件设置--------------------------------------------------------------------------------------------
-$System_Config['mailDriver'] = 'none';	//发送邮件方式：none / mailgun / smtp / sendgrid 
+$System_Config['mailDriver'] = 'none';	//发送邮件方式：none / mailgun / smtp / sendgrid
 $System_Config['sendPageLimit']= 50;	//发信分页 解决大站发公告超时问题
 
 # mailgun
@@ -53,7 +54,7 @@ $System_Config['sendgrid_sender'] = '';
 //备份设置--------------------------------------------------------------------------------------------
 $System_Config['auto_backup_email']='';		//接收备份的邮箱
 $System_Config['auto_backup_passwd']='';	//备份的压缩密码
-$System_Config['backup_notify']='true';		//备份通知到TG群中
+$System_Config['backup_notify'] = 'false';		//备份通知到TG群中
 
 
 //用户注册设置-----------------------------------------------------------------------------------------
@@ -93,15 +94,16 @@ $System_Config['email_verify_iplimit']='10';		//验证码有效期内，单IP可
 
 //已注册用户设置---------------------------------------------------------------------------------------
 #基础
-$System_Config['checkinMin'] = '1';				//用户签到最少流量 单位MB
+$System_Config['checkinMin'] = '1';			//用户签到最少流量 单位MB
 $System_Config['checkinMax'] = '50';			//用户签到最多流量
-$System_Config['auto_clean_uncheck_days']='-1';	//自动清理多少天没签到的0级用户，小于等于0时关闭
-$System_Config['auto_clean_unused_days']='-1';	//自动清理多少天没使用的0级用户，小于等于0时关闭
+$System_Config['auto_clean_uncheck_days']='-1';	        //自动清理多少天没签到的0级用户，小于等于0时关闭
+$System_Config['auto_clean_unused_days']='-1';	        //自动清理多少天没使用的0级用户，小于等于0时关闭
 $System_Config['auto_clean_min_money']='1';		//余额低于多少的0级用户可以被清理
 $System_Config['code_payback']='20';			//充值返利百分比
-$System_Config['invite_gift']='2';				//邀请新用户获得流量奖励，单位G
-$System_Config['enable_bought_reset']='true';	//购买时是否重置流量
-$System_Config['port_price']='-1';				//用户随机重置端口所需要的价格，价格小于0时视为不开放购买
+$System_Config['invite_gift']='2';			//邀请新用户获得流量奖励，单位G
+$System_Config['enable_bought_reset']='true';	        //购买时是否重置流量
+$System_Config['enable_bought_extend']='true';	        //购买时是否延长等级期限（同等级配套）
+$System_Config['port_price']='-1';			//用户随机重置端口所需要的价格，价格小于0时视为不开放购买
 $System_Config['port_price_specify']='-1';		//用户指明钦定端口所需要的价格，价格小于0时视为不开放购买
 
 #高级
@@ -112,8 +114,18 @@ $System_Config['notify_limit_mode'] = 'false';			//false为关闭，per为按照
 $System_Config['notify_limit_value'] = '20';			//当上一项为per时，此处填写百分比；当上一项为mb时，此处填写流量
 $System_Config['mergeSub'] = 'false';						//合并订阅设置 可选项 false / true
 
+//Bot 设置--------------------------------------------------------------------------------------------
+#通用
+$System_Config['qrcode']='zxing_local';				//二维码解码方式，online，phpzbar，zxing_online，zxing_local
+$System_Config['finance_public']='false';			//财务报告是否向群公开
+$System_Config['enable_welcome_message']='true';	//机器人发送欢迎消息
 
-//Telegram bot设置------------------------------------------------------------------------------------
+#Discord
+$System_Config['enable_discord']='false';	//是否开启Discord bot（仍未完成）
+$System_Config['discord_token']='';			//Discord bot,bot 的 token，在 https://discordapp.com/developers/applications/ 申请
+
+
+#Telegram
 $System_Config['enable_telegram']='false';			//是否开启Telegram bot
 $System_Config['telegram_token']='';				//Telegram bot,bot 的 token ，跟 father bot 申请
 $System_Config['telegram_chatid']='';				//Telegram bot,群组会话 ID,把机器人拉进群里之后跟他 /ping 一下即可得到。
@@ -122,11 +134,7 @@ $System_Config['tuling_apikey']='';					//图灵机器人API Key
 $System_Config['tuling_apisecert']='';				//图灵机器人密钥
 $System_Config['telegram_bot']='_bot';				//Telegram 机器人账号
 $System_Config['telegram_group_quiet']='false';		//Telegram 机器人在群组中不回应
-$System_Config['telegram_qrcode']='zxing_local';	//二维码解码方式，online，phpzbar，zxing_online，zxing_local
 $System_Config['telegram_request_token']='';		//Telegram 机器人请求Key，随意设置，由大小写英文和数字组成，更新这个参数之后请 php xcat setTelegram
-$System_Config['enable_welcome_message']='true';	//机器人发送欢迎消息
-$System_Config['finance_public']='false';			//财务报告是否向Telegram群公开
-$System_Config['telegram_grouplink']='';           //telegram群邀请链接
 
 
 //沟通设置--------------------------------------------------------------------------------------------
@@ -134,8 +142,17 @@ $System_Config['telegram_grouplink']='';           //telegram群邀请链接
 $System_Config['enable_mylivechat']='false';		//是否开启客服系统
 $System_Config['mylivechat_id']='null';			//客服系统ID
 
+# PushBear  基于微信模板的向关注了二维码的用户以微信方式推送消息 https://pushbear.ftqq.com/
+$System_Config['usePushBear'] = 'false';		// true 启用	false 禁用
+$System_Config['PushBear_sendkey'] = '';	//请填写您在PushBear获取的sendkey  请仔细检查勿粘贴错
+
 #工单系统设置
 $System_Config['enable_ticket']='true';		//是否开启工单系统
+$System_Config['mail_ticket']='true';		//是否开启工单邮件提醒
+
+# Server酱  用户提交新工单或者回复工单时用微信提醒机场主 http://sc.ftqq.com/
+$System_Config['useScFtqq'] = 'false';		//是否开启工单Server酱提醒
+$System_Config['ScFtqq_SCKEY'] = '';	//请填写您在Server酱获取的SCKEY  请仔细检查勿粘贴错
 
 #管理员联系方式设置
 $System_Config['enable_admin_contact']='false';			//是否开启管理员联系方式
@@ -160,7 +177,7 @@ $System_Config['enable_checkin_captcha'] = 'false';	//启用签到验证码
 
 
 //支付系统设置----------------------------------------------------------------------------------------
-#取值 none | codepay | trimepay | f2fpay | yftpay | chenAlipay | paymentwall | spay
+#取值 none | codepay | trimepay | f2fpay | chenAlipay | paymentwall | spay |tomatopay
 $System_Config['payment_system']='none';
 
 #codepay码支付
@@ -173,6 +190,7 @@ $System_Config['f2fpay_app_id']='';
 $System_Config['f2fpay_p_id']='';
 $System_Config['alipay_public_key']='';
 $System_Config['merchant_private_key']='';
+$System_Config['f2fNotifyUrl']=null;                  //自定义当面付回调地址
 
 #PaymentWall
 $System_Config['pmw_publickey']='';
@@ -185,10 +203,6 @@ $System_Config['alipay_id']='';
 $System_Config['alipay_key']='';
 $System_Config['amount']=[2,23,233,2333,23333];		//充值金额选项设定
 
-#yftpay,https://pay.anypay.me/
-$System_Config['yft_secret']='';
-$System_Config['yft_accesskey']='';
-
 #alipay,zfbjk.com
 $System_Config['zfbjk_pid']='';
 $System_Config['zfbjk_key']='';
@@ -197,6 +211,10 @@ $System_Config['zfbjk_qrcodeurl']='';
 #Trimepay https://portal.trimepay.com/#/auth/register/134
 $System_Config['trimepay_appid']='';				//AppID
 $System_Config['trimepay_secret']='';				//AppSecret
+
+# BitPay 数字货币支付（比特币、以太坊、EOS等） 商户后台获取授权码 https://merchants.mugglepay.com/
+#   客服和技术 24x7 在线支持： https://t.me/joinchat/GLKSKhUnE4GvEAPgqtChAQ
+$System_Config['bitpay_secret']='';
 
 
 //其他面板显示设置------------------------------------------------------------------------------------------
@@ -227,6 +245,8 @@ $System_Config['detect_gfw_count']='3';												//尝试次数
 
 #离线检测
 $System_Config['enable_detect_offline']='true';
+#离线检测是否推送到Server酱 请配置好上文的Server配置
+$System_Config['enable_detect_offline_useScFtqq']='true';
 
 
 //V2Ray相关设置------------------------------------------------------------------------------------------
@@ -238,9 +258,10 @@ $System_Config['v2ray_level']='0';
 //以下所有均为高级设置（一般用不上，不用改---------------------------------------------------------------------
 #杂项
 $System_Config['enable_login_bind_ip']='false';		//是否将登陆线程和IP绑定
+$System_Config['rememberMeDuration']='7';           //登录时记住账号时长天数
 $System_Config['authDriver'] = 'cookie';			//不能更改此项
-$System_Config['pwdMethod'] = 'sha256';				//密码加密 可选 md5, sha256, bcrypt, argon2i（argon2i需要至少php7.2）
-$System_Config['salt'] = '';						//推荐配合 md5/sha256 用，argon2i/bcrypt 强烈建议不要自己设置 salt。只要不设置，它会自动创建安全的盐值
+$System_Config['pwdMethod'] = 'md5';				//密码加密 可选 md5, sha256, bcrypt, argon2i, argon2id（argon2i需要至少php7.2）
+$System_Config['salt'] = '';						//推荐配合 md5/sha256， bcrypt/argon2i/argon2id 会忽略此项
 $System_Config['sessionDriver'] = 'cookie';			//可选: cookie,redis
 $System_Config['cacheDriver'] = 'cookie';			//可选: cookie,redis
 $System_Config['tokenDriver'] = 'db';				//可选: db,redis
@@ -254,6 +275,7 @@ $System_Config['timeZone'] = 'PRC';					//PRC 天朝时间  UTC 格林时间
 $System_Config['db_charset'] = 'utf8';
 $System_Config['db_collation'] = 'utf8_general_ci';
 $System_Config['db_prefix'] = '';
+$System_Config['muKeyList'] = ['　'];                //多 key 列表
 
 #aws
 $System_Config['aws_access_key_id'] = '';
@@ -264,7 +286,7 @@ $System_Config['redis_scheme'] = 'tcp';
 $System_Config['redis_host'] = '127.0.0.1';
 $System_Config['redis_port'] = '6379';
 $System_Config['redis_database'] = '0';
-$System_Config['redis_password']="";
+$System_Config['redis_password']= '';
 
 #Radius设置
 $System_Config['enable_radius']='false';			//是否开启Radius
@@ -278,7 +300,7 @@ $System_Config['radius_secret']='';					//Radius连接密钥
 $System_Config['enable_cloudxns']='false';			//是否开启Cloudxns
 $System_Config['cloudxns_apikey']='';				//自己去 cloudxns.net 申请
 $System_Config['cloudxns_apisecret']='';
-$System_Config['cloudxns_domain']='zhaoj.in';		//你的域名
+$System_Config['cloudxns_domain']='';		//你的域名
 
 #Cloudflare
 $System_Config['cloudflare_enable']='false';										//是否开启 Cloudflare 解析
@@ -294,7 +316,7 @@ $System_Config['enable_analytics_code']='false';
 $System_Config['sspanelAnalysis'] = 'true';
 
 #在套了CDN之后获取用户真实ip，如果您不知道这是什么，请不要乱动
-if ( isset($_SERVER["HTTP_X_FORWARDED_FOR"]) ) {
-$list = explode("," , $_SERVER["HTTP_X_FORWARDED_FOR"]);
-$_SERVER["REMOTE_ADDR"] = $list[0];
+if ( isset($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
+$list = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+$_SERVER['REMOTE_ADDR'] = $list[0];
 }
