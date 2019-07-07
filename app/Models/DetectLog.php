@@ -2,41 +2,47 @@
 
 namespace App\Models;
 
+/**
+ * DetectLog Model
+ */
+
+use App\Utils\Tools;
+
 class DetectLog extends Model
 {
-    protected $connection = 'default';
-    protected $table = 'detect_log';
+    protected $connection = "default";
+    protected $table = "detect_log";
 
     public function DetectRule()
     {
-        $rule = DetectRule::where('id', $this->attributes['list_id'])->first();
+        $rule = DetectRule::where("id", $this->attributes['list_id'])->first();
         if ($rule == null) {
-            self::where('id', '=', $this->attributes['id'])->delete();
+            DetectLog::where('id', '=', $this->attributes['id'])->delete();
             return null;
+        } else {
+            return $rule;
         }
-
-        return $rule;
     }
 
     public function User()
     {
-        $user = User::where('id', $this->attributes['user_id'])->first();
+        $user = User::where("id", $this->attributes['user_id'])->first();
         if ($user == null) {
-            self::where('id', '=', $this->attributes['id'])->delete();
+            DetectLog::where('id', '=', $this->attributes['id'])->delete();
             return null;
+        } else {
+            return $user;
         }
-
-        return $user;
     }
 
     public function Node()
     {
-        $node = Node::where('id', $this->attributes['node_id'])->first();
+        $node = Node::where("id", $this->attributes['node_id'])->first();
         if ($node == null) {
-            self::where('id', '=', $this->attributes['id'])->delete();
+            DetectLog::where('id', '=', $this->attributes['id'])->delete();
             return null;
+        } else {
+            return $node;
         }
-
-        return $node;
     }
 }

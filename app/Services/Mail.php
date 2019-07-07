@@ -16,23 +16,24 @@ use Smarty;
 class Mail
 {
     /**
-     * @return Mailgun|NullMail|SendGrid|Ses|Smtp|null
+     * @return Mailgun|Ses|Smtp|null
      */
     public static function getClient()
     {
-        $driver = Config::get('mailDriver');
+        $driver = Config::get("mailDriver");
         switch ($driver) {
-            case 'mailgun':
+            case "mailgun":
                 return new Mailgun();
-            case 'ses':
+            case "ses":
                 return new Ses();
-            case 'smtp':
+            case "smtp":
                 return new Smtp();
-            case 'sendgrid':
+            case "sendgrid":
                 return new SendGrid();
             default:
                 return new NullMail();
         }
+        return null;
     }
 
     /**
@@ -59,12 +60,12 @@ class Mail
      * @param $subject
      * @param $template
      * @param $ary
-     * @param $files
+     * @param $file
      * @return bool|void
      */
-    public static function send($to, $subject, $template, $ary = [], $files = [])
+    public static function send($to, $subject, $template, $ary = [], $file = [])
     {
         $text = self::genHtml($template, $ary);
-        return self::getClient()->send($to, $subject, $text, $files);
+        return self::getClient()->send($to, $subject, $text, $file);
     }
 }

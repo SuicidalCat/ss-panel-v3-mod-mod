@@ -8,6 +8,10 @@ class Check
     //
     public static function isEmailLegal($email)
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) <= 32;
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)&&strlen($email)<=32) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

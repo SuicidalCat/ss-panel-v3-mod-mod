@@ -3,24 +3,26 @@
 
 namespace App\Models;
 
+use App\Utils\Tools;
+
 class UnblockIp extends Model
 {
-    protected $connection = 'default';
-    protected $table = 'unblockip';
+    protected $connection = "default";
+    protected $table = "unblockip";
 
     public function user()
     {
-        $user = User::where('id', $this->attributes['userid'])->first();
+        $user = User::where("id", $this->attributes['userid'])->first();
         if ($user == null) {
-            self::where('id', '=', $this->attributes['id'])->delete();
+            UnblockIp::where('id', '=', $this->attributes['id'])->delete();
             return null;
+        } else {
+            return $user;
         }
-
-        return $user;
     }
-
+    
     public function time()
     {
-        return date('Y-m-d H:i:s', $this->attributes['datetime']);
+        return date("Y-m-d H:i:s", $this->attributes['datetime']);
     }
 }

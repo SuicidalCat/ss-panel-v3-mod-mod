@@ -9,19 +9,16 @@
 namespace App\Utils;
 
 use Smarty;
-use App\Services\Config;
 
 
-class ConfRender
-{
-    public static function getTemplateRender()
-    {
+class ConfRender {
+    public static function getTemplateRender() {
         $smarty = new smarty();
 
         $smarty->settemplatedir(BASE_PATH . '/resources/conf/');
         $smarty->setcompiledir(BASE_PATH . '/storage/framework/smarty/compile/');
         $smarty->setcachedir(BASE_PATH . '/storage/framework/smarty/cache/');
-        $smarty->registerClass('config', Config::class);
+        $smarty->registerClass("config", "App\Services\Config");
         return $smarty;
     }
 }
