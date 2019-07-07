@@ -2,6 +2,8 @@
 
 namespace App\Services\Mail;
 
+use App\Services\Config;
+
 class NullMail extends Base
 {
 

@@ -10,7 +10,7 @@ class Cookie
             setcookie($key, $value, $time, '/');
         }
     }
-
+    
     public static function setwithdomain($arg, $time, $domain)
     {
         foreach ($arg as $key => $value) {
@@ -20,6 +20,9 @@ class Cookie
 
     public static function get($key)
     {
-        return $_COOKIE[$key] ?? '';
+        if (isset($_COOKIE[$key])) {
+            return $_COOKIE[$key];
+        }
+        return "";
     }
 }
