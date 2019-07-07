@@ -17,29 +17,29 @@ class Shop extends Model
         foreach ($content as $key => $value) {
             switch ($key) {
                 case 'bandwidth':
-                    $content_text .= '添加流量 ' . $value . ' G ';
+                    $content_text .= '添加傳輸量 ' . $value . ' G ';
                     break;
                 case 'expire':
-                    $content_text .= ', 为账号的有效期添加 ' . $value . ' 天 ';
+                    $content_text .= ', 添加賬戶有效期 ' . $value . ' 天 ';
                     break;
                 case 'class':
-                    $content_text .= ', 为账号升级为等级 ' . $value . ' , 有效期 ' . $content['class_expire'] . ' 天 ';
+                    $content_text .= ', 為賬戶升級介入權限 ' . $value . ' , 有效期 ' . $content['class_expire'] . ' 天 ';
                     break;
                 case 'reset':
-                    $content_text .= ', 在 ' . $content['reset_exp'] . ' 天内 ，每 ' . $value . ' 天重置流量为 ' . $content['reset_value'] . ' G ';
+                    $content_text .= ', 在 ' . $content['reset_exp'] . ' 天内 ，每 ' . $value . ' 天重置傳輸量為 ' . $content['reset_value'] . ' G ';
                     break;
                 case 'speedlimit':
                     if ($value == 0) {
-                        $content_text .= ', 用户端口不限速 ';
+                        $content_text .= ', 接入速率不限制 ';
                     } else {
-                        $content_text .= ', 用户端口限速变为' . $value . ' Mbps ';
+                        $content_text .= ', 接入速率更改為' . $value . ' Mbps ';
                     }
                     break;
                 case 'connector':
                     if ($value == 0) {
-                        $content_text .= ', 用户IP不限制';
+                        $content_text .= ', 鏈接設備數量不限制';
                     } else {
-                        $content_text .= ', 用户IP限制变为 ' . $value . ' 个';
+                        $content_text .= ', 鏈接設備數量更改為 ' . $value . ' 個';
                     }
                     break;
                 default:
