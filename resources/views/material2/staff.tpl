@@ -34,8 +34,6 @@
 				LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 				OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 				SOFTWARE.</p>
-
-				<p>ps：别问我，我也看不懂</p>
 			  </div>
 			</fieldset>
 		</div>		
@@ -66,7 +64,7 @@
 						<p><a href="https://github.com/Daemonite/" target="_blank">Daemonite</a> , <a href="https://www.zhaoj.in" target="_blank">（曾经的）glzjin</a></p>
 
 						<h2>出演</h2>
-						<p><a href="https://www.zhaoj.in" target="_blank">（曾经的）glzjin</a> , <a href="http://mengyang.wang/" target="_blank">mengyang</a> , <a href="http://tony.ecy.ren/" target="_blank">tony</a></p>
+						<p><a href="https://www.zhaoj.in" target="_blank">（曾经的）glzjin</a></p>
 
 						<p>所有被引用过代码及所有提交过issue的同学。还有在使用这份程序的你我Ta。</p>
 
