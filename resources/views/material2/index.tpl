@@ -1,7 +1,7 @@
 <!DOCTYPE HTML> 
 <html>
 	<head>
-		<title>{$config["appName"]}</title>
+		<title>WallLink User Panel</title>
         	<meta name="keywords" content=""/>
         	<meta name="description" content=""/>
         	<meta charset="utf-8" />
