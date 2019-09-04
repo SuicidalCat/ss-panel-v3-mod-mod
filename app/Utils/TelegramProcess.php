@@ -19,19 +19,21 @@ class TelegramProcess
         '?mu=2' => 'V2ray訂閲',
         '?mu=4' => 'Clash訂閲'];
 
-    private static function callback_bind_method($bot, $message, $command)
+    private static function callback_bind_method($bot, $callback)
     {
+        $callback_data = $callback->getData();
+        $message = $callback->getMessage();
         $reply_to = $message->getMessageId();
-        $user = User::where('telegram_id', $message->getFrom()->getId())->first();
+        $user = User::where('telegram_id', $callback->getFrom()->getId())->first();
         $reply_message = '？？？';
         if ($user != null) {
             switch (true) {
-                case (strpos($command, 'mu')):
+                case (strpos($callback_data, 'mu')):
                     $ssr_sub_token = LinkController::GenerateSSRSubCode($user->id, 0);
                     $subUrl = Config::get('subUrl');
-                    $reply_message = self::$all_rss[$command] . ': ' . $subUrl . $ssr_sub_token . $command . PHP_EOL;
+                    $reply_message = self::$all_rss[$callback_data] . ': ' . $subUrl . $ssr_sub_token . $callback_data . PHP_EOL;
                     break;
-                case ($command == 'clean_link'):
+                case ($callback_data == 'clean_link'):
                     $user->clean_link();
                     $reply_message = '訂閲鏈接已被成功重置';
                     break;
@@ -75,7 +77,7 @@ class TelegramProcess
                     foreach (self::$all_rss as $key => $value) {
                         $keys[] = [['text' => $value, 'callback_data' => $key]];
                     }
-                    $reply['mark'] = new InlineKeyboardMarkup(
+                    $reply['markup'] = new InlineKeyboardMarkup(
                         $keys
                     );
                     break;
@@ -232,6 +234,9 @@ class TelegramProcess
                 case 'prpr':
                     $reply = self::needbind_method($bot, $message, $command, $user, $reply_to);
                     break;
+                case 'rss':
+                    $reply['message'] = '请私聊机器人使用该命令';
+                    break;
                 case 'help':
                     $reply['message'] = 'Bot指令列表：
                     /traffic 查詢傳輸量使用情況
@@ -258,7 +263,7 @@ class TelegramProcess
             }
         }
 
-        $bot->sendMessage($message->getChat()->getId(), $reply['message'], $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to, $replyMarkup = $reply['mark']);
+        $bot->sendMessage($message->getChat()->getId(), $reply['message'], $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to, $replyMarkup = $reply['markup']);
         $bot->sendChatAction($message->getChat()->getId(), '');
     }
 
@@ -281,15 +286,11 @@ class TelegramProcess
             }), static function () {
                 return true;
             });
-            $bot->on(static function ($update) use ($bot) {
-                $callback = $update->getCallbackQuery();
-                //Answer to Telegram, you make answer in the end, or in the beginning.
-                $message = $callback->getMessage();
-                $message->setFrom($callback->getFrom());
-                TelegramProcess::callback_bind_method($bot, $message, $callback->getData());
-            }, static function ($update) {
-                $callback = $update->getCallbackQuery();
-                return !($callback === null || $callback->getData() == '');
+
+            $bot->on($bot->getCallbackQueryEvent(function ($callback) use ($bot) {
+                TelegramProcess::callback_bind_method($bot, $callback);
+            }), function () {
+                return true;
             });
 
             $bot->run();

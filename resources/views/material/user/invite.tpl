@@ -10,7 +10,7 @@
         <section class="content-inner margin-top-no">
             <div class="row">
 
-                <div class="col-xx-12">
+                <div class="col-lg-6 col-md-6">
                     <div class="card margin-bottom-no">
                         <div class="card-main">
                             <div class="card-inner">
@@ -31,7 +31,7 @@
                 {if $user->class!=0}
 
                     {if $user->invite_num!=-1}
-                        <div class="col-xx-12">
+                        <div class="col-lg-6 col-md-6">
                             <div class="card margin-bottom-no">
                                 <div class="card-main">
                                     <div class="card-inner margin-bottom-no">
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         {if $config['custom_invite_price']>=0}
-                            <div class="col-xx-12 {if $config['invite_price']>=0}col-lg-6{/if}">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="card margin-bottom-no">
                                     <div class="card-main">
                                         <div class="card-inner margin-bottom-no">
@@ -101,7 +101,7 @@
                     {/if}
 
                     {if $config['invite_price']>=0}
-                        <div class="col-xx-12 {if $config['custom_invite_price']>=0}col-lg-6{/if}">
+                        <div class="col-xx-12">
                             <div class="card margin-bottom-no">
                                 <div class="card-main">
                                     <div class="card-inner">
@@ -189,7 +189,7 @@
 
     $(".copy-text").click(function () {
         $("#result").modal();
-        $("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
+        $$.getElementById('msg').innerHTML = '已复制到您的剪贴板，请您继续接下来的操作。';
     });
 
     $(document).ready(function () {
@@ -198,12 +198,14 @@
                 type: "POST",
                 url: "/user/invite",
                 dataType: "json",
-                success: function (data) {
+                success: (data) => {
                     window.location.reload();
                 },
-                error: function (jqXHR) {
+                error: (jqXHR) => {
                     $("#result").modal();
-                    $("#msg").html("发生错误：" + jqXHR.status);
+                    $$.getElementById('msg').innerHTML = `发生错误：${
+                            jqXHR.status
+                            }`;
                 }
             })
         })
@@ -218,21 +220,23 @@
             url: "/user/buy_invite",
             dataType: "json",
             data: {
-                num: $("#buy-invite-num").val(),
+                num: $$getValue('buy-invite-num')
             },
-            success: function (data) {
+            success: (data) => {
                 if (data.ret) {
                     $("#result").modal();
-                    $("#msg").html(data.msg);
+                    $$.getElementById('msg').innerHTML = data.msg;
                     window.setTimeout("location.href='/user/invite'", {$config['jump_delay']});
                 } else {
                     $("#result").modal();
-                    $("#msg").html(data.msg);
+                    $$.getElementById('msg').innerHTML = data.msg;
                 }
             },
-            error: function (jqXHR) {
+            error: (jqXHR) => {
                 $("#result").modal();
-                $("#msg").html(data.msg + "     出现了一些错误。");
+                $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                        } 出现了一些错误`;
             }
         })
     });
@@ -243,21 +247,23 @@
             url: "/user/custom_invite",
             dataType: "json",
             data: {
-                customcode: $("#custom-invite-link").val(),
+                customcode: $$getValue('custom-invite-link'),
             },
-            success: function (data) {
+            success: (data) => {
                 if (data.ret) {
                     $("#result").modal();
-                    $("#msg").html(data.msg);
+                    $$.getElementById('msg').innerHTML = data.msg;
                     window.setTimeout("location.href='/user/invite'", {$config['jump_delay']});
                 } else {
                     $("#result").modal();
-                    $("#msg").html(data.msg);
+                    $$.getElementById('msg').innerHTML = data.msg;
                 }
             },
-            error: function (jqXHR) {
+            error: (jqXHR) => {
                 $("#result").modal();
-                $("#msg").html(data.msg + "     出现了一些错误。");
+                $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                        } 出现了一些错误`;
             }
         })
     });
@@ -268,7 +274,7 @@
 
     $(".reset-link").click(function () {
         $("#result").modal();
-        $("#msg").html("已重置您的邀请链接，复制您的邀请链接发送给其他人！");
+        $$.getElementById('msg').innerHTML = '已重置您的邀请链接，复制您的邀请链接发送给其他人！';
         window.setTimeout("location.href='/user/inviteurl_reset'", {$config['jump_delay']});
     });
 

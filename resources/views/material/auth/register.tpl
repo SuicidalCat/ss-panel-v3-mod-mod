@@ -9,7 +9,7 @@
                         <div>首 页</div>
                     </a>
                     <div class="auth-logo">
-                        <img src="/images/authlogo.jpg" alt="">
+                        <img src="/images/authlogo.jpg">
                     </div>
                     <a href="/auth/login" class="boardtop-right">
                         <div>登 录</div>
@@ -37,6 +37,7 @@
                             <div class="form-group-label auth-row">
                                 <label class="floating-label" for="passwd">密码</label>
                                 <input class="form-control maxwidth-auth" id="passwd" type="password">
+                                <p id="passwd-strong" style="text-align: left; margin: 3px; font-size: 80%"></p>
                             </div>
                         </div>
                     </div>
@@ -203,12 +204,55 @@
 
 {include file='footer.tpl'}
 
+<script>
+const checkStrong = (sValue) => {
+    let modes = 0;
+    if (sValue.length < 7) return modes;
+    if (/\d/.test(sValue)) modes++;
+    if (/[a-z]/.test(sValue)) modes++;
+    if (/[A-Z]/.test(sValue)) modes++;
+    if (/\W/.test(sValue)) modes++;
+
+    switch (modes) {
+        case 1:
+            return 1;
+            break;
+        case 2:
+            return 2;
+        case 3:
+        case 4:
+            return sValue.length < 12 ? 3 : 4
+            break;
+    }
+}
+
+const showStrong = () => {
+    const password = document.getElementById('passwd').value;
+    const $passwordStrongEl = document.getElementById('passwd-strong');
+    const strong = checkStrong(password);
+    if (strong = 0) {
+        $passwordStrongEl.innerHTML = '需大于 8 位；推荐使用包含大小写字母、数字、符号的密码';
+    } else if (strong = 1) {
+        $passwordStrongEl.innerHTML = '你的密码强度为： <span style="color: red; font-weight: bold">非常弱</span>';
+    } else if (strong = 2) {
+        $passwordStrongEl.innerHTML = '你的密码强度为： <span style="color: red; font-weight: bold">弱</span>';
+    } else if (strong = 3) {
+        $passwordStrongEl.innerHTML = '你的密码强度为： <span style="color: yellow; font-weight: bold">中等</span>';
+    } else if (strong = 4) {
+        $passwordStrongEl.innerHTML = '你的密码强度为： <span style="color: green; font-weight: bold">强</span>';
+    }
+}
+
+document.getElementById('passwd').addEventListener('input', checkStrong);
+</script>
+
 {if $config['register_mode']!='close'}
     <script>
         $(document).ready(function () {
             function register() {
-                code = $("#code").val();
-                {if $config['register_mode'] != 'invite'}
+                {if $config['register_mode'] == 'invite'}
+                code = $$getValue('code');
+                {else}
                 code = 0;
                 if ((getCookie('code')) != '') {
                     code = getCookie('code');
@@ -221,28 +265,32 @@
                     url: "/auth/register",
                     dataType: "json",
                     data: {
-                        email: $("#email").val(),
-                        name: $("#name").val(),
-                        passwd: $("#passwd").val(),
-                        repasswd: $("#repasswd").val(),
-                        wechat: $("#wechat").val(),{if $recaptcha_sitekey != null}
-                        recaptcha: grecaptcha.getResponse(),{/if}
-                        imtype: $("#imtype").val(),
-                        code: code{if $enable_email_verify == 'true'},
-                        emailcode: $("#email_code").val(){/if}{if $geetest_html != null},
+                        email: $$getValue('email'),
+                        name: $$getValue('name'),
+                        passwd: $$getValue('passwd'),
+                        repasswd: $$getValue('repasswd'),
+                        wechat: $$getValue('wechat'),
+
+                        {if $recaptcha_sitekey != null}
+                        recaptcha: grecaptcha.getResponse(),
+                        {/if}
+
+                        imtype: $$getValue('imtype'),
+                        code{if $enable_email_verify == 'true'},
+                        emailcode: $$getValue('email_code'){/if}{if $geetest_html != null},
                         geetest_challenge: validate.geetest_challenge,
                         geetest_validate: validate.geetest_validate,
                         geetest_seccode: validate.geetest_seccode
                         {/if}
                     },
-                    success: function (data) {
+                    success: (data) => {
                         if (data.ret == 1) {
                             $("#result").modal();
-                            $("#msg").html(data.msg);
+                            $$.getElementById('msg').innerHTML = data.msg;
                             window.setTimeout("location.href='/auth/login'", {$config['jump_delay']});
                         } else {
                             $("#result").modal();
-                            $("#msg").html(data.msg);
+                            $$.getElementById('msg').innerHTML = data.msg;
                             setCookie('code', '', 0);
                             $("#code").val(getCookie('code'));
                             document.getElementById("tos").disabled = false;
@@ -251,10 +299,12 @@
                             {/if}
                         }
                     },
-                    error: function (jqXHR) {
+                    error: (jqXHR) => {
                         $("#msg-error").hide(10);
                         $("#msg-error").show(100);
-                        $("#msg-error-p").html("发生错误：" + jqXHR.status);
+                        $$.getElementById('msg-error-p').innerHTML = `发生错误：${
+                                jqXHR.status
+                                }`;
                         document.getElementById("tos").disabled = false;
                         {if $geetest_html != null}
                         captcha.refresh();
@@ -288,15 +338,9 @@
 
             $("#tos").click(function () {
                 {if $geetest_html != null}
-                if (typeof validate == 'undefined') {
+                if (typeof validate === 'undefined' || !validate) {
                     $("#result").modal();
-                    $("#msg").html("请滑动验证码来完成验证。");
-                    return;
-                }
-
-                if (!validate) {
-                    $("#result").modal();
-                    $("#msg").html("请滑动验证码来完成验证。");
+                    $$.getElementById('msg').innerHTML = '请滑动验证码来完成验证'
                     return;
                 }
 
@@ -337,21 +381,23 @@
                     url: "send",
                     dataType: "json",
                     data: {
-                        email: $("#email").val()
+                        email: $$getValue('email')
                     },
-                    success: function (data) {
+                    success: (data) => {
                         if (data.ret) {
                             $("#result").modal();
-                            $("#msg").html(data.msg);
+                            $$.getElementById('msg').innerHTML = data.msg;
 
                         } else {
                             $("#result").modal();
-                            $("#msg").html(data.msg);
+                            $$.getElementById('msg').innerHTML = data.msg;
                         }
                     },
-                    error: function (jqXHR) {
+                    error: (jqXHR) => {
                         $("#result").modal();
-                        $("#msg").html(data.msg + "     出现了一些错误。");
+                        $$.getElementById('msg').innerHTML = `${
+                                data.msg
+                                } 出现了一些错误`;
                     }
                 })
             })

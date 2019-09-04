@@ -226,34 +226,15 @@ class Job
             }
         }
 
-
-        #https://github.com/shuax/QQWryUpdate/blob/master/update.php
-
-        $copywrite = file_get_contents('http://update.cz88.net/ip/copywrite.rar');
-
         $adminUser = User::where('is_admin', '=', '1')->get();
 
-        $newmd5 = md5($copywrite);
-        $oldmd5 = file_get_contents(BASE_PATH . '/storage/qqwry.md5');
-
-        if ($newmd5 != $oldmd5) {
-            file_put_contents(BASE_PATH . '/storage/qqwry.md5', $newmd5);
-            $qqwry = file_get_contents('http://update.cz88.net/ip/qqwry.rar');
-            if ($qqwry != '') {
-                $key = unpack('V6', $copywrite)[6];
-                for ($i = 0; $i < 0x200; $i++) {
-                    $key *= 0x805;
-                    $key++;
-                    $key &= 0xFF;
-                    $qqwry[$i] = chr(ord($qqwry[$i]) ^ $key);
-                }
-                $qqwry = gzuncompress($qqwry);
-                rename(BASE_PATH . '/storage/qqwry.dat', BASE_PATH . '/storage/qqwry.dat.bak');
-                $fp = fopen(BASE_PATH . '/storage/qqwry.dat', 'wb');
-                if ($fp) {
-                    fwrite($fp, $qqwry);
-                    fclose($fp);
-                }
+        $qqwry = file_get_contents('https://qqwry.mirror.noc.one/QQWry.Dat?from=sspanel_uim');
+        if ($qqwry != '') {
+            rename(BASE_PATH . '/storage/qqwry.dat', BASE_PATH . '/storage/qqwry.dat.bak');
+            $fp = fopen(BASE_PATH . '/storage/qqwry.dat', 'wb');
+            if ($fp) {
+                fwrite($fp, $qqwry);
+                fclose($fp);
             }
         }
 
@@ -271,7 +252,7 @@ class Job
     //   定时任务开启的情况下，每天自动检测有没有最新版的后端，github源来自Miku
     public static function updatedownload()
     {
-        system('cd ' . BASE_PATH . '/public/ssr-download/ && git pull https://github.com/xcxnig/ssr-download.git');
+        system('cd ' . BASE_PATH . '/public/ssr-download/ && git pull https://github.com/xcxnig/ssr-download.git && git gc');
     }
 
 
@@ -558,7 +539,7 @@ class Job
                         $text = '管理员您好，系统发现节点 ' . $node->name . ' 恢复上线了。';
                         $postdata = http_build_query(
                             array(
-                                'text' => Config::get('appName') . '-节点掉线了',
+                                'text' => Config::get('appName') . '-节点恢复上线了',
                                 'desp' => $text
                             )
                         );
