@@ -111,29 +111,10 @@
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port">點擊複製</button>
                                                 </div>
                                                 <br>
-                                                單端口訂閲鏈接（CN）：
-                                                <div class="clip-input">
-                                                    <input type="text" id="single_port_cn" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port_cn">點擊複製</button>
-                                                </div>
-                                                <br>
-                                                多端口訂閲鏈接（For Mobile Client）：
-                                                <div class="clip-input">
-                                                    <input type="text" id="multi_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#multi_port">點擊複製</button>
-                                                </div>
-                                                <br>
-                                                多端口訂閲鏈接（For Mobile Client, CN）：
-                                                <div class="clip-input">
-                                                    <input type="text" id="multi_port_cn" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#multi_port_cn">點擊複製</button>
-                                                </div>
-                                                <br>
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>
                                             <div class="layui-tab-item">
-                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ss_url_all}">配置導入(SS)</button>
-                                                <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}{$ssr_url_all_mu}">配置導入(SSR)</button> 後右鍵客戶端導入。
+                                                點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-text="{$ssr_url_all}{$ssr_url_all_mu}">配置導入(SSR)</button> 後右鍵客戶端導入。
                                             </div>
                                             <div class="layui-tab-item">
                                                 點擊 <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary"><a href="/user/getpcconf?is_mu=0&is_ss=1">配置下載（SS）</a></button>
@@ -152,32 +133,12 @@
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port">點擊複製</button>
                                                 </div>
                                                 <br>
-                                                單端口訂閲鏈接（CN）：
-                                                <div class="clip-input">
-                                                    <input type="text" id="single_port_cn" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=1" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port_cn">點擊複製</button>
-                                                </div>
-                                                <br>
-                                                多端口訂閲鏈接（For Mobile Client）：
-                                                <div class="clip-input">
-                                                    <input type="text" id="multi_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#multi_port">點擊複製</button>
-                                                </div>
-                                                <br>
-                                                多端口訂閲鏈接（For Mobile Client, CN）：
-                                                <div class="clip-input">
-                                                    <input type="text" id="multi_port_cn" class="layui-input" value="https://wl-sub.leezf.com/link/{$ssr_sub_token}?mu=0" readonly/>
-                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#multi_port_cn">點擊複製</button>
-                                                </div>
-                                                <br>
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>                                  
                                             <div class="layui-tab-item">
                                                 <p>
                                                     網路分享器刷入<a href="http://www.right.com.cn/forum/thread-161324-1-1.html" class="layui-btn layui-btn-primary">这个固件</a> 然后SSH方式登陆路由器，执行以下命令，导入<br>
-                                                    1) 多端口
-                                                    <pre class="layui-code">wget -O- {$subUrl}/link/{$router_token}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$subUrl}/link/{$router_token}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </pre>
-                                                    2) 單端口
+                                                    單端口
                                                     <pre class="layui-code">wget -O- {$subUrl}/link/{$router_token_without_mu}?is_ss=0 | bash && echo -e "\n0 */3 * * * wget -O- {$subUrl}/link/{$router_token_without_mu}?is_ss=0 | bash\n">> /etc/storage/cron/crontabs/admin && killall crond && crond </pre>
                                                     执行完毕以后就可以到路由器的设置面板里随意选择 节点 进行连接了。
                                                 </p>
