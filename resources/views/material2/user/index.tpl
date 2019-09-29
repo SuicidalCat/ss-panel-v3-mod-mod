@@ -153,7 +153,6 @@
 
                 <div class="layui-col-md4">
                     <div class="layui-row layui-col-space20">
-
                         <div class="layui-col-md12">
                             <div class="layui-card">
                                 <div class="layui-card-header">傳輸量使用情況 <span>最後鏈接:{$user->lastSsTime()|date_format:'%Y-%m-%d'}</span>
@@ -188,19 +187,15 @@
                                     {/if}                                    
                                 </div>                                
                             </div>
-                        </div>                      
-                                             
+                        </div>                                   
                     </div>
-                </div>
-
-                <div class="layui-col-md12 text-center">{$smarty.now|date_format:"%Y"} &copy; {$config["appName"]} <a href="/staff" target="_blank">Staff</a></div>
-            
+                </div>          
             </div>
             <!--content:end-->
         </div>
     </div>
 </div>
-{include file='page-foot.tpl'}
+{include file='page-foot.tpl'} 
 
 <script>
 window.sp={
