@@ -111,6 +111,12 @@
                                                     <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port">點擊複製</button>
                                                 </div>
                                                 <br>
+                                                普通端口訂閲鏈接：
+                                                <div class="clip-input">
+                                                    <input type="text" id="single_port" class="layui-input" value="{$subUrl}/link/{$ssr_sub_token}?mu=0" readonly/>
+                                                    <button class="layui-btn layui-btn-sm copy-btn layui-btn-primary" data-clipboard-target="#single_port">點擊複製</button>
+                                                </div>
+                                                <br>
                                                 <a href="javascript:void();" class="reset-link layui-btn layui-btn-sm">重設訂閲鏈接</a>
                                             </div>
                                             <div class="layui-tab-item">
